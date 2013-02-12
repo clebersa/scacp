@@ -14,10 +14,10 @@ import java.sql.SQLException;
  */
 public class Conexao {
     private static Connection conexao; // Objeto que será utilizado para a conexão com o banco de dados
-    private static final String JDBC_DRIVER = "org.hsqldb.jdbcDriver"; // Driver do banco de dados utilizado, permitindo conectar-se a ele
-    private static final String URL = "jdbc:hsqldb:file://home/cleber/Dropbox/NetbeansProjects/scacp/src/scacp/SCACP_DB"; // Endereço do banco de dados ao qual você vai se conectar
-    private static final String USUARIO = "SA";// Usuário que vai conectar-se ao banco
-    private static final String SENHA = "";// Senha do usuário para se conectar ao banco
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver"; // Driver do banco de dados utilizado, permitindo conectar-se a ele
+    private static final String URL = "jdbc:mysql://localhost/scacp"; // Endereço do banco de dados ao qual você vai se conectar
+    private static final String USUARIO = "scacp";// Usuário que vai conectar-se ao banco
+    private static final String SENHA = "123456";// Senha do usuário para se conectar ao banco
     
     public static Connection getConexao(){
         try {

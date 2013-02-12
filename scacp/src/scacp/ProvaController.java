@@ -6,7 +6,7 @@ package scacp;
 
 /**
  *
- * @author cleber
+ * @author tisha
  */
 public class ProvaController {
     

@@ -5,7 +5,9 @@
 package scacp;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,7 +24,14 @@ public class Scacp {
         Connection conexao = Conexao.getConexao();
         
         try {
-            System.out.println(conexao.getCatalog());
+            Statement stmt = conexao.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from provas");
+            System.out.println("Resultado:");
+            while(rs.next()){
+                System.out.println("Tabela: " + rs.getString(0));
+            }
+            rs.close();
+            stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(Scacp.class.getName()).log(Level.SEVERE, null, ex);
         }

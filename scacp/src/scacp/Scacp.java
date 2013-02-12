@@ -20,6 +20,7 @@ public class Scacp {
      */
     public static void main(String[] args) {
         Connection conexao = Conexao.getConexao();
+        
         try {
             System.out.println(conexao.getCatalog());
         } catch (SQLException ex) {

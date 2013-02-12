@@ -4,6 +4,11 @@
  */
 package scacp;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author cleber
@@ -14,6 +19,11 @@ public class Scacp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Connection conexao = Conexao.getConexao();
+        try {
+            System.out.println(conexao.getCatalog());
+        } catch (SQLException ex) {
+            Logger.getLogger(Scacp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -6,7 +6,7 @@ package scacp;
 
 /**
  *
- * @author cleber
+ * @author Larissa
  */
 public class CartaoDAO {
     

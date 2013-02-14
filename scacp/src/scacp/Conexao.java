@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 /**
  *
- * @author cleber
+ * @author Cleber
  */
 public class Conexao {
     private static Connection conexao; // Objeto que será utilizado para a conexão com o banco de dados

@@ -30,10 +30,29 @@ public class CartaoDAO {
     }
     
     public void alterarCartao(Cartao cartao){
+        Connection conexao = Conexao.getConexao();
+        try {
+            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ?");
+            st.setInt (1,);
+            st.setInt (2,);
+            st.execute();
+            st.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar modificar.");
+        }
         // Passos para alteração de cartão
     }
     
     public void buscarCartao(int numeroInscricao){
+        Connection conexao = Conexao.getConexao();
+        try {
+            PreparedStatement st = conexao.prepareStatement("select from cartoes where numero_inscricao = ?");
+            st.setInt(1, numeroInscricao);
+            st.execute();
+            st.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
+        }
         // Passos para localização de cartão
     }
     

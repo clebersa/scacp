@@ -29,7 +29,7 @@ public class CartaoDAO {
         }
     }
     
-    public void alterarCartao(Cartao cartao){
+    public void alterarCartaoMarcacao(Cartao cartao){
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ?");
@@ -38,11 +38,24 @@ public class CartaoDAO {
             st.execute();
             st.close();
         } catch (SQLException excecao) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar modificar.");
+            JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
         // Passos para alteração de cartão
     }
     
+    public void alterarCartaoNota(Cartao cartao){
+        Connection conexao = Conexao.getConexao();
+        try {
+            PreparedStatement st = conexao.prepareStatement("update cartoes set nota='?' where  numero_inscricao = ?");
+            st.setDouble (1, cartao.getNota());
+            st.setInt (2, cartao.getNumeroInscricao());
+            st.execute();
+            st.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a nota.");
+        }
+        // Passos para alteração de cartão
+    }
     public void buscarCartao(int numeroInscricao){
         Connection conexao = Conexao.getConexao();
         try {

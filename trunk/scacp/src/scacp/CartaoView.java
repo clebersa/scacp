@@ -6,7 +6,7 @@ package scacp;
 
 /**
  *
- * @author Larissa
+ * @author Cleber
  */
 public class CartaoView extends javax.swing.JPanel {
 

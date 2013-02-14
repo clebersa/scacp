@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author cleber
+ * @author Cleber
  */
 public class Prova {
     int idProva;

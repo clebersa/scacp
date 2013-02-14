@@ -33,8 +33,8 @@ public class CartaoDAO {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ?");
-            st.setInt (1,);
-            st.setInt (2,);
+            st.setString (1, cartao.getMarcacao());
+            st.setInt (2, cartao.getNumeroInscricao());
             st.execute();
             st.close();
         } catch (SQLException excecao) {

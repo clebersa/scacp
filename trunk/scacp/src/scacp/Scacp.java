@@ -31,6 +31,7 @@ public class Scacp extends javax.swing.JFrame {
     private void initComponents() {
 
         btngrTipoProva = new javax.swing.ButtonGroup();
+        painelProva = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -70,9 +71,27 @@ public class Scacp extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(400, 300));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
+        painelProva.setPreferredSize(new java.awt.Dimension(569, 184));
+
+        javax.swing.GroupLayout painelProvaLayout = new javax.swing.GroupLayout(painelProva);
+        painelProva.setLayout(painelProvaLayout);
+        painelProvaLayout.setHorizontalGroup(
+            painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 776, Short.MAX_VALUE)
+        );
+        painelProvaLayout.setVerticalGroup(
+            painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 195, Short.MAX_VALUE)
+        );
+
         menuArquivo.setText("Arquivo");
 
         itmNovo.setText("Novo");
+        itmNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmNovoActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmNovo);
 
         itmAbrir.setText("Abrir");
@@ -183,11 +202,17 @@ public class Scacp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelProva, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 574, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelProva, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(367, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,6 +239,16 @@ public class Scacp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itmProporcaoPenalizacaoActionPerformed
 
+    private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
+        painelProva.removeAll();
+        ProvaView prova = new ProvaView();
+        prova.validate();
+        painelProva.add(prova);
+        painelProva.validate();
+        painelProva.repaint();
+        painelProva.setVisible(true);
+    }//GEN-LAST:event_itmNovoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,9 +260,10 @@ public class Scacp extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                System.out.println(info.getName());
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+                    //break;
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -280,5 +316,6 @@ public class Scacp extends javax.swing.JFrame {
     private javax.swing.JMenu menuEscalaPontuacao;
     private javax.swing.JMenu menuSistemaPenalizacao;
     private javax.swing.JMenu menuTipoProva;
+    private javax.swing.JPanel painelProva;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,16 +4,20 @@
  */
 package scacp;
 
+import javax.swing.JOptionPane;
+
 /**
  *
- * @author Larissa
+ * @author Cleber
  */
-public class Sacap extends javax.swing.JFrame {
+public class Scacp extends javax.swing.JFrame {
+    Prova prova;
 
     /**
-     * Creates new form Sacap
+     * Creates new form Scacp
      */
-    public Sacap() {
+    public Scacp() {
+        prova = new Prova();
         initComponents();
     }
 
@@ -26,6 +30,7 @@ public class Sacap extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btngrTipoProva = new javax.swing.ButtonGroup();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -51,11 +56,14 @@ public class Sacap extends javax.swing.JFrame {
         itmPontuacaoMaximo = new javax.swing.JMenuItem();
         itmPrecisaoPontuacao = new javax.swing.JMenuItem();
         menuSistemaPenalizacao = new javax.swing.JMenu();
-        itmIncidenciaPenalizacao = new javax.swing.JMenuItem();
+        chbmIncidenciaPenalizacao = new javax.swing.JCheckBoxMenuItem();
         itmProporcaoPenalizacao = new javax.swing.JMenuItem();
         menuAjuda = new javax.swing.JMenu();
         itmAjuda = new javax.swing.JMenuItem();
         itmSobre = new javax.swing.JMenuItem();
+
+        btngrTipoProva.add(itmrbMultiplaEscolha);
+        btngrTipoProva.add(itmrbVerdadeiroFalso);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCACP - Sistema de Correção Automática de Cartões de Provas");
@@ -128,7 +136,7 @@ public class Sacap extends javax.swing.JFrame {
         itmPontuacaoMinima.setText("Pontuação Mínima");
         menuEscalaPontuacao.add(itmPontuacaoMinima);
 
-        itmPontuacaoMaximo.setText("Pontuação Máximo");
+        itmPontuacaoMaximo.setText("Pontuação Máxima");
         menuEscalaPontuacao.add(itmPontuacaoMaximo);
 
         itmPrecisaoPontuacao.setText("Precisão da Pontuação");
@@ -138,10 +146,21 @@ public class Sacap extends javax.swing.JFrame {
 
         menuSistemaPenalizacao.setText("Sistema de Penalização");
 
-        itmIncidenciaPenalizacao.setText("Incidência de Penalização");
-        menuSistemaPenalizacao.add(itmIncidenciaPenalizacao);
+        chbmIncidenciaPenalizacao.setSelected(true);
+        chbmIncidenciaPenalizacao.setText("Incidência de Penalização");
+        chbmIncidenciaPenalizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chbmIncidenciaPenalizacaoActionPerformed(evt);
+            }
+        });
+        menuSistemaPenalizacao.add(chbmIncidenciaPenalizacao);
 
         itmProporcaoPenalizacao.setText("Proporção da Penalização");
+        itmProporcaoPenalizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmProporcaoPenalizacaoActionPerformed(evt);
+            }
+        });
         menuSistemaPenalizacao.add(itmProporcaoPenalizacao);
 
         menuConfigurar.add(menuSistemaPenalizacao);
@@ -174,6 +193,27 @@ public class Sacap extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void chbmIncidenciaPenalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbmIncidenciaPenalizacaoActionPerformed
+        if(chbmIncidenciaPenalizacao.isSelected()){
+            itmProporcaoPenalizacao.setEnabled(true);
+        }else{
+            itmProporcaoPenalizacao.setEnabled(false);
+        }
+    }//GEN-LAST:event_chbmIncidenciaPenalizacaoActionPerformed
+
+    private void itmProporcaoPenalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmProporcaoPenalizacaoActionPerformed
+        String strProporcaoPenalizacao, msgErro;
+        int proporcaoPenalizacao;
+        strProporcaoPenalizacao = JOptionPane.showInputDialog(rootPane, "Informe a proporção da penalização: ", "Proporção da Penalização", JOptionPane.OK_CANCEL_OPTION);
+        try{
+            proporcaoPenalizacao = Integer.parseInt(strProporcaoPenalizacao);
+            prova.setProporcaoPenalizacao(proporcaoPenalizacao);
+        }catch(NumberFormatException excecao){
+            msgErro = "Por favor, informe um número maior que 0.";
+            JOptionPane.showMessageDialog(rootPane, msgErro, "Formato inválido!", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_itmProporcaoPenalizacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -191,32 +231,33 @@ public class Sacap extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Sacap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Sacap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Sacap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Sacap.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Sacap().setVisible(true);
+                new Scacp().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barraMenuPrincipal;
+    private javax.swing.ButtonGroup btngrTipoProva;
+    private javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
     private javax.swing.JMenuItem itmAbrir;
     private javax.swing.JMenuItem itmAjuda;
     private javax.swing.JMenuItem itmAlterarCartao;
     private javax.swing.JMenuItem itmExcluir;
     private javax.swing.JMenuItem itmFechar;
     private javax.swing.JMenuItem itmImprimir;
-    private javax.swing.JMenuItem itmIncidenciaPenalizacao;
     private javax.swing.JMenuItem itmInserirCartao;
     private javax.swing.JMenuItem itmLocalizar;
     private javax.swing.JMenuItem itmNovo;

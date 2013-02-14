@@ -18,7 +18,7 @@ public class Prova {
     double pontuacaoMinima;
     double pontuacaoMaxima;
     int precisaoPontuacao;
-    int incidenciaPenalizacao;
+    boolean incidenciaPenalizacao;
     int proporcaoPenalizacao;
     List<Cartao> cartoes = new ArrayList<>();
     String gabarito;
@@ -74,11 +74,11 @@ public class Prova {
         this.precisaoPontuacao = precisaoPontuacao;
     }
 
-    public int getIncidenciaPenalizacao() {
+    public boolean getIncidenciaPenalizacao() {
         return incidenciaPenalizacao;
     }
 
-    public void setIncidenciaPenalizacao(int incidenciaPenalizacao) {
+    public void setIncidenciaPenalizacao(boolean incidenciaPenalizacao) {
         this.incidenciaPenalizacao = incidenciaPenalizacao;
     }
 

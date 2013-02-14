@@ -2,6 +2,11 @@
 
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="btngrTipoProva">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="btngrTipoProva.add(itmrbMultiplaEscolha);&#xa;btngrTipoProva.add(itmrbVerdadeiroFalso);"/>
+      </AuxValues>
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="barraMenuPrincipal">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="menuArquivo">
@@ -119,7 +124,7 @@
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itmPontuacaoMaximo">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Pontua&#xe7;&#xe3;o M&#xe1;ximo"/>
+                    <Property name="text" type="java.lang.String" value="Pontua&#xe7;&#xe3;o M&#xe1;xima"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itmPrecisaoPontuacao">
@@ -134,15 +139,22 @@
                 <Property name="text" type="java.lang.String" value="Sistema de Penaliza&#xe7;&#xe3;o"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="itmIncidenciaPenalizacao">
+                <MenuItem class="javax.swing.JCheckBoxMenuItem" name="chbmIncidenciaPenalizacao">
                   <Properties>
+                    <Property name="selected" type="boolean" value="true"/>
                     <Property name="text" type="java.lang.String" value="Incid&#xea;ncia de Penaliza&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chbmIncidenciaPenalizacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="itmProporcaoPenalizacao">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Propor&#xe7;&#xe3;o da Penaliza&#xe7;&#xe3;o"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmProporcaoPenalizacaoActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

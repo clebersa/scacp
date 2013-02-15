@@ -9,5 +9,11 @@ package scacp;
  * @author Cleber
  */
 public class ProvaController {
+    Prova prova;
+
+    public ProvaController() {
+        prova = new Prova();
+    }
+    
     
 }

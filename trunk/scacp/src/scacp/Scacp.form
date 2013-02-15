@@ -75,6 +75,7 @@
         <Menu class="javax.swing.JMenu" name="menuEditar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Editar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itmInserirCartao">
@@ -114,6 +115,7 @@
         <Menu class="javax.swing.JMenu" name="menuCorrigir">
           <Properties>
             <Property name="text" type="java.lang.String" value="Corrigir"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCorrigirActionPerformed"/>
@@ -122,6 +124,7 @@
         <Menu class="javax.swing.JMenu" name="menuConfigurar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Configurar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <Menu class="javax.swing.JMenu" name="menuTipoProva">

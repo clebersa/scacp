@@ -9,5 +9,9 @@ package scacp;
  * @author Cleber
  */
 public class CartaoController {
+    Cartao cartao;
+
+    
+    
     
 }

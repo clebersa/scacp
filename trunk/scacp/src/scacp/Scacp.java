@@ -175,6 +175,7 @@ public class Scacp extends javax.swing.JFrame {
         barraMenuPrincipal.add(menuArquivo);
 
         menuEditar.setText("Editar");
+        menuEditar.setEnabled(false);
 
         itmInserirCartao.setText("Inserir cartão");
         itmInserirCartao.addActionListener(new java.awt.event.ActionListener() {
@@ -211,6 +212,7 @@ public class Scacp extends javax.swing.JFrame {
         barraMenuPrincipal.add(menuEditar);
 
         menuCorrigir.setText("Corrigir");
+        menuCorrigir.setEnabled(false);
         menuCorrigir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCorrigirActionPerformed(evt);
@@ -219,6 +221,7 @@ public class Scacp extends javax.swing.JFrame {
         barraMenuPrincipal.add(menuCorrigir);
 
         menuConfigurar.setText("Configurar");
+        menuConfigurar.setEnabled(false);
 
         menuTipoProva.setText("Tipo de Prova");
 
@@ -440,7 +443,8 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAjudaActionPerformed
 
     private void itmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSobreActionPerformed
-        // TODO add your handling code here:
+        JanelaSobre janelaSobre = new JanelaSobre();
+        janelaSobre.setVisible(true);
     }//GEN-LAST:event_itmSobreActionPerformed
 
     /**

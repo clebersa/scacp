@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Prova {
     int idProva;
-    int tipoProva;
+    TipoProva tipoProva;
     int quantidadeQuestoes;
     double pontuacaoMinima;
     double pontuacaoMaxima;
@@ -34,11 +34,11 @@ public class Prova {
         this.idProva = idProva;
     }
 
-    public int getTipoProva() {
+    public TipoProva getTipoProva() {
         return tipoProva;
     }
 
-    public void setTipoProva(int tipoProva) {
+    public void setTipoProva(TipoProva tipoProva) {
         this.tipoProva = tipoProva;
     }
 

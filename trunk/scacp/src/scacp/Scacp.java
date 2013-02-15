@@ -4,6 +4,7 @@
  */
 package scacp;
 
+import java.awt.FlowLayout;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,7 +32,9 @@ public class Scacp extends javax.swing.JFrame {
     private void initComponents() {
 
         btngrTipoProva = new javax.swing.ButtonGroup();
+        painelPrincipal = new javax.swing.JPanel();
         painelProva = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -71,17 +74,44 @@ public class Scacp extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(400, 300));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        painelProva.setPreferredSize(new java.awt.Dimension(569, 184));
+        painelPrincipal.setPreferredSize(new java.awt.Dimension(569, 184));
+
+        painelProva = new ProvaView();
+
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout painelProvaLayout = new javax.swing.GroupLayout(painelProva);
         painelProva.setLayout(painelProvaLayout);
         painelProvaLayout.setHorizontalGroup(
             painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
+            .addGroup(painelProvaLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel1)
+                .addContainerGap(670, Short.MAX_VALUE))
         );
         painelProvaLayout.setVerticalGroup(
             painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 195, Short.MAX_VALUE)
+            .addGroup(painelProvaLayout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(jLabel1)
+                .addContainerGap(154, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
+        painelPrincipal.setLayout(painelPrincipalLayout);
+        painelPrincipalLayout.setHorizontalGroup(
+            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        painelPrincipalLayout.setVerticalGroup(
+            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelPrincipalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(316, Short.MAX_VALUE))
         );
 
         menuArquivo.setText("Arquivo");
@@ -95,21 +125,51 @@ public class Scacp extends javax.swing.JFrame {
         menuArquivo.add(itmNovo);
 
         itmAbrir.setText("Abrir");
+        itmAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmAbrirActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmAbrir);
 
         itmSalvar.setText("Salvar");
+        itmSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmSalvarActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmSalvar);
 
         itmSalvarComo.setText("Salvar como...");
+        itmSalvarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmSalvarComoActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmSalvarComo);
 
         itmImprimir.setText("Imprimir");
+        itmImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmImprimirActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmImprimir);
 
         itmFechar.setText("Fechar");
+        itmFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmFecharActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmFechar);
 
         itmSair.setText("Sair");
+        itmSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmSairActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itmSair);
 
         barraMenuPrincipal.add(menuArquivo);
@@ -117,20 +177,45 @@ public class Scacp extends javax.swing.JFrame {
         menuEditar.setText("Editar");
 
         itmInserirCartao.setText("Inserir cartão");
+        itmInserirCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmInserirCartaoActionPerformed(evt);
+            }
+        });
         menuEditar.add(itmInserirCartao);
 
         itmAlterarCartao.setText("Alterar cartão");
+        itmAlterarCartao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmAlterarCartaoActionPerformed(evt);
+            }
+        });
         menuEditar.add(itmAlterarCartao);
 
         itmExcluir.setText("Excluir cartão");
+        itmExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmExcluirActionPerformed(evt);
+            }
+        });
         menuEditar.add(itmExcluir);
 
         itmLocalizar.setText("Localizar cartão");
+        itmLocalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmLocalizarActionPerformed(evt);
+            }
+        });
         menuEditar.add(itmLocalizar);
 
         barraMenuPrincipal.add(menuEditar);
 
         menuCorrigir.setText("Corrigir");
+        menuCorrigir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCorrigirActionPerformed(evt);
+            }
+        });
         barraMenuPrincipal.add(menuCorrigir);
 
         menuConfigurar.setText("Configurar");
@@ -139,26 +224,56 @@ public class Scacp extends javax.swing.JFrame {
 
         itmrbMultiplaEscolha.setSelected(true);
         itmrbMultiplaEscolha.setText("Múltipla Escolha");
+        itmrbMultiplaEscolha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmrbMultiplaEscolhaActionPerformed(evt);
+            }
+        });
         menuTipoProva.add(itmrbMultiplaEscolha);
 
         itmrbVerdadeiroFalso.setSelected(true);
         itmrbVerdadeiroFalso.setText("Verdadeiro ou Falso");
+        itmrbVerdadeiroFalso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmrbVerdadeiroFalsoActionPerformed(evt);
+            }
+        });
         menuTipoProva.add(itmrbVerdadeiroFalso);
 
         menuConfigurar.add(menuTipoProva);
 
         itmQuantidadeQuestoes.setText("Quantidade de Questões");
+        itmQuantidadeQuestoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmQuantidadeQuestoesActionPerformed(evt);
+            }
+        });
         menuConfigurar.add(itmQuantidadeQuestoes);
 
         menuEscalaPontuacao.setText("Escala de Pontuação");
 
         itmPontuacaoMinima.setText("Pontuação Mínima");
+        itmPontuacaoMinima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmPontuacaoMinimaActionPerformed(evt);
+            }
+        });
         menuEscalaPontuacao.add(itmPontuacaoMinima);
 
         itmPontuacaoMaximo.setText("Pontuação Máxima");
+        itmPontuacaoMaximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmPontuacaoMaximoActionPerformed(evt);
+            }
+        });
         menuEscalaPontuacao.add(itmPontuacaoMaximo);
 
         itmPrecisaoPontuacao.setText("Precisão da Pontuação");
+        itmPrecisaoPontuacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmPrecisaoPontuacaoActionPerformed(evt);
+            }
+        });
         menuEscalaPontuacao.add(itmPrecisaoPontuacao);
 
         menuConfigurar.add(menuEscalaPontuacao);
@@ -189,9 +304,19 @@ public class Scacp extends javax.swing.JFrame {
         menuAjuda.setText("Ajuda");
 
         itmAjuda.setText("Ajuda");
+        itmAjuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmAjudaActionPerformed(evt);
+            }
+        });
         menuAjuda.add(itmAjuda);
 
         itmSobre.setText("Sobre...");
+        itmSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itmSobreActionPerformed(evt);
+            }
+        });
         menuAjuda.add(itmSobre);
 
         barraMenuPrincipal.add(menuAjuda);
@@ -202,21 +327,92 @@ public class Scacp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelProva, javax.swing.GroupLayout.DEFAULT_SIZE, 776, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelProva, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
+        jLabel1.setText("kjdhskjdh");
+        
+        /*painelProva.removeAll();
+        painelProva = new ProvaView();
+        painelProva.validate();
+        painelProva.repaint();*/
+    }//GEN-LAST:event_itmNovoActionPerformed
+
+    private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmAbrirActionPerformed
+
+    private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmSalvarActionPerformed
+
+    private void itmSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarComoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmSalvarComoActionPerformed
+
+    private void itmImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmImprimirActionPerformed
+
+    private void itmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmFecharActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmFecharActionPerformed
+
+    private void itmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmSairActionPerformed
+
+    private void itmInserirCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInserirCartaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmInserirCartaoActionPerformed
+
+    private void itmAlterarCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarCartaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmAlterarCartaoActionPerformed
+
+    private void itmExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmExcluirActionPerformed
+
+    private void itmLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmLocalizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmLocalizarActionPerformed
+
+    private void menuCorrigirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCorrigirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCorrigirActionPerformed
+
+    private void itmrbMultiplaEscolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmrbMultiplaEscolhaActionPerformed
+        prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
+    }//GEN-LAST:event_itmrbMultiplaEscolhaActionPerformed
+
+    private void itmrbVerdadeiroFalsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmrbVerdadeiroFalsoActionPerformed
+        prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
+    }//GEN-LAST:event_itmrbVerdadeiroFalsoActionPerformed
+
+    private void itmQuantidadeQuestoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmQuantidadeQuestoesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmQuantidadeQuestoesActionPerformed
+
+    private void itmPontuacaoMinimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPontuacaoMinimaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmPontuacaoMinimaActionPerformed
+
+    private void itmPontuacaoMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPontuacaoMaximoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmPontuacaoMaximoActionPerformed
+
+    private void itmPrecisaoPontuacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmPrecisaoPontuacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmPrecisaoPontuacaoActionPerformed
 
     private void chbmIncidenciaPenalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbmIncidenciaPenalizacaoActionPerformed
         if(chbmIncidenciaPenalizacao.isSelected()){
@@ -239,15 +435,13 @@ public class Scacp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_itmProporcaoPenalizacaoActionPerformed
 
-    private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
-        painelProva.removeAll();
-        ProvaView prova = new ProvaView();
-        prova.validate();
-        painelProva.add(prova);
-        painelProva.validate();
-        painelProva.repaint();
-        painelProva.setVisible(true);
-    }//GEN-LAST:event_itmNovoActionPerformed
+    private void itmAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAjudaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmAjudaActionPerformed
+
+    private void itmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSobreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itmSobreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,10 +452,10 @@ public class Scacp extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+        /*try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 System.out.println(info.getName());
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     //break;
                 }
@@ -274,7 +468,7 @@ public class Scacp extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        }*/
         //</editor-fold>
 
         /* Create and display the form */
@@ -308,6 +502,7 @@ public class Scacp extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmSobre;
     private javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
     private javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenu menuConfigurar;
@@ -316,6 +511,7 @@ public class Scacp extends javax.swing.JFrame {
     private javax.swing.JMenu menuEscalaPontuacao;
     private javax.swing.JMenu menuSistemaPenalizacao;
     private javax.swing.JMenu menuTipoProva;
+    private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel painelProva;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,38 +64,32 @@ public class Cartao {
     
     
     
-    public int validarInscricao(int numeroInscricao){
-        int contador, somador = 0,resto, digitoVerificador;
-        int  vetorNumeroInscricao[] = new int[7];
+    public static int validarInscricao(int numeroInscricao){
+        int tamanhoVetor = 7 ;
+        int contador, somador = 0, digitoVerificador;
+        int  vetorNumeroInscricao[] = new int[tamanhoVetor];
         
         //laço para guardar o número de inscrição em um vetor
-        for(contador=6;contador>-1;contador--)
-            {
+        for(contador=tamanhoVetor-1; contador>=0; contador--){ 
                vetorNumeroInscricao[contador] = numeroInscricao%10;
+               numeroInscricao = numeroInscricao/10;
             }
         
-        for(contador=0;contador<7;contador++)
-            {
-                somador += vetorNumeroInscricao[contador]*(8-contador);
+        for(contador=0; contador<tamanhoVetor-1; contador++){
+                somador += vetorNumeroInscricao[contador]*(tamanhoVetor-contador);
             }
-        
-	resto=somador%11;
 
-	if((resto==0)||(resto==10))
-	    {
+	if((somador%11==0)||(somador%11==10)){
 	        digitoVerificador=0;
             }
-        else 
-            {
-                digitoVerificador = resto;
+        else {
+                digitoVerificador = 11 - somador%11;
             }
         
         return digitoVerificador;
     }
-    
-    
-    
-    public int corrigirCartao(String marcacao, String gabarito ){
+
+    public static int corrigirCartao(String marcacao, String gabarito ){
       char vetorMarcacao[] = marcacao.toCharArray();
       char vetorGabarito[] = gabarito.toCharArray();
       int contador, questoesIncorretas = 0;
@@ -108,6 +102,10 @@ public class Cartao {
     
       return questoesIncorretas;
     }
-    
-    
-}
+   
+
+    public static void main(String[] args) {
+
+    }
+    }
+

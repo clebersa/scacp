@@ -55,8 +55,8 @@ public class JanelaSobre extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(600, 480));
         setResizable(false);
 
-        lblSCACPExtenso.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        lblSCACPExtenso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSCACPExtenso.setFont(new java.awt.Font("Ubuntu", 1, 50)); // NOI18N
+        lblSCACPExtenso.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblSCACPExtenso.setText("SCACP");
 
         lblDesenvolvedores.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -84,7 +84,7 @@ public class JanelaSobre extends javax.swing.JFrame {
         lblFotoLarissa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/larissa.png"))); // NOI18N
 
         lblIconeGameOfLife.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblIconeGameOfLife.setText("logo");
+        lblIconeGameOfLife.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imgs/logo.png"))); // NOI18N
 
         lblUFG.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         lblUFG.setText("Universidade Federal de Goiás");
@@ -107,9 +107,10 @@ public class JanelaSobre extends javax.swing.JFrame {
         lblDisciplina.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         lblDisciplina.setText("Disciplina");
 
-        lblSCACPSigla.setFont(new java.awt.Font("Ubuntu", 1, 20)); // NOI18N
-        lblSCACPSigla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSCACPSigla.setText("Sistema de Correção Automática de Cartões de Provas");
+        lblSCACPSigla.setFont(new java.awt.Font("Ubuntu", 1, 30)); // NOI18N
+        lblSCACPSigla.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblSCACPSigla.setText("<html>Sistema de Correção<br />Automática de Cartões<br />de Provas</html>");
+        lblSCACPSigla.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,8 +119,6 @@ public class JanelaSobre extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblIconeGameOfLife, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSCACPSigla, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUFG)
@@ -132,7 +131,7 @@ public class JanelaSobre extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNomeDisciplina)
                                     .addComponent(lblNomeWanderley))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(separator, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,19 +157,27 @@ public class JanelaSobre extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(lblEmailLarissa)
                                                     .addComponent(lblEmailCleber)))))))))
-                    .addComponent(lblSCACPExtenso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(lblIconeGameOfLife)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSCACPExtenso)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lblSCACPSigla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblIconeGameOfLife, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSCACPExtenso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSCACPSigla)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblIconeGameOfLife)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblSCACPExtenso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblSCACPSigla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblDesenvolvedores)

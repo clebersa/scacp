@@ -12,16 +12,16 @@ import java.util.List;
  * @author Cleber
  */
 public class Prova {
-    int idProva;
+    private int idProva;
     TipoProva tipoProva;
-    int quantidadeQuestoes;
-    double pontuacaoMinima;
-    double pontuacaoMaxima;
-    int precisaoPontuacao;
-    boolean incidenciaPenalizacao;
-    int proporcaoPenalizacao;
+    private int quantidadeQuestoes;
+    private double pontuacaoMinima;
+    private double pontuacaoMaxima;
+    private int precisaoPontuacao;
+    private boolean incidenciaPenalizacao;
+    private int proporcaoPenalizacao;
     List<Cartao> cartoes = new ArrayList<>();
-    String gabarito;
+    private  String gabarito;
 
     public Prova() {
     }

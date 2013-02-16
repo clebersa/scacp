@@ -116,24 +116,24 @@ public class Cartao {
 
     
     public double calcularNota(Prova prova){
-     
-     char vetorMarcacao[] = getMarcacao().toCharArray();
-      char vetorGabarito[] = prova.getGabarito().toCharArray();
+     String stringMarcacao = getMarcacao();
+      String stringGabarito = prova.getGabarito();
+      
       int contador, questoesIncorretas = 0, questoesCorretas = 0, questoesBranco = 0;
       double notaFinal;
       //Contagem de questoes corretas, incorretas e em branco
       for (contador = 0; contador < getMarcacao().length(); contador ++){
-        if(vetorGabarito[contador] == '#'){
+        if(stringGabarito.charAt(contador) == '#'){
         questoesCorretas ++;
         }
-        else if(vetorMarcacao[contador] == '*'){
+        else if(stringMarcacao.charAt(contador) == '*'){
         questoesBranco ++;
         }
-        else if(vetorMarcacao[contador] != vetorGabarito[contador] || vetorMarcacao[contador] == '#'){
+        else if(stringMarcacao.charAt(contador) != stringGabarito.charAt(contador)|| stringMarcacao.charAt(contador) == '#'){
         questoesIncorretas ++;
         }
       
-        else if (vetorMarcacao[contador] == vetorGabarito[contador]){
+        else if (stringMarcacao.charAt(contador) == stringGabarito.charAt(contador)){
         questoesCorretas ++;
         }
         else {

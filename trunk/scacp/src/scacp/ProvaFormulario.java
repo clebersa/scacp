@@ -4,12 +4,17 @@
  */
 package scacp;
 
+import java.awt.Color;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author cleber
  */
 public class ProvaFormulario extends javax.swing.JDialog {
+
     Prova prova;
+
     /**
      * Creates new form ProvaFormulario
      */
@@ -34,11 +39,11 @@ public class ProvaFormulario extends javax.swing.JDialog {
         spnQntQuestoes = new javax.swing.JSpinner();
         pnlEscalaPontuacao = new javax.swing.JPanel();
         lblPontucaoMinima = new javax.swing.JLabel();
-        txtfPontucaoMinima = new javax.swing.JTextField();
         lblPontucaoMaxima = new javax.swing.JLabel();
-        txtfPontuacaoMaxima = new javax.swing.JTextField();
         lblPrecisaoPontucao = new javax.swing.JLabel();
         spnPrecisaoPontucao = new javax.swing.JSpinner();
+        spnPontuacaoMaxima = new javax.swing.JSpinner();
+        spnPontuacaoMinima = new javax.swing.JSpinner();
         pnlSistemaPenalizacao = new javax.swing.JPanel();
         lblIncidencia = new javax.swing.JLabel();
         chkbIncidencia = new javax.swing.JCheckBox();
@@ -54,11 +59,15 @@ public class ProvaFormulario extends javax.swing.JDialog {
 
         cmbbTipoProva.addItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());
         cmbbTipoProva.addItem(TipoProva.VERDADEIRO_FALSO.getTipo());
+        try{
+            if(prova.getTipoProva().equals(TipoProva.MULTIPLA_ESCOLHA)){
+                cmbbTipoProva.setSelectedItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());
+            }else{
+                cmbbTipoProva.setSelectedItem(TipoProva.VERDADEIRO_FALSO.getTipo());
+            }
 
-        if(prova.getTipoProva().equals(TipoProva.MULTIPLA_ESCOLHA)){
-            cmbbTipoProva.setSelectedItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());
-        }else{
-            cmbbTipoProva.setSelectedItem(TipoProva.VERDADEIRO_FALSO.getTipo());
+        }catch(NullPointerException excecao){
+
         }
         cmbbTipoProva.setToolTipText("<html>Tipo de Prova a ser corrigida.<br />\nProvas de múltipla escolha podem apresentar <br />respostas como sendo 'a', 'b', 'd' ou 'e'.<br/>\nProvas de verdadeiro ou falso podem apresentar <br />respostas como sendo 'v' ou 'f'.<br/></html>\n");
 
@@ -66,6 +75,12 @@ public class ProvaFormulario extends javax.swing.JDialog {
 
         spnQntQuestoes.setModel(new javax.swing.SpinnerNumberModel(50, 10, 100, 10));
         spnQntQuestoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        spnQntQuestoes.setEditor(new javax.swing.JSpinner.NumberEditor(spnQntQuestoes, ""));
+        try{
+            spnQntQuestoes.setValue(prova.getQuantidadeQuestoes());
+        }catch(NumberFormatException excecao){
+
+        }
 
         pnlEscalaPontuacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Escala de Pontuação"));
 
@@ -77,6 +92,10 @@ public class ProvaFormulario extends javax.swing.JDialog {
 
         spnPrecisaoPontucao.setModel(new javax.swing.SpinnerNumberModel(0, 0, 3, 1));
 
+        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), null, null, Integer.valueOf(1)));
+
+        spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel());
+
         javax.swing.GroupLayout pnlEscalaPontuacaoLayout = new javax.swing.GroupLayout(pnlEscalaPontuacao);
         pnlEscalaPontuacao.setLayout(pnlEscalaPontuacaoLayout);
         pnlEscalaPontuacaoLayout.setHorizontalGroup(
@@ -87,15 +106,19 @@ public class ProvaFormulario extends javax.swing.JDialog {
                     .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
                         .addComponent(lblPrecisaoPontucao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(spnPrecisaoPontucao))
-                    .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
+                        .addComponent(spnPrecisaoPontucao, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEscalaPontuacaoLayout.createSequentialGroup()
                         .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPontucaoMinima)
-                            .addComponent(lblPontucaoMaxima))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtfPontuacaoMaxima, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .addComponent(txtfPontucaoMinima))))
+                            .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(lblPontucaoMinima)
+                                .addGap(18, 18, 18))
+                            .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
+                                .addComponent(lblPontucaoMaxima)
+                                .addGap(14, 14, 14)))
+                        .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(spnPontuacaoMaxima, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(spnPontuacaoMinima))))
                 .addContainerGap())
         );
         pnlEscalaPontuacaoLayout.setVerticalGroup(
@@ -103,16 +126,15 @@ public class ProvaFormulario extends javax.swing.JDialog {
             .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
                 .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPontucaoMinima)
-                    .addComponent(txtfPontucaoMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnPontuacaoMinima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPontucaoMaxima)
-                    .addComponent(txtfPontuacaoMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(spnPontuacaoMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPrecisaoPontucao)
-                    .addComponent(spnPrecisaoPontucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(spnPrecisaoPontucao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pnlSistemaPenalizacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Sistema de Penalização"));
@@ -184,21 +206,21 @@ public class ProvaFormulario extends javax.swing.JDialog {
                         .addComponent(lblQntQuestoes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spnQntQuestoes))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblTipoProva)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(cmbbTipoProva, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnSalvar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnCancelar))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(pnlEscalaPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(pnlSistemaPenalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTipoProva)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbbTipoProva, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSalvar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnCancelar))
+                            .addComponent(pnlEscalaPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(pnlSistemaPenalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -213,7 +235,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
                     .addComponent(lblQntQuestoes)
                     .addComponent(spnQntQuestoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlEscalaPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlEscalaPontuacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlSistemaPenalizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -227,7 +249,28 @@ public class ProvaFormulario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        //Tipo da prova
+        if (cmbbTipoProva.getSelectedItem().equals(TipoProva.MULTIPLA_ESCOLHA.getTipo())) {
+            prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
+        } else {
+            prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
+        }
+        //Quantidade de questões
+        prova.setQuantidadeQuestoes((int)spnQntQuestoes.getValue());
+        //Pontuação mínima
+        prova.setPontuacaoMinima((int)spnPontuacaoMinima.getValue());
+        //Pontuação máxima
+        prova.setPontuacaoMaxima((int)spnPontuacaoMaxima.getValue());
+        //Precisão da pontuação
+        prova.setPrecisaoPontuacao((int)spnPrecisaoPontucao.getValue());
+        //Penalização
+        if(chkbIncidencia.isSelected()){
+            prova.setIncidenciaPenalizacao(true);
+            prova.setProporcaoPenalizacao((int)spnProporcao.getValue());
+        }else{
+            prova.setIncidenciaPenalizacao(true);
+        }
+        dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -235,17 +278,15 @@ public class ProvaFormulario extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void chkbIncidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbIncidenciaActionPerformed
-        if(chkbIncidencia.isSelected()){
+        if (chkbIncidencia.isSelected()) {
             spnProporcao.setEnabled(true);
-        }else{
+        } else {
             spnProporcao.setEnabled(false);
         }
     }//GEN-LAST:event_chkbIncidenciaActionPerformed
-
     /**
      * @param args the command line arguments
      */
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSalvar;
@@ -260,10 +301,10 @@ public class ProvaFormulario extends javax.swing.JDialog {
     private javax.swing.JLabel lblTipoProva;
     private javax.swing.JPanel pnlEscalaPontuacao;
     private javax.swing.JPanel pnlSistemaPenalizacao;
+    private javax.swing.JSpinner spnPontuacaoMaxima;
+    private javax.swing.JSpinner spnPontuacaoMinima;
     private javax.swing.JSpinner spnPrecisaoPontucao;
     private javax.swing.JSpinner spnProporcao;
     private javax.swing.JSpinner spnQntQuestoes;
-    private javax.swing.JTextField txtfPontuacaoMaxima;
-    private javax.swing.JTextField txtfPontucaoMinima;
     // End of variables declaration//GEN-END:variables
 }

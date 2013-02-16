@@ -31,26 +31,25 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="spnQntQuestoes" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblTipoProva" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cmbbTipoProva" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="pnlEscalaPontuacao" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pnlSistemaPenalizacao" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblTipoProva" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cmbbTipoProva" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="pnlEscalaPontuacao" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="pnlSistemaPenalizacao" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -71,7 +70,7 @@
                   <Component id="spnQntQuestoes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pnlEscalaPontuacao" min="-2" pref="125" max="-2" attributes="0"/>
+              <Component id="pnlEscalaPontuacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlSistemaPenalizacao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -92,7 +91,7 @@
     </Component>
     <Component class="javax.swing.JComboBox" name="cmbbTipoProva">
       <Properties>
-        <Property name="model" postCode="cmbbTipoProva.addItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());&#xa;cmbbTipoProva.addItem(TipoProva.VERDADEIRO_FALSO.getTipo());&#xa;&#xa;if(prova.getTipoProva().equals(TipoProva.MULTIPLA_ESCOLHA)){&#xa;    cmbbTipoProva.setSelectedItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());&#xa;}else{&#xa;    cmbbTipoProva.setSelectedItem(TipoProva.VERDADEIRO_FALSO.getTipo());&#xa;}"/>
+        <Property name="model" postCode="cmbbTipoProva.addItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());&#xa;cmbbTipoProva.addItem(TipoProva.VERDADEIRO_FALSO.getTipo());&#xa;try{&#xa;    if(prova.getTipoProva().equals(TipoProva.MULTIPLA_ESCOLHA)){&#xa;        cmbbTipoProva.setSelectedItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());&#xa;    }else{&#xa;        cmbbTipoProva.setSelectedItem(TipoProva.VERDADEIRO_FALSO.getTipo());&#xa;    }&#xa;&#xa;}catch(NullPointerException excecao){&#xa;    &#xa;}"/>
         <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;Tipo de Prova a ser corrigida.&lt;br /&gt;&#xa;Provas de m&#xfa;ltipla escolha podem apresentar &lt;br /&gt;respostas como sendo &apos;a&apos;, &apos;b&apos;, &apos;d&apos; ou &apos;e&apos;.&lt;br/&gt;&#xa;Provas de verdadeiro ou falso podem apresentar &lt;br /&gt;respostas como sendo &apos;v&apos; ou &apos;f&apos;.&lt;br/&gt;&lt;/html&gt;&#xa;"/>
       </Properties>
     </Component>
@@ -109,7 +108,13 @@
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
           <Color id="Cursor Default"/>
         </Property>
+        <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.editors.SpinnerEditorEditor">
+          <SpinnerEditor format="" type="3"/>
+        </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    spnQntQuestoes.setValue(prova.getQuantidadeQuestoes());&#xa;}catch(NumberFormatException excecao){&#xa;&#xa;}"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="pnlEscalaPontuacao">
       <Properties>
@@ -129,17 +134,23 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblPrecisaoPontucao" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="spnPrecisaoPontucao" max="32767" attributes="0"/>
+                          <Component id="spnPrecisaoPontucao" pref="123" max="32767" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblPontucaoMinima" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblPontucaoMaxima" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="lblPontucaoMinima" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblPontucaoMaxima" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtfPontuacaoMaxima" alignment="0" pref="149" max="32767" attributes="0"/>
-                              <Component id="txtfPontucaoMinima" alignment="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="spnPontuacaoMaxima" pref="147" max="32767" attributes="0"/>
+                              <Component id="spnPontuacaoMinima" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -152,19 +163,18 @@
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPontucaoMinima" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtfPontucaoMinima" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spnPontuacaoMinima" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPontucaoMaxima" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtfPontuacaoMaxima" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="spnPontuacaoMaxima" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblPrecisaoPontucao" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="spnPrecisaoPontucao" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -175,14 +185,10 @@
             <Property name="text" type="java.lang.String" value="Pontua&#xe7;&#xe3;o M&#xed;nima:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtfPontucaoMinima">
-        </Component>
         <Component class="javax.swing.JLabel" name="lblPontucaoMaxima">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pontua&#xe7;&#xe3;o M&#xe1;xima:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtfPontuacaoMaxima">
         </Component>
         <Component class="javax.swing.JLabel" name="lblPrecisaoPontucao">
           <Properties>
@@ -193,6 +199,20 @@
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="0" maximum="3" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spnPontuacaoMaxima">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="1" type="number"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JSpinner" name="spnPontuacaoMinima">
+          <Properties>
+            <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
           </Properties>
         </Component>

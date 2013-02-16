@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,6 +75,7 @@ public class Scacp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCACP - Sistema de Correção Automática de Cartões de Provas");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new java.awt.Dimension(400, 300));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -344,10 +346,12 @@ public class Scacp extends javax.swing.JFrame {
     private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
         Prova prova = new Prova();
         prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
+        //prova.setQuantidadeQuestoes(20);
         ProvaFormulario novaProva = new ProvaFormulario(this, true, prova);
         novaProva.setTitle("Nova Prova");
-        
+        novaProva.setLocationRelativeTo(this);
         novaProva.setVisible(true);
+
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
@@ -474,7 +478,6 @@ public class Scacp extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        System.out.println(TipoProva.MULTIPLA_ESCOLHA);
         //</editor-fold>
 
         /* Create and display the form */
@@ -485,39 +488,39 @@ public class Scacp extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar barraMenuPrincipal;
-    private javax.swing.ButtonGroup btngrTipoProva;
-    private javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
-    private javax.swing.JMenuItem itmAbrir;
-    private javax.swing.JMenuItem itmAjuda;
-    private javax.swing.JMenuItem itmAlterarCartao;
-    private javax.swing.JMenuItem itmExcluir;
-    private javax.swing.JMenuItem itmFechar;
-    private javax.swing.JMenuItem itmImprimir;
-    private javax.swing.JMenuItem itmInserirCartao;
-    private javax.swing.JMenuItem itmLocalizar;
-    private javax.swing.JMenuItem itmNovo;
-    private javax.swing.JMenuItem itmPontuacaoMaximo;
-    private javax.swing.JMenuItem itmPontuacaoMinima;
-    private javax.swing.JMenuItem itmPrecisaoPontuacao;
-    private javax.swing.JMenuItem itmProporcaoPenalizacao;
-    private javax.swing.JMenuItem itmQuantidadeQuestoes;
-    private javax.swing.JMenuItem itmSair;
-    private javax.swing.JMenuItem itmSalvar;
-    private javax.swing.JMenuItem itmSalvarComo;
-    private javax.swing.JMenuItem itmSobre;
-    private javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
-    private javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu menuAjuda;
-    private javax.swing.JMenu menuArquivo;
-    private javax.swing.JMenu menuConfigurar;
-    private javax.swing.JMenu menuCorrigir;
-    private javax.swing.JMenu menuEditar;
-    private javax.swing.JMenu menuEscalaPontuacao;
-    private javax.swing.JMenu menuSistemaPenalizacao;
-    private javax.swing.JMenu menuTipoProva;
-    private javax.swing.JPanel painelPrincipal;
-    private javax.swing.JPanel painelProva;
+    javax.swing.JMenuBar barraMenuPrincipal;
+    javax.swing.ButtonGroup btngrTipoProva;
+    javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
+    javax.swing.JMenuItem itmAbrir;
+    javax.swing.JMenuItem itmAjuda;
+    javax.swing.JMenuItem itmAlterarCartao;
+    javax.swing.JMenuItem itmExcluir;
+    javax.swing.JMenuItem itmFechar;
+    javax.swing.JMenuItem itmImprimir;
+    javax.swing.JMenuItem itmInserirCartao;
+    javax.swing.JMenuItem itmLocalizar;
+    javax.swing.JMenuItem itmNovo;
+    javax.swing.JMenuItem itmPontuacaoMaximo;
+    javax.swing.JMenuItem itmPontuacaoMinima;
+    javax.swing.JMenuItem itmPrecisaoPontuacao;
+    javax.swing.JMenuItem itmProporcaoPenalizacao;
+    javax.swing.JMenuItem itmQuantidadeQuestoes;
+    javax.swing.JMenuItem itmSair;
+    javax.swing.JMenuItem itmSalvar;
+    javax.swing.JMenuItem itmSalvarComo;
+    javax.swing.JMenuItem itmSobre;
+    javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
+    javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JMenu menuAjuda;
+    javax.swing.JMenu menuArquivo;
+    javax.swing.JMenu menuConfigurar;
+    javax.swing.JMenu menuCorrigir;
+    javax.swing.JMenu menuEditar;
+    javax.swing.JMenu menuEscalaPontuacao;
+    javax.swing.JMenu menuSistemaPenalizacao;
+    javax.swing.JMenu menuTipoProva;
+    javax.swing.JPanel painelPrincipal;
+    javax.swing.JPanel painelProva;
     // End of variables declaration//GEN-END:variables
 }

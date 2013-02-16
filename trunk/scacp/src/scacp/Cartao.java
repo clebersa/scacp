@@ -62,4 +62,52 @@ public class Cartao {
         this.nota = nota;
     }
     
+    
+    
+    public int validarInscricao(int numeroInscricao){
+        int contador, somador = 0,resto, digitoVerificador;
+        int  vetorNumeroInscricao[] = new int[7];
+        
+        //laço para guardar o número de inscrição em um vetor
+        for(contador=6;contador>-1;contador--)
+            {
+               vetorNumeroInscricao[contador] = numeroInscricao%10;
+            }
+        
+        for(contador=0;contador<7;contador++)
+            {
+                somador += vetorNumeroInscricao[contador]*(8-contador);
+            }
+        
+	resto=somador%11;
+
+	if((resto==0)||(resto==10))
+	    {
+	        digitoVerificador=0;
+            }
+        else 
+            {
+                digitoVerificador = resto;
+            }
+        
+        return digitoVerificador;
+    }
+    
+    
+    
+    public int corrigirCartao(String marcacao, String gabarito ){
+      char vetorMarcacao[] = marcacao.toCharArray();
+      char vetorGabarito[] = gabarito.toCharArray();
+      int contador, questoesIncorretas = 0;
+      
+      for (contador = 0; contador < marcacao.length(); contador ++){
+        if(vetorMarcacao[contador] != vetorGabarito[contador]){
+        questoesIncorretas ++;
+        }
+      }
+    
+      return questoesIncorretas;
+    }
+    
+    
 }

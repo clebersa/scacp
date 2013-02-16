@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class Prova {
     private int idProva;
-    TipoProva tipoProva;
+    private  TipoProva tipoProva;
     private int quantidadeQuestoes;
     private double pontuacaoMinima;
     private double pontuacaoMaxima;
     private int precisaoPontuacao;
     private boolean incidenciaPenalizacao;
     private int proporcaoPenalizacao;
-    List<Cartao> cartoes = new ArrayList<>();
+    private List<Cartao> cartoes = new ArrayList<>();
     private  String gabarito;
 
     public Prova() {

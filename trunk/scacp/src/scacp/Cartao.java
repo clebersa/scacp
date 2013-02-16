@@ -4,6 +4,8 @@
  */
 package scacp;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author cleber
@@ -103,6 +105,56 @@ public class Cartao {
       return questoesIncorretas;
     }
    
+ public static double ajustarPrecisao(double numero, int precisaoPontuacao){  
+     
+    int decimalPlace = precisaoPontuacao;  
+    BigDecimal formatador = new BigDecimal(numero);  
+    formatador = formatador.setScale(decimalPlace,BigDecimal.ROUND_HALF_UP);  
+    numero = formatador.doubleValue();  
+   return numero;
+    }  
+
+    
+    public double calcularNota(Prova prova){
+     
+     char vetorMarcacao[] = getMarcacao().toCharArray();
+      char vetorGabarito[] = prova.getGabarito().toCharArray();
+      int contador, questoesIncorretas = 0, questoesCorretas = 0, questoesBranco = 0;
+      double notaFinal;
+      //Contagem de questoes corretas, incorretas e em branco
+      for (contador = 0; contador < getMarcacao().length(); contador ++){
+        if(vetorGabarito[contador] == '#'){
+        questoesCorretas ++;
+        }
+        else if(vetorMarcacao[contador] == '*'){
+        questoesBranco ++;
+        }
+        else if(vetorMarcacao[contador] != vetorGabarito[contador] || vetorMarcacao[contador] == '#'){
+        questoesIncorretas ++;
+        }
+      
+        else if (vetorMarcacao[contador] == vetorGabarito[contador]){
+        questoesCorretas ++;
+        }
+        else {
+        }
+      }
+       
+        // cálculo da nota
+        if(prova.getIncidenciaPenalizacao()){
+        double fator;
+        fator = (prova.getProporcaoPenalizacao() * questoesCorretas - questoesIncorretas)/prova.getProporcaoPenalizacao();
+        
+        if(fator<0){ fator = 0;}
+        
+        notaFinal = prova.getPontuacaoMinima() + (( prova.getPontuacaoMaxima() - prova.getPontuacaoMinima())/ prova.getQuantidadeQuestoes()) * fator ;
+        }
+        else{
+         notaFinal = prova.getPontuacaoMinima() + ((  prova.getPontuacaoMaxima() - prova.getPontuacaoMinima())/ prova.getQuantidadeQuestoes()) * questoesCorretas ;
+        }
+        
+     return ajustarPrecisao(notaFinal, prova.getPrecisaoPontuacao());
+     }
 
     public static void main(String[] args) {
 

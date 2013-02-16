@@ -122,7 +122,7 @@ public class Cartao {
       int contador, questoesIncorretas = 0, questoesCorretas = 0, questoesBranco = 0;
       double notaFinal;
       //Contagem de questoes corretas, incorretas e em branco
-      for (contador = 0; contador < getMarcacao().length(); contador ++){
+      for (contador = 0; contador < stringMarcacao.length(); contador ++){
         if(stringGabarito.charAt(contador) == '#'){
         questoesCorretas ++;
         }

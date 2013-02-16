@@ -6,7 +6,7 @@ package scacp;
 
 /**
  *
- * @author cleber
+ * @author Cleber
  */
 public class JanelaSobre extends javax.swing.JFrame {
 

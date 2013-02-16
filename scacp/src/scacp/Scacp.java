@@ -4,25 +4,28 @@
  */
 package scacp;
 
-import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
 
 /**
  *
  * @author Cleber
  */
 public class Scacp extends javax.swing.JFrame {
+
     Prova prova;
+    ProvaController provaController;
 
     /**
      * Creates new form Scacp
      */
     public Scacp() {
         prova = new Prova();
+        provaController = new ProvaController();
         initComponents();
     }
 
@@ -37,8 +40,9 @@ public class Scacp extends javax.swing.JFrame {
 
         btngrTipoProva = new javax.swing.ButtonGroup();
         painelPrincipal = new javax.swing.JPanel();
-        painelProva = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        painelDadosProva = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -76,45 +80,64 @@ public class Scacp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCACP - Sistema de Correção Automática de Cartões de Provas");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setMinimumSize(new java.awt.Dimension(400, 300));
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(800, 600));
 
         painelPrincipal.setPreferredSize(new java.awt.Dimension(569, 184));
 
-        jLabel1.setText("jLabel1");
-
-        javax.swing.GroupLayout painelProvaLayout = new javax.swing.GroupLayout(painelProva);
-        painelProva.setLayout(painelProvaLayout);
-        painelProvaLayout.setHorizontalGroup(
-            painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelProvaLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel1)
-                .addContainerGap(670, Short.MAX_VALUE))
+        javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
+        painelDadosProva.setLayout(painelDadosProvaLayout);
+        painelDadosProvaLayout.setHorizontalGroup(
+            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
-        painelProvaLayout.setVerticalGroup(
-            painelProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelProvaLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jLabel1)
-                .addContainerGap(154, Short.MAX_VALUE))
+        painelDadosProvaLayout.setVerticalGroup(
+            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 501, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 776, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 62, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         menuArquivo.setText("Arquivo");
@@ -337,7 +360,7 @@ public class Scacp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
         );
 
         pack();
@@ -345,13 +368,21 @@ public class Scacp extends javax.swing.JFrame {
 
     private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
         Prova prova = new Prova();
-        prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
-        //prova.setQuantidadeQuestoes(20);
         ProvaFormulario novaProva = new ProvaFormulario(this, true, prova);
         novaProva.setTitle("Nova Prova");
         novaProva.setLocationRelativeTo(this);
         novaProva.setVisible(true);
-
+        
+        ProvaPainelDados pnl = new ProvaPainelDados();
+        ((TitledBorder) pnl.getBorder()).setTitle("Prova: "+prova.getIdProva());
+        ((JLabel) pnl.getComponent(1)).setText(""+prova.getTipoProva());
+        
+        painelDadosProva.removeAll();
+        painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
+        painelDadosProva.add(pnl);
+        painelDadosProva.validate();
+                painelDadosProva.revalidate();
+        painelDadosProva.repaint();
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
@@ -423,9 +454,9 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmPrecisaoPontuacaoActionPerformed
 
     private void chbmIncidenciaPenalizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chbmIncidenciaPenalizacaoActionPerformed
-        if(chbmIncidenciaPenalizacao.isSelected()){
+        if (chbmIncidenciaPenalizacao.isSelected()) {
             itmProporcaoPenalizacao.setEnabled(true);
-        }else{
+        } else {
             itmProporcaoPenalizacao.setEnabled(false);
         }
     }//GEN-LAST:event_chbmIncidenciaPenalizacaoActionPerformed
@@ -434,10 +465,10 @@ public class Scacp extends javax.swing.JFrame {
         String strProporcaoPenalizacao, msgErro;
         int proporcaoPenalizacao;
         strProporcaoPenalizacao = JOptionPane.showInputDialog(rootPane, "Informe a proporção da penalização: ", "Proporção da Penalização", JOptionPane.OK_CANCEL_OPTION);
-        try{
+        try {
             proporcaoPenalizacao = Integer.parseInt(strProporcaoPenalizacao);
             prova.setProporcaoPenalizacao(proporcaoPenalizacao);
-        }catch(NumberFormatException excecao){
+        } catch (NumberFormatException excecao) {
             msgErro = "Por favor, informe um número maior que 0.";
             JOptionPane.showMessageDialog(rootPane, msgErro, "Formato inválido!", JOptionPane.ERROR_MESSAGE);
         }
@@ -511,7 +542,8 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JMenuItem itmSobre;
     javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
     javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
-    javax.swing.JLabel jLabel1;
+    javax.swing.JPanel jPanel1;
+    javax.swing.JPanel jPanel2;
     javax.swing.JMenu menuAjuda;
     javax.swing.JMenu menuArquivo;
     javax.swing.JMenu menuConfigurar;
@@ -520,7 +552,7 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JMenu menuEscalaPontuacao;
     javax.swing.JMenu menuSistemaPenalizacao;
     javax.swing.JMenu menuTipoProva;
+    javax.swing.JPanel painelDadosProva;
     javax.swing.JPanel painelPrincipal;
-    javax.swing.JPanel painelProva;
     // End of variables declaration//GEN-END:variables
 }

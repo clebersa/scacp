@@ -6,7 +6,7 @@ package scacp;
 
 /**
  *
- * @author cleber
+ * @author Cleber
  */
 public enum TipoProva {
     MULTIPLA_ESCOLHA("Múltipla Escolha"),
@@ -19,6 +19,11 @@ public enum TipoProva {
     }
 
     public String getTipo() {
+        return tipo;
+    }
+
+    @Override
+    public String toString() {
         return tipo;
     }
     

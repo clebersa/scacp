@@ -4,7 +4,10 @@
  */
 package scacp;
 
+import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -76,8 +79,6 @@ public class Scacp extends javax.swing.JFrame {
 
         painelPrincipal.setPreferredSize(new java.awt.Dimension(569, 184));
 
-        painelProva = new ProvaView();
-
         jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout painelProvaLayout = new javax.swing.GroupLayout(painelProva);
@@ -111,7 +112,7 @@ public class Scacp extends javax.swing.JFrame {
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(painelProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(324, Short.MAX_VALUE))
         );
 
         menuArquivo.setText("Arquivo");
@@ -334,19 +335,19 @@ public class Scacp extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
-        jLabel1.setText("kjdhskjdh");
+        Prova prova = new Prova();
+        prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
+        ProvaFormulario novaProva = new ProvaFormulario(this, true, prova);
+        novaProva.setTitle("Nova Prova");
         
-        /*painelProva.removeAll();
-        painelProva = new ProvaView();
-        painelProva.validate();
-        painelProva.repaint();*/
+        novaProva.setVisible(true);
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
@@ -456,7 +457,7 @@ public class Scacp extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        /*try {
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 System.out.println(info.getName());
                 if ("GTK+".equals(info.getName())) {
@@ -472,7 +473,8 @@ public class Scacp extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        }
+        System.out.println(TipoProva.MULTIPLA_ESCOLHA);
         //</editor-fold>
 
         /* Create and display the form */

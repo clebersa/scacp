@@ -24,6 +24,7 @@ public class CartaoDAO {
             st.setDouble(4, cartao.getNota());
             st.execute();
             st.close();
+            conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao criar o statement!");
         }
@@ -32,15 +33,16 @@ public class CartaoDAO {
     public void alterarCartaoMarcacao(Cartao cartao){
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ?");
+            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString (1, cartao.getMarcacao());
             st.setInt (2, cartao.getNumeroInscricao());
+            st.setInt(3, cartao.getIdProva());
             st.execute();
             st.close();
+            conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
-        // Passos para alteração de cartão
     }
     
     public void alterarCartaoNota(Cartao cartao){
@@ -51,6 +53,7 @@ public class CartaoDAO {
             st.setInt (2, cartao.getNumeroInscricao());
             st.execute();
             st.close();
+            conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a nota.");
         }
@@ -63,6 +66,7 @@ public class CartaoDAO {
             st.setInt(1, numeroInscricao);
             st.execute();
             st.close();
+            conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
         }
@@ -76,6 +80,7 @@ public class CartaoDAO {
             st.setInt(1, numeroInscricao);
             st.execute();
             st.close();
+            conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar deletar");
         }

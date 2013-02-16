@@ -12,7 +12,7 @@ public enum TipoProva {
     MULTIPLA_ESCOLHA("Múltipla Escolha"),
     VERDADEIRO_FALSO("Verdadeiro ou Falso");
     
-    String tipo;
+    private String tipo;
 
     private TipoProva(String tipo) {
         this.tipo = tipo;

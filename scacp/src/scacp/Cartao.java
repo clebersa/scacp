@@ -66,7 +66,7 @@ public class Cartao {
     
     
     
-    public static int validarInscricao(int numeroInscricao){
+    public int validarInscricao(int numeroInscricao){
         int tamanhoVetor = 7 ;
         int contador, somador = 0, digitoVerificador;
         int  vetorNumeroInscricao[] = new int[tamanhoVetor];
@@ -90,22 +90,8 @@ public class Cartao {
         
         return digitoVerificador;
     }
-
-    public static int corrigirCartao(String marcacao, String gabarito ){
-      char vetorMarcacao[] = marcacao.toCharArray();
-      char vetorGabarito[] = gabarito.toCharArray();
-      int contador, questoesIncorretas = 0;
-      
-      for (contador = 0; contador < marcacao.length(); contador ++){
-        if(vetorMarcacao[contador] != vetorGabarito[contador]){
-        questoesIncorretas ++;
-        }
-      }
-    
-      return questoesIncorretas;
-    }
    
- public static double ajustarPrecisao(double numero, int precisaoPontuacao){  
+ public double ajustarPrecisao(double numero, int precisaoPontuacao){  
      
     int decimalPlace = precisaoPontuacao;  
     BigDecimal formatador = new BigDecimal(numero);  

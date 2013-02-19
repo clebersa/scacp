@@ -59,6 +59,8 @@ public class ProvaFormulario extends javax.swing.JDialog {
 
         lblNome.setText("Nome:");
 
+        txtfNome.setText(prova.getNome());
+
         lblTipoProva.setText("Tipode de Prova:");
 
         cmbbTipoProva.addItem(TipoProva.MULTIPLA_ESCOLHA.getTipo());
@@ -80,10 +82,8 @@ public class ProvaFormulario extends javax.swing.JDialog {
         spnQntQuestoes.setModel(new javax.swing.SpinnerNumberModel(50, 10, 100, 10));
         spnQntQuestoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         spnQntQuestoes.setEditor(new javax.swing.JSpinner.NumberEditor(spnQntQuestoes, ""));
-        try{
+        if(!(prova.getQuantidadeQuestoes() < 10) && !(prova.getQuantidadeQuestoes()>100) && prova.getQuantidadeQuestoes()%10 == 0){
             spnQntQuestoes.setValue(prova.getQuantidadeQuestoes());
-        }catch(NumberFormatException excecao){
-
         }
 
         pnlEscalaPontuacao.setBorder(javax.swing.BorderFactory.createTitledBorder("Escala de Pontuação"));
@@ -95,10 +95,13 @@ public class ProvaFormulario extends javax.swing.JDialog {
         lblPrecisaoPontucao.setText("Precisão da pontuação:");
 
         spnPrecisaoPontucao.setModel(new javax.swing.SpinnerNumberModel(0, 0, 3, 1));
+        spnPrecisaoPontucao.setValue(prova.getPrecisaoPontuacao());
 
-        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), null, null, Integer.valueOf(1)));
+        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100.0d), null, null, Double.valueOf(1.0d)));
+        spnPontuacaoMaxima.setValue(prova.getPontuacaoMaxima());
 
-        spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel());
+        spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), null, null, Double.valueOf(1.0d)));
+        spnPontuacaoMinima.setValue(prova.getPontuacaoMinima());
 
         javax.swing.GroupLayout pnlEscalaPontuacaoLayout = new javax.swing.GroupLayout(pnlEscalaPontuacao);
         pnlEscalaPontuacao.setLayout(pnlEscalaPontuacaoLayout);
@@ -115,8 +118,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
                         .addGroup(pnlEscalaPontuacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(lblPontucaoMinima)
-                                .addGap(18, 18, 18))
+                                .addComponent(lblPontucaoMinima))
                             .addGroup(pnlEscalaPontuacaoLayout.createSequentialGroup()
                                 .addComponent(lblPontucaoMaxima)
                                 .addGap(14, 14, 14)))
@@ -152,12 +154,21 @@ public class ProvaFormulario extends javax.swing.JDialog {
                 chkbIncidenciaActionPerformed(evt);
             }
         });
+        if(prova.getIncidenciaPenalizacao()){
+            chkbIncidencia.setSelected(true);
+            spnProporcao.setEnabled(true);
+        }else{
+            chkbIncidencia.setSelected(false);
+            spnProporcao.setEnabled(false);
+        }
 
         lblProporcao.setText("Proporção: ");
 
         spnProporcao.setModel(new javax.swing.SpinnerNumberModel(1, 1, 100, 1));
+        spnProporcao.setEditor(new javax.swing.JSpinner.NumberEditor(spnProporcao, ""));
         if(chkbIncidencia.isSelected()){
             spnProporcao.setEnabled(true);
+            spnProporcao.setValue(prova.getProporcaoPenalizacao());
         }else{
             spnProporcao.setEnabled(false);
         }
@@ -255,7 +266,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -265,44 +276,69 @@ public class ProvaFormulario extends javax.swing.JDialog {
         boolean validacaoOK = true;
         if(txtfNome.getText().equals("")){
             JOptionPane.showMessageDialog(rootPane, "Informe um nome de prova válido!", "Nome inválido!", JOptionPane.ERROR_MESSAGE);
+            validacaoOK = false;
+        }else{
+            String nomeProva = txtfNome.getText();
+            int contador;
+            validacaoOK = false;
+            for(contador = 0; contador < nomeProva.length(); contador++){
+                if(nomeProva.charAt(contador) != ' '){
+                    validacaoOK = true;
+                    break;
+                }
+            }
+            if(validacaoOK == false){
+                JOptionPane.showMessageDialog(rootPane, "Informe um nome de prova válido!", "Nome Inválido!", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if(((int)spnQntQuestoes.getValue() < 10) || ((int)spnQntQuestoes.getValue() > 100) || ((int)spnQntQuestoes.getValue()%10 != 0)){
+            JOptionPane.showMessageDialog(rootPane, "Informe uma quantidade de questões válida!", "Quantidade Inválida!", JOptionPane.ERROR_MESSAGE);
+            validacaoOK = false;
         }
         if((double) spnPontuacaoMinima.getValue() > (double) spnPontuacaoMaxima.getValue()){
             JOptionPane.showMessageDialog(rootPane, "O valor da pontuação mínima deve ser menor \ndo que o valor da pontuação máxima!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
+            validacaoOK = false;
         }
-        if((int) spnProporcao.getValue() > (int) spnQntQuestoes.getValue()){
-            JOptionPane.showMessageDialog(rootPane, "O valor da proporção da penalização deve ser menor \ndo que a quantidade de questões!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        //Nome da prova
-        
-        prova.setNome(txtfNome.getText());
-        if(prova.getNome().equals("")){
-            
-        }
-        
-        //Tipo da prova
-        if (cmbbTipoProva.getSelectedItem().equals(TipoProva.MULTIPLA_ESCOLHA.getTipo())) {
-            prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
-        } else {
-            prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
-        }
-        //Quantidade de questões
-        prova.setQuantidadeQuestoes((int)spnQntQuestoes.getValue());
-        //Pontuação mínima
-        prova.setPontuacaoMinima((int)spnPontuacaoMinima.getValue());
-        //Pontuação máxima
-        prova.setPontuacaoMaxima((int)spnPontuacaoMaxima.getValue());
-        //Precisão da pontuação
-        prova.setPrecisaoPontuacao((int)spnPrecisaoPontucao.getValue());
-        //Penalização
         if(chkbIncidencia.isSelected()){
-            prova.setIncidenciaPenalizacao(true);
-            prova.setProporcaoPenalizacao((int)spnProporcao.getValue());
+            if((int) spnProporcao.getValue() > (int) spnQntQuestoes.getValue()){
+                JOptionPane.showMessageDialog(rootPane, "O valor da proporção da penalização deve ser menor \ndo que a quantidade de questões!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
+                validacaoOK = false;
+            }
+        }
+        if(validacaoOK){
+            prova.setPrecisaSalvar(true);
+            //Nome da prova
+            prova.setNome(txtfNome.getText());
+            if(prova.getNome().equals("")){
+
+            }
+            //Tipo da prova
+            if (cmbbTipoProva.getSelectedItem().equals(TipoProva.MULTIPLA_ESCOLHA.getTipo())) {
+                prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
+            } else {
+                prova.setTipoProva(TipoProva.VERDADEIRO_FALSO);
+            }
+            //Quantidade de questões
+            prova.setQuantidadeQuestoes((int)spnQntQuestoes.getValue());
+            //Pontuação mínima
+            prova.setPontuacaoMinima((double)spnPontuacaoMinima.getValue());
+            //Pontuação máxima
+            prova.setPontuacaoMaxima((double)spnPontuacaoMaxima.getValue());
+            //Precisão da pontuação
+            prova.setPrecisaoPontuacao((int)spnPrecisaoPontucao.getValue());
+            //Penalização
+            if(chkbIncidencia.isSelected()){
+                prova.setIncidenciaPenalizacao(true);
+                prova.setProporcaoPenalizacao((int)spnProporcao.getValue());
+            }else{
+                prova.setIncidenciaPenalizacao(false);
+            }
+
+            dispose();
         }else{
-            prova.setIncidenciaPenalizacao(true);
+            prova.setPrecisaSalvar(false);
         }
         
-        dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

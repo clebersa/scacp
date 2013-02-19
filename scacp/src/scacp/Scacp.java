@@ -4,12 +4,9 @@
  */
 package scacp;
 
-import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -367,46 +364,23 @@ public class Scacp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
-        Prova prova = new Prova();
-        ProvaFormulario novaProva = new ProvaFormulario(this, true, prova);
-        novaProva.setTitle("Nova Prova");
-        novaProva.setLocationRelativeTo(this);
-        novaProva.setVisible(true);
-        
-        if(prova != this.prova){
-            ProvaPainelDados pnl = new ProvaPainelDados();
-            /*int cont = 0;
-            for(Component component: pnl.getComponents()){
-                System.out.println(cont+": "+component.getName());
-                cont++;
-            }*/
-            ((TitledBorder) pnl.getBorder()).setTitle("Prova: " + prova.getIdProva() + " - " + prova.getNome());
-            ((JLabel) pnl.getComponent(7)).setText(""+prova.getTipoProva());
-            ((JLabel) pnl.getComponent(12)).setText(""+prova.getQuantidadeQuestoes());
-            ((JLabel) pnl.getComponent(1)).setText(""+prova.getPontuacaoMinima());
-            ((JLabel) pnl.getComponent(3)).setText(""+prova.getPontuacaoMaxima());
-            ((JLabel) pnl.getComponent(5)).setText(""+prova.getPrecisaoPontuacao());
-            if(prova.getIncidenciaPenalizacao()){
-                ((JLabel) pnl.getComponent(14)).setText("Sim");
-                ((JLabel) pnl.getComponent(9)).setText(""+prova.getProporcaoPenalizacao());
-            }else{
-                ((JLabel) pnl.getComponent(14)).setText("Não");
-                ((JLabel) pnl.getComponent(8)).setText("");
-                ((JLabel) pnl.getComponent(9)).setText("");
-            }
+        Prova novaProva = new Prova();
+        ProvaFormulario formularioProva = new ProvaFormulario(this, true, novaProva);
+        formularioProva.setTitle("Nova Prova");
+        formularioProva.setLocationRelativeTo(this);
+        formularioProva.setVisible(true);
+        prova = novaProva;
+        if(novaProva.isPrecisaSalvar()){
+            ProvaPainelDados pnl = new ProvaPainelDados(novaProva, this);
             painelDadosProva.removeAll();
             painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
             painelDadosProva.add(pnl);
-            painelDadosProva.validate();
-                    painelDadosProva.revalidate();
-            painelDadosProva.repaint();
+            painelDadosProva.revalidate();
         }
-        
-        
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Nome da prova: "+ prova.getNome());
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
@@ -489,8 +463,7 @@ public class Scacp extends javax.swing.JFrame {
             proporcaoPenalizacao = Integer.parseInt(strProporcaoPenalizacao);
             prova.setProporcaoPenalizacao(proporcaoPenalizacao);
         } catch (NumberFormatException excecao) {
-            msgErro = "Por favor, informe um número maior que 0.";
-            JOptionPane.showMessageDialog(rootPane, msgErro, "Formato inválido!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(rootPane, "Por favor, informe um número maior que 0.", "Formato inválido!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_itmProporcaoPenalizacaoActionPerformed
 

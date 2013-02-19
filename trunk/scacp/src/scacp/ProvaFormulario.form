@@ -88,7 +88,7 @@
                   <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,6 +100,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtfNome">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="txtfNome.setText(prova.getNome());"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="lblTipoProva">
       <Properties>
@@ -130,7 +133,7 @@
         </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="try{&#xa;    spnQntQuestoes.setValue(prova.getQuantidadeQuestoes());&#xa;}catch(NumberFormatException excecao){&#xa;&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(!(prova.getQuantidadeQuestoes() &lt; 10) &amp;&amp; !(prova.getQuantidadeQuestoes()&gt;100) &amp;&amp; prova.getQuantidadeQuestoes()%10 == 0){&#xa;    spnQntQuestoes.setValue(prova.getQuantidadeQuestoes());&#xa;}"/>
       </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="pnlEscalaPontuacao">
@@ -218,20 +221,29 @@
               <SpinnerModel initial="0" maximum="3" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="spnPrecisaoPontucao.setValue(prova.getPrecisaoPontuacao());"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JSpinner" name="spnPontuacaoMaxima">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="10" numberType="java.lang.Integer" stepSize="1" type="number"/>
+              <SpinnerModel initial="100.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="spnPontuacaoMaxima.setValue(prova.getPontuacaoMaxima());"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JSpinner" name="spnPontuacaoMinima">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-              <SpinnerModel initial="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
+              <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="spnPontuacaoMinima.setValue(prova.getPontuacaoMinima());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -284,6 +296,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkbIncidenciaActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="if(prova.getIncidenciaPenalizacao()){&#xa;    chkbIncidencia.setSelected(true);&#xa;    spnProporcao.setEnabled(true);&#xa;}else{&#xa;    chkbIncidencia.setSelected(false);&#xa;    spnProporcao.setEnabled(false);    &#xa;}"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblProporcao">
           <Properties>
@@ -295,9 +310,12 @@
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="1" maximum="100" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
+            <Property name="editor" type="javax.swing.JComponent" editor="org.netbeans.modules.form.editors.SpinnerEditorEditor">
+              <SpinnerEditor format="" type="3"/>
+            </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(chkbIncidencia.isSelected()){&#xa;    spnProporcao.setEnabled(true);&#xa;}else{&#xa;    spnProporcao.setEnabled(false);&#xa;}"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(chkbIncidencia.isSelected()){&#xa;    spnProporcao.setEnabled(true);&#xa;    spnProporcao.setValue(prova.getProporcaoPenalizacao());&#xa;}else{&#xa;    spnProporcao.setEnabled(false);&#xa;}"/>
           </AuxValues>
         </Component>
       </SubComponents>

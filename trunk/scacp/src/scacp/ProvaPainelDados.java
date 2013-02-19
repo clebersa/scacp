@@ -4,17 +4,24 @@
  */
 package scacp;
 
+import javax.swing.JFrame;
+import javax.swing.border.TitledBorder;
+
 /**
  *
  * @author Cleber
  */
 public class ProvaPainelDados extends javax.swing.JPanel {
-
+    Prova prova;
+    JFrame janelaPrincipal;
     /**
      * Creates new form ProvaPainelDados
      */
-    public ProvaPainelDados() {
+    public ProvaPainelDados(Prova prova, JFrame janelaPrincipal) {
+        this.prova = prova;
+        this.janelaPrincipal = janelaPrincipal;
         initComponents();
+        preencherPainel(prova);
     }
 
     /**
@@ -42,8 +49,9 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblPontuacaoMaximaD = new javax.swing.JLabel();
         lblIncidenciaPenalizacaoD = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder("Prova: "));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prova: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cantarell", 1, 14))); // NOI18N
         setMinimumSize(new java.awt.Dimension(441, 114));
+        setName("painelDadosProva"); // NOI18N
 
         lblQntQuestoesD.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         lblQntQuestoesD.setText("MISC");
@@ -54,6 +62,11 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblTipoProvaD.setName("tipoProva"); // NOI18N
 
         btnAlterar.setText("Alterar");
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         lblIncidenciaPenalizacao.setText("Incidência de Penalização? ");
 
@@ -168,6 +181,71 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        ProvaFormulario formularioProva = new ProvaFormulario(janelaPrincipal, true, prova);
+        formularioProva.setTitle("Alterar Prova");
+        formularioProva.setLocationRelativeTo(janelaPrincipal);
+        formularioProva.setVisible(true);
+        if(prova.isPrecisaSalvar()){
+            preencherPainel(prova);
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    public void preencherPainel(Prova prova){
+        this.prova = prova;
+        ((TitledBorder) getBorder()).setTitle("Prova: " + prova.getNome());
+        lblTipoProvaD.setText(""+prova.getTipoProva());
+        lblQntQuestoesD.setText(""+prova.getQuantidadeQuestoes());
+        switch(prova.getPrecisaoPontuacao()){
+            case 0:
+                lblPontuacaoMinimaD.setText(String.format("%.0f", prova.getPontuacaoMinima()));
+                lblPontuacaoMaximaD.setText(String.format("%.0f", prova.getPontuacaoMaxima()));
+                break;
+            case 1:
+                lblPontuacaoMinimaD.setText(String.format("%.1f", prova.getPontuacaoMinima()));
+                lblPontuacaoMaximaD.setText(String.format("%.1f", prova.getPontuacaoMaxima()));
+                break;
+            case 2:
+                lblPontuacaoMinimaD.setText(String.format("%.2f", prova.getPontuacaoMinima()));
+                lblPontuacaoMaximaD.setText(String.format("%.2f", prova.getPontuacaoMaxima()));
+                break;
+            case 3:
+                lblPontuacaoMinimaD.setText(String.format("%.3f", prova.getPontuacaoMinima()));
+                lblPontuacaoMaximaD.setText(String.format("%.3f", prova.getPontuacaoMaxima()));
+                break;
+        }
+        lblPrecicaoPontuacaoD.setText(""+prova.getPrecisaoPontuacao());
+        if(prova.getIncidenciaPenalizacao()){
+            lblIncidenciaPenalizacaoD.setText("Sim");
+            lblProporcao.setText("Proporção: ");
+            lblProporcaoD.setText(""+prova.getProporcaoPenalizacao());
+        }else{
+            lblIncidenciaPenalizacaoD.setText("Não");
+            lblProporcao.setText("");
+            lblProporcaoD.setText("");
+        }
+        validate();
+        repaint();
+    }
+
+    public Prova getProva() {
+        return prova;
+    }
+
+    public void setProva(Prova prova) {
+        this.prova = prova;
+    }
+
+    public JFrame getJanelaPrincipal() {
+        return janelaPrincipal;
+    }
+
+    public void setJanelaPrincipal(JFrame janelaPrincipal) {
+        this.janelaPrincipal = janelaPrincipal;
+    }
+    
+    
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JLabel lblIncidenciaPenalizacao;

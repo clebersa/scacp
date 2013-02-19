@@ -380,7 +380,7 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
-        System.out.println("Nome da prova: "+ prova.getNome());
+        // TODO add your handling code here:
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed

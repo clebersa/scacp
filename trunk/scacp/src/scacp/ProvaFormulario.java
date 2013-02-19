@@ -4,6 +4,8 @@
  */
 package scacp;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -260,6 +262,24 @@ public class ProvaFormulario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        boolean validacaoOK = true;
+        if(txtfNome.getText().equals("")){
+            JOptionPane.showMessageDialog(rootPane, "Informe um nome de prova válido!", "Nome inválido!", JOptionPane.ERROR_MESSAGE);
+        }
+        if((double) spnPontuacaoMinima.getValue() > (double) spnPontuacaoMaxima.getValue()){
+            JOptionPane.showMessageDialog(rootPane, "O valor da pontuação mínima deve ser menor \ndo que o valor da pontuação máxima!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
+        }
+        if((int) spnProporcao.getValue() > (int) spnQntQuestoes.getValue()){
+            JOptionPane.showMessageDialog(rootPane, "O valor da proporção da penalização deve ser menor \ndo que a quantidade de questões!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        //Nome da prova
+        
+        prova.setNome(txtfNome.getText());
+        if(prova.getNome().equals("")){
+            
+        }
+        
         //Tipo da prova
         if (cmbbTipoProva.getSelectedItem().equals(TipoProva.MULTIPLA_ESCOLHA.getTipo())) {
             prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
@@ -281,6 +301,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
         }else{
             prova.setIncidenciaPenalizacao(true);
         }
+        
         dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 

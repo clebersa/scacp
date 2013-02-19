@@ -373,16 +373,36 @@ public class Scacp extends javax.swing.JFrame {
         novaProva.setLocationRelativeTo(this);
         novaProva.setVisible(true);
         
-        ProvaPainelDados pnl = new ProvaPainelDados();
-        ((TitledBorder) pnl.getBorder()).setTitle("Prova: "+prova.getIdProva());
-        ((JLabel) pnl.getComponent(1)).setText(""+prova.getTipoProva());
+        if(prova != this.prova){
+            ProvaPainelDados pnl = new ProvaPainelDados();
+            /*int cont = 0;
+            for(Component component: pnl.getComponents()){
+                System.out.println(cont+": "+component.getName());
+                cont++;
+            }*/
+            ((TitledBorder) pnl.getBorder()).setTitle("Prova: " + prova.getIdProva() + " - " + prova.getNome());
+            ((JLabel) pnl.getComponent(7)).setText(""+prova.getTipoProva());
+            ((JLabel) pnl.getComponent(12)).setText(""+prova.getQuantidadeQuestoes());
+            ((JLabel) pnl.getComponent(1)).setText(""+prova.getPontuacaoMinima());
+            ((JLabel) pnl.getComponent(3)).setText(""+prova.getPontuacaoMaxima());
+            ((JLabel) pnl.getComponent(5)).setText(""+prova.getPrecisaoPontuacao());
+            if(prova.getIncidenciaPenalizacao()){
+                ((JLabel) pnl.getComponent(14)).setText("Sim");
+                ((JLabel) pnl.getComponent(9)).setText(""+prova.getProporcaoPenalizacao());
+            }else{
+                ((JLabel) pnl.getComponent(14)).setText("Não");
+                ((JLabel) pnl.getComponent(8)).setText("");
+                ((JLabel) pnl.getComponent(9)).setText("");
+            }
+            painelDadosProva.removeAll();
+            painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
+            painelDadosProva.add(pnl);
+            painelDadosProva.validate();
+                    painelDadosProva.revalidate();
+            painelDadosProva.repaint();
+        }
         
-        painelDadosProva.removeAll();
-        painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
-        painelDadosProva.add(pnl);
-        painelDadosProva.validate();
-                painelDadosProva.revalidate();
-        painelDadosProva.repaint();
+        
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed

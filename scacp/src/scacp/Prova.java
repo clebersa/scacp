@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Prova {
     private int idProva;
+    private String nome;
     private  TipoProva tipoProva;
     private int quantidadeQuestoes;
     private double pontuacaoMinima;
@@ -22,6 +23,7 @@ public class Prova {
     private int proporcaoPenalizacao;
     private List<Cartao> cartoes = new ArrayList<>();
     private  String gabarito;
+    private boolean precisaSalvar; // Atributo que não vai para o BD
 
     public Prova() {
     }
@@ -34,6 +36,15 @@ public class Prova {
         this.idProva = idProva;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    
     public TipoProva getTipoProva() {
         return tipoProva;
     }
@@ -105,6 +116,15 @@ public class Prova {
     public void setGabarito(String gabarito) {
         this.gabarito = gabarito;
     }
+
+    public boolean isPrecisaSalvar() {
+        return precisaSalvar;
+    }
+
+    public void setPrecisaSalvar(boolean precisaSalvar) {
+        this.precisaSalvar = precisaSalvar;
+    }
+    
     
     
 }

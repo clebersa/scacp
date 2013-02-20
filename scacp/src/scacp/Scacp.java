@@ -37,15 +37,16 @@ public class Scacp extends javax.swing.JFrame {
     private void initComponents() {
 
         btngrTipoProva = new javax.swing.ButtonGroup();
-        painelPrincipal = new javax.swing.JPanel();
-        painelDadosProva = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        painelCartao = new javax.swing.JPanel();
+        painelCartcao = new javax.swing.JPanel();
+        cartaoFormulario1 = new scacp.CartaoFormulario();
         pnlBotoesCartao = new javax.swing.JPanel();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnLocalizar = new javax.swing.JButton();
         btnCorrigirCartoes = new javax.swing.JButton();
+        painelDadosProva = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -83,32 +84,40 @@ public class Scacp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SCACP - Sistema de Correção Automática de Cartões de Provas");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setMinimumSize(new java.awt.Dimension(800, 600));
+        setMinimumSize(new java.awt.Dimension(620, 480));
 
-        painelPrincipal.setPreferredSize(new java.awt.Dimension(569, 184));
+        painelCartao.setBackground(new java.awt.Color(242, 151, 128));
+        painelCartao.setPreferredSize(new java.awt.Dimension(569, 184));
+        painelCartao.setVisible(false);
 
-        javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
-        painelDadosProva.setLayout(painelDadosProvaLayout);
-        painelDadosProvaLayout.setHorizontalGroup(
-            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        painelCartcao.setBackground(new java.awt.Color(162, 162, 162));
+
+        javax.swing.GroupLayout cartaoFormulario1Layout = new javax.swing.GroupLayout(cartaoFormulario1);
+        cartaoFormulario1.setLayout(cartaoFormulario1Layout);
+        cartaoFormulario1Layout.setHorizontalGroup(
+            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
         );
-        painelDadosProvaLayout.setVerticalGroup(
-            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        cartaoFormulario1Layout.setVerticalGroup(
+            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 71, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(162, 162, 162));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 776, Short.MAX_VALUE)
+        javax.swing.GroupLayout painelCartcaoLayout = new javax.swing.GroupLayout(painelCartcao);
+        painelCartcao.setLayout(painelCartcaoLayout);
+        painelCartcaoLayout.setHorizontalGroup(
+            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelCartcaoLayout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 501, Short.MAX_VALUE)
+        painelCartcaoLayout.setVerticalGroup(
+            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelCartcaoLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(366, Short.MAX_VALUE))
         );
 
         pnlBotoesCartao.setBackground(new java.awt.Color(255, 209, 164));
@@ -167,7 +176,7 @@ public class Scacp extends javax.swing.JFrame {
                 .addComponent(btnExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLocalizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
                 .addComponent(btnCorrigirCartoes)
                 .addContainerGap())
         );
@@ -181,27 +190,36 @@ public class Scacp extends javax.swing.JFrame {
                 .addComponent(btnCorrigirCartoes))
         );
 
-        javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
-        painelPrincipal.setLayout(painelPrincipalLayout);
-        painelPrincipalLayout.setHorizontalGroup(
-            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(painelPrincipalLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelCartaoLayout = new javax.swing.GroupLayout(painelCartao);
+        painelCartao.setLayout(painelCartaoLayout);
+        painelCartaoLayout.setHorizontalGroup(
+            painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelCartaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        painelPrincipalLayout.setVerticalGroup(
-            painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelPrincipalLayout.createSequentialGroup()
-                .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        painelCartaoLayout.setVerticalGroup(
+            painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelCartaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
+        painelDadosProva.setLayout(painelDadosProvaLayout);
+        painelDadosProvaLayout.setHorizontalGroup(
+            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        painelDadosProvaLayout.setVerticalGroup(
+            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         menuArquivo.setText("Arquivo");
@@ -426,11 +444,15 @@ public class Scacp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 593, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
         );
 
         pack();
@@ -471,6 +493,9 @@ public class Scacp extends javax.swing.JFrame {
             //Ativa os menu editar e configurar
             menuEditar.setEnabled(true);
             menuConfigurar.setEnabled(true);
+            
+            //Permite visualizar a parte dos cartões
+            painelCartao.setVisible(true);
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
@@ -491,15 +516,47 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmImprimirActionPerformed
 
     private void itmFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmFecharActionPerformed
+        if(!prova.isProvaSalva()){
+            switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
+                case 0: // "Ok" option
+                    itmSalvarActionPerformed(evt);
+                    break;
+                case 1: // "No" option
+                    break;
+                case 2: // "Cancel" option
+                    return;
+            }
+        }
         
+        painelDadosProva.removeAll();
+        painelCartao.resetar();
+        prova = new Prova();
+        validate();
+        repaint();
     }//GEN-LAST:event_itmFecharActionPerformed
 
     private void itmSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSairActionPerformed
+        if(!prova.isProvaSalva()){
+            switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
+                case 0: // "Ok" option
+                    itmSalvarActionPerformed(evt);
+                    itmFecharActionPerformed(evt);
+                    break;
+                case 1: // "No" option
+                    break;
+                case 2: // "Cancel" option
+                    return;
+            }
+        }
         System.exit(0);
     }//GEN-LAST:event_itmSairActionPerformed
 
     private void itmInserirCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInserirCartaoActionPerformed
-        // TODO add your handling code here:
+        try{
+        
+        }catch(NumberFormatException excecao){
+            JOptionPane.showMessageDialog(painelCartao, evt);
+        }
     }//GEN-LAST:event_itmInserirCartaoActionPerformed
 
     private void itmAlterarCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarCartaoActionPerformed
@@ -595,6 +652,8 @@ public class Scacp extends javax.swing.JFrame {
         menuCorrigirActionPerformed(evt);
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -638,6 +697,7 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JButton btnIncluir;
     javax.swing.JButton btnLocalizar;
     javax.swing.ButtonGroup btngrTipoProva;
+    scacp.CartaoFormulario cartaoFormulario1;
     javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
     javax.swing.JMenuItem itmAbrir;
     javax.swing.JMenuItem itmAjuda;
@@ -659,7 +719,6 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JMenuItem itmSobre;
     javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
     javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
-    javax.swing.JPanel jPanel1;
     javax.swing.JMenu menuAjuda;
     javax.swing.JMenu menuArquivo;
     javax.swing.JMenu menuConfigurar;
@@ -668,8 +727,9 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JMenu menuEscalaPontuacao;
     javax.swing.JMenu menuSistemaPenalizacao;
     javax.swing.JMenu menuTipoProva;
+    javax.swing.JPanel painelCartao;
+    javax.swing.JPanel painelCartcao;
     javax.swing.JPanel painelDadosProva;
-    javax.swing.JPanel painelPrincipal;
     javax.swing.JPanel pnlBotoesCartao;
     // End of variables declaration//GEN-END:variables
 }

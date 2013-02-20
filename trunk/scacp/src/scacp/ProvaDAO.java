@@ -4,24 +4,101 @@
  */
 package scacp;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Larissa
  */
 public class ProvaDAO {
-    public void gravarProva(Prova prova){
-        //Passos para gravar uma prova
+    public void inserirProva(Prova prova){
+        Connection conexao = Conexao.getConexao();
+        try {
+            PreparedStatement st = conexao.prepareStatement("insert into provas (tipo, quantidade_questoes, pontuacao_minima, pontuacao_maxima,"
+                    + " precisao_pontuacao, incidencia_penalizacao, proporcao_penalizacao, gabarito,nome) values (?,?,?,?,?,?,?,?)");
+            st.setInt(1, prova.getIdProva());
+            if(prova.getTipoProva() == TipoProva.MULTIPLA_ESCOLHA){
+                st.setInt(1, 0);
+            }else{
+                st.setInt(1, 1);
+            }
+            
+            st.setInt(2, prova.getQuantidadeQuestoes());
+            st.setDouble(3, prova.getPontuacaoMinima());
+            st.setDouble(4, prova.getPontuacaoMaxima());
+            st.setInt(5,prova.getPrecisaoPontuacao());
+            st.setBoolean(6, prova.getIncidenciaPenalizacao());
+            st.setInt(7,prova.getProporcaoPenalizacao());
+            st.setString(8,prova.getGabarito());
+            st.setString(9, prova.getNome());
+            st.execute();
+            st.close();
+            conexao.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao criar o statement!");
+       
     }
-    
-    public void alterarProva(Prova prova){
-        //Passos para alterar uma prova
-    }
-    
+            }
+
+  
     public void buscarProva(int idProva){
+        Connection conexao = Conexao.getConexao();
+        Prova prova = new Prova();
+        try {
+            PreparedStatement st;
+            st = conexao.prepareStatement("Select *from provas where id_prova=?");
+            st.setInt(1, idProva);
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                prova.setIdProva(rs.getInt("id_prova"));
+                System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
+                prova.setIdProva(rs.getInt("nome"));
+                System.out.println("Nome da prova:" + rs.getString("nome"));
+                prova.setIdProva(rs.getInt("tipo"));
+                System.out.println("Tipo de prova:" + rs.getInt ("tipo"));
+                prova.setIdProva(rs.getInt("quantidade_questoes"));
+                System.out.println("Quantidade de questões:" + rs.getInt ("quantidade_questoes"));
+                prova.setIdProva(rs.getInt("pontuacao_minima"));
+                System.out.println("Pontuação mínima:" + rs.getDouble("pontuacao_minima"));
+                prova.setIdProva(rs.getInt("pontuacao_maxima"));
+                System.out.println("Pontuação máxima:" + rs.getDouble("pontuacao_maxima"));
+                prova.setIdProva(rs.getInt("precisao_pontuacao"));
+                System.out.println("Precisão da pontuação:" + rs.getBoolean("precisao_pontuacao"));
+                prova.setIdProva(rs.getInt("incidencia_penalizacao"));
+                System.out.println("Incidência da penalização:" + rs.getBoolean("incidencia_penalizacao"));
+                prova.setIdProva(rs.getInt("proporcao_penalizacao"));
+                System.out.println("Proporção da penalização:" + rs.getInt("proporcao_penalizacao"));
+                prova.setIdProva(rs.getInt("gabarito"));
+                System.out.println("Gabarito:" + rs.getString("gabarito"));
+                
+                
+            }
+            
+            st.execute();
+            st.close();
+            conexao.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
+        }
         //Passos para buscar uma prova
     }
     
     public void excluirProva(int idProva){
+         Connection conexao = Conexao.getConexao();
+        try {
+            PreparedStatement st = conexao.prepareStatement("delete from provas where id_prova = ?");
+            st.setInt(1, idProva);
+            st.execute();
+            st.close();
+            conexao.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar deletar");
+        }
         //Passos para excluir uma prova
     }
 }

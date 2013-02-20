@@ -25,9 +25,9 @@ public class Cartao {
     }
 
     public Cartao() {
-        
     }
 
+    
     public int getNumeroInscricao() {
         return numeroInscricao;
     }

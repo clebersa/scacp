@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,6 +15,7 @@ import javax.swing.JOptionPane;
  * @author Larissa
  */
 public class CartaoDAO {
+
     public void inserirCartao(Cartao cartao) {
         Connection conexao = Conexao.getConexao();
         try {
@@ -31,13 +31,13 @@ public class CartaoDAO {
             JOptionPane.showMessageDialog(null, "Erro ao criar o statement!");
         }
     }
-    
-    public void alterarCartaoMarcacao(Cartao cartao){
+
+    public void alterarCartaoMarcacao(Cartao cartao) {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ? and fk_id_prova = ?");
-            st.setString (1, cartao.getMarcacao());
-            st.setInt (2, cartao.getNumeroInscricao());
+            st.setString(1, cartao.getMarcacao());
+            st.setInt(2, cartao.getNumeroInscricao());
             st.setInt(3, cartao.getIdProva());
             st.execute();
             st.close();
@@ -46,14 +46,13 @@ public class CartaoDAO {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
     }
-    
-    public void alterarCartaoNota(Cartao cartao){
+
+    public void alterarCartaoNota(Cartao cartao) {
         Connection conexao = Conexao.getConexao();
         try {
-            // Aqui vc vai alterar conforme a id do cartão e da prova!!!!!!!!!!
             PreparedStatement st = conexao.prepareStatement("update cartoes set nota='?' where  numero_inscricao = ?");
-            st.setDouble (1, cartao.getNota());
-            st.setInt (2, cartao.getNumeroInscricao());
+            st.setDouble(1, cartao.getNota());
+            st.setInt(2, cartao.getNumeroInscricao());
             st.execute();
             st.close();
             conexao.close();
@@ -62,7 +61,8 @@ public class CartaoDAO {
         }
         // Passos para alteração de cartão
     }
-    /*public Cartao buscarCartao(int numeroInscricao, int idProva){
+
+    public void buscarCartao(int numeroInscricao, int idProva) {
         Connection conexao = Conexao.getConexao();
         Prova prova = new Prova();
         Cartao cartao = new Cartao();
@@ -71,15 +71,15 @@ public class CartaoDAO {
             st.setInt(1, numeroInscricao);
             st.setInt(2, idProva);
             ResultSet rs = st.executeQuery();
-            while(rs.next()){
-                cartao.setIdProva(rs.getInt("id_prova"));
+            while (rs.next()) {
+                cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
                 System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
                 prova.setIdProva(rs.getInt("nome"));
                 System.out.println("Nome da prova:" + rs.getString("nome"));
                 prova.setIdProva(rs.getInt("tipo"));
-                System.out.println("Tipo de prova:" + rs.getInt ("tipo"));
+                System.out.println("Tipo de prova:" + rs.getInt("tipo"));
                 prova.setIdProva(rs.getInt("quantidade_questoes"));
-                System.out.println("Quantidade de questões:" + rs.getInt ("quantidade_questoes"));
+                System.out.println("Quantidade de questões:" + rs.getInt("quantidade_questoes"));
                 prova.setIdProva(rs.getInt("pontuacao_minima"));
                 System.out.println("Pontuação mínima:" + rs.getDouble("pontuacao_minima"));
                 prova.setIdProva(rs.getInt("pontuacao_maxima"));
@@ -92,10 +92,10 @@ public class CartaoDAO {
                 System.out.println("Proporção da penalização:" + rs.getInt("proporcao_penalizacao"));
                 prova.setIdProva(rs.getInt("gabarito"));
                 System.out.println("Gabarito:" + rs.getString("gabarito"));
-                
-                
+
+
             }
-            
+
             st.execute();
             st.close();
             conexao.close();
@@ -104,12 +104,7 @@ public class CartaoDAO {
         }
         // Passos para localização de cartão
     }
-    
-    public List<Cartao> buscarCartoes(){
-        // Busca por todos os cartões de uma determinada prova
-        
-    }*/
-    
+
     public void excluirCartao(int numeroInscricao) {
         Connection conexao = Conexao.getConexao();
         try {

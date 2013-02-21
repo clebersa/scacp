@@ -31,7 +31,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblLegendaMarcacaoEsquerda">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Respostas" postCode="if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    lblLegendaMarcacaoEsquerda.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(a)&lt;br/&gt;(b)&lt;br/&gt;(c)&lt;br/&gt;(d)&lt;br/&gt;(e)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}else{&#xa;    lblLegendaMarcacaoEsquerda.setText(&quot;Respostas&lt;br/&gt;(V)&lt;br/&gt;(F)&lt;br/&gt;(*) ou (#)&quot;);&#xa;}"/>
+        <Property name="text" type="java.lang.String" value="Respostas" postCode="if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    lblLegendaMarcacaoEsquerda.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(a)&lt;br/&gt;(b)&lt;br/&gt;(c)&lt;br/&gt;(d)&lt;br/&gt;(e)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}else{&#xa;    lblLegendaMarcacaoEsquerda.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(V)&lt;br/&gt;(F)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}"/>
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
       <Constraints>
@@ -42,7 +42,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblLegendaMarcacaoDireita">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Respostas" postCode="if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    lblLegendaMarcacaoDireita.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(a)&lt;br/&gt;(b)&lt;br/&gt;(c)&lt;br/&gt;(d)&lt;br/&gt;(e)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}else{&#xa;    lblLegendaMarcacaoDireita.setText(&quot;Respostas&lt;br/&gt;(V)&lt;br/&gt;(F)&lt;br/&gt;(*) ou (#)&quot;);&#xa;}"/>
+        <Property name="text" type="java.lang.String" value="Respostas" postCode="if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    lblLegendaMarcacaoDireita.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(a)&lt;br/&gt;(b)&lt;br/&gt;(c)&lt;br/&gt;(d)&lt;br/&gt;(e)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}else{&#xa;    lblLegendaMarcacaoDireita.setText(&quot;&lt;html&gt;Respostas&lt;br/&gt;(V)&lt;br/&gt;(F)&lt;br/&gt;(*) ou (#)&lt;/html&gt;&quot;);&#xa;}"/>
         <Property name="verticalAlignment" type="int" value="1"/>
       </Properties>
       <Constraints>
@@ -51,5 +51,22 @@
         </Constraint>
       </Constraints>
     </Component>
+    <Container class="javax.swing.JPanel" name="painelAlternativas">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a6" green="a6" red="a6" type="rgb"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="for(int cont = 1; cont &lt;= quantidadeQuestoes; cont++){&#xa;    painelAlternativas.add(new scacp.FormularioQuestao1(tipoProva, cont));&#xa;}"/>
+      </AuxValues>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+          <BorderConstraints direction="Center"/>
+        </Constraint>
+      </Constraints>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+    </Container>
   </SubComponents>
 </Form>

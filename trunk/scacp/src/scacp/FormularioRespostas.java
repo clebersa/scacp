@@ -11,7 +11,6 @@ package scacp;
 public class FormularioRespostas extends javax.swing.JPanel {
     int quantidadeQuestoes, numeroInscricao;
     TipoProva tipoProva;
-    
     /**
      * Creates new form FormularioRespostas
      */
@@ -34,6 +33,7 @@ public class FormularioRespostas extends javax.swing.JPanel {
         rotuloRespostas = new javax.swing.JLabel();
         lblLegendaMarcacaoEsquerda = new javax.swing.JLabel();
         lblLegendaMarcacaoDireita = new javax.swing.JLabel();
+        painelAlternativas = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -45,7 +45,7 @@ public class FormularioRespostas extends javax.swing.JPanel {
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
             lblLegendaMarcacaoEsquerda.setText("<html>Respostas<br/>(a)<br/>(b)<br/>(c)<br/>(d)<br/>(e)<br/>(*) ou (#)</html>");
         }else{
-            lblLegendaMarcacaoEsquerda.setText("Respostas<br/>(V)<br/>(F)<br/>(*) ou (#)");
+            lblLegendaMarcacaoEsquerda.setText("<html>Respostas<br/>(V)<br/>(F)<br/>(*) ou (#)</html>");
         }
         lblLegendaMarcacaoEsquerda.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         add(lblLegendaMarcacaoEsquerda, java.awt.BorderLayout.LINE_START);
@@ -54,14 +54,21 @@ public class FormularioRespostas extends javax.swing.JPanel {
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
             lblLegendaMarcacaoDireita.setText("<html>Respostas<br/>(a)<br/>(b)<br/>(c)<br/>(d)<br/>(e)<br/>(*) ou (#)</html>");
         }else{
-            lblLegendaMarcacaoDireita.setText("Respostas<br/>(V)<br/>(F)<br/>(*) ou (#)");
+            lblLegendaMarcacaoDireita.setText("<html>Respostas<br/>(V)<br/>(F)<br/>(*) ou (#)</html>");
         }
         lblLegendaMarcacaoDireita.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         add(lblLegendaMarcacaoDireita, java.awt.BorderLayout.LINE_END);
+
+        painelAlternativas.setBackground(new java.awt.Color(166, 166, 166));
+        for(int cont = 1; cont <= quantidadeQuestoes; cont++){
+            painelAlternativas.add(new FormularioQuestao1(tipoProva, cont));
+        }
+        add(painelAlternativas, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblLegendaMarcacaoDireita;
     private javax.swing.JLabel lblLegendaMarcacaoEsquerda;
+    private javax.swing.JPanel painelAlternativas;
     private javax.swing.JLabel rotuloRespostas;
     // End of variables declaration//GEN-END:variables
 }

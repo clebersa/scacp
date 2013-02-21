@@ -5,7 +5,11 @@
 package scacp;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.FlowLayout;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -529,7 +533,7 @@ public class Scacp extends javax.swing.JFrame {
         }
         
         painelDadosProva.removeAll();
-        painelCartao.resetar();
+        //painelCartao.resetar();
         prova = new Prova();
         validate();
         repaint();
@@ -624,7 +628,12 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmProporcaoPenalizacaoActionPerformed
 
     private void itmAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAjudaActionPerformed
-        // TODO add your handling code here:
+        Desktop d = Desktop.getDesktop();
+        try {
+            d.browse(new URI("" + getClass().getResource("ajuda.html")));
+        } catch (URISyntaxException | IOException e) {
+            JOptionPane.showMessageDialog(rootPane, "Conteúdo de Ajuda não encontrado!", "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_itmAjudaActionPerformed
 
     private void itmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSobreActionPerformed

@@ -73,26 +73,12 @@ public class CartaoDAO {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
-                System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
-                prova.setIdProva(rs.getInt("nome"));
-                System.out.println("Nome da prova:" + rs.getString("nome"));
-                prova.setIdProva(rs.getInt("tipo"));
-                System.out.println("Tipo de prova:" + rs.getInt("tipo"));
-                prova.setIdProva(rs.getInt("quantidade_questoes"));
-                System.out.println("Quantidade de questões:" + rs.getInt("quantidade_questoes"));
-                prova.setIdProva(rs.getInt("pontuacao_minima"));
-                System.out.println("Pontuação mínima:" + rs.getDouble("pontuacao_minima"));
-                prova.setIdProva(rs.getInt("pontuacao_maxima"));
-                System.out.println("Pontuação máxima:" + rs.getDouble("pontuacao_maxima"));
-                prova.setIdProva(rs.getInt("precisao_pontuacao"));
-                System.out.println("Precisão da pontuação:" + rs.getBoolean("precisao_pontuacao"));
-                prova.setIdProva(rs.getInt("incidencia_penalizacao"));
-                System.out.println("Incidência da penalização:" + rs.getBoolean("incidencia_penalizacao"));
-                prova.setIdProva(rs.getInt("proporcao_penalizacao"));
-                System.out.println("Proporção da penalização:" + rs.getInt("proporcao_penalizacao"));
-                prova.setIdProva(rs.getInt("gabarito"));
-                System.out.println("Gabarito:" + rs.getString("gabarito"));
-
+                System.out.println("Número de inscrição do candidato:" + rs.getInt("numero_inscricao"));
+                cartao.setMarcacao(rs.getString("marcacao"));
+                System.out.println("Tipo de marcação da prova:" + rs.getString("marcacao"));
+                cartao.setNota(rs.getDouble("nota"));
+                System.out.println("Nota da prova:" + rs.getDouble("nota"));
+               
 
             }
 

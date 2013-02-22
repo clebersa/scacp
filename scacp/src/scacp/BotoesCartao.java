@@ -8,12 +8,12 @@ package scacp;
  *
  * @author cleber
  */
-public class PainelBotoesCartao extends javax.swing.JPanel {
+public class BotoesCartao extends javax.swing.JPanel {
 
     /**
-     * Creates new form PainelBotoesCartao
+     * Creates new form BotoesCartao
      */
-    public PainelBotoesCartao() {
+    public BotoesCartao() {
         initComponents();
     }
 

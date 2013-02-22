@@ -20,7 +20,7 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="String.format(&quot;Quest&#xf5;es de 01 a %2d - Inscri&#xe7;&#xe3;o: %7d&quot;, quantidadeQuestoes, numeroInscricao)" type="code"/>
+          <Connection code="String.format(&quot;Quest&#xf5;es de 01 a %2d - Inscri&#xe7;&#xe3;o: %7d&quot;, fimQuestoes, numeroInscricao)" type="code"/>
         </Property>
       </Properties>
       <Constraints>
@@ -58,9 +58,13 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="5e" green="6c" red="7a" type="rgb"/>
         </Property>
+        <Property name="alignmentY" type="float" value="0.5"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor Default"/>
+        </Property>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="pnlQuestoes.setBackground(new java.awt.Color(166, 166, 166));&#xa;if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    for(int cont = 1; cont &lt;= quantidadeQuestoes; cont++){&#xa;        pnlQuestoes.add(new FormularioQuestaoME(cont, numeroInscricao));&#xa;    }&#xa;}else{&#xa;    for(int cont = 1; cont &lt;= quantidadeQuestoes; cont++){&#xa;        pnlQuestoes.add(new FormularioQuestaoVF(cont, numeroInscricao));&#xa;    }&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_LayoutCodePost" type="java.lang.String" value="pnlQuestoes.setBackground(new java.awt.Color(166, 166, 166));&#xa;if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){&#xa;    for(int cont = inicioQuestoes; cont &lt;= fimQuestoes; cont++){&#xa;        questoes.put(cont, new FormularioQuestaoME(cont, numeroInscricao));&#xa;        pnlQuestoes.add(questoes.get(cont));&#xa;    }&#xa;}else{&#xa;    for(int cont = inicioQuestoes; cont &lt;= fimQuestoes; cont++){&#xa;        questoes.put(cont, new FormularioQuestaoVF(cont, numeroInscricao));&#xa;        pnlQuestoes.add(questoes.get(cont));&#xa;    }&#xa;}"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -68,7 +72,7 @@
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
     </Container>
   </SubComponents>
 </Form>

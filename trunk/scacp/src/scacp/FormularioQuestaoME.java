@@ -4,38 +4,18 @@
  */
 package scacp;
 
-import javax.swing.ButtonGroup;
-
 /**
  *
  * @author cleber
  */
-public class FormularioQuestaoME extends javax.swing.JPanel {
-    private int numeroQuestao, numeroInscricao;
-    
+public class FormularioQuestaoME extends FormularioQuestao {
+
     /**
      * Creates new form FormularioQuestaoME
      */
     public FormularioQuestaoME(int numeroQuestao, int numeroInscricao) {
-        this.numeroQuestao = numeroQuestao;
-        this.numeroInscricao = numeroInscricao;
+        super(numeroQuestao, numeroInscricao);
         initComponents();
-    }
-
-    public ButtonGroup getBtnGrupoAlternativas() {
-        return gbtnAlternativas;
-    }
-
-    public void setBtnGrupoAlternativas(ButtonGroup btnGrupoAlternativas) {
-        this.gbtnAlternativas = btnGrupoAlternativas;
-    }
-
-    public int getNumeroQuestao() {
-        return numeroQuestao;
-    }
-
-    public void setNumeroQuestao(int numeroQuestao) {
-        this.numeroQuestao = numeroQuestao;
     }
 
     /**
@@ -47,7 +27,6 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gbtnAlternativas = new javax.swing.ButtonGroup();
         lblNumeroQuestao = new javax.swing.JLabel();
         rbtA = new javax.swing.JRadioButton();
         rbtB = new javax.swing.JRadioButton();
@@ -62,29 +41,72 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
         lblNumeroQuestao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroQuestao.setText(String.format("%2d", numeroQuestao));
 
-        gbtnAlternativas.add(rbtA);
         rbtA.setText("a");
+        gbtnAlternativas.add(rbtA);
+        alternativas.add(rbtA);
+        rbtA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtAActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtB);
         rbtB.setText("b");
+        gbtnAlternativas.add(rbtB);
+        alternativas.add(rbtB);
+        rbtB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtBActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtC);
         rbtC.setText("c");
+        gbtnAlternativas.add(rbtC);
+        alternativas.add(rbtC);
+        rbtC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtCActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtD);
         rbtD.setText("d");
+        gbtnAlternativas.add(rbtD);
+        alternativas.add(rbtD);
+        rbtD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtDActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtE);
         rbtE.setText("e");
+        gbtnAlternativas.add(rbtE);
+        alternativas.add(rbtE);
+        rbtE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtEActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtMultipla);
         rbtMultipla.setText("#");
+        gbtnAlternativas.add(rbtMultipla);
+        alternativas.add(rbtMultipla);
+        rbtMultipla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtMultiplaActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtBranco);
         rbtBranco.setText("*");
         if(numeroInscricao == 9999990){
             rbtBranco.setVisible(false);
         }
+
+        gbtnAlternativas.add(rbtBranco);
+        alternativas.add(rbtBranco);
+        rbtBranco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtBrancoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,8 +142,36 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
                 .addComponent(rbtBranco))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbtAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtAActionPerformed
+        alternativa = "a";
+    }//GEN-LAST:event_rbtAActionPerformed
+
+    private void rbtBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBActionPerformed
+        alternativa = "b";
+    }//GEN-LAST:event_rbtBActionPerformed
+
+    private void rbtCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCActionPerformed
+        alternativa = "c";
+    }//GEN-LAST:event_rbtCActionPerformed
+
+    private void rbtDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtDActionPerformed
+        alternativa = "d";
+    }//GEN-LAST:event_rbtDActionPerformed
+
+    private void rbtEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtEActionPerformed
+        alternativa = "e";
+    }//GEN-LAST:event_rbtEActionPerformed
+
+    private void rbtMultiplaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtMultiplaActionPerformed
+        alternativa = "#";
+    }//GEN-LAST:event_rbtMultiplaActionPerformed
+
+    private void rbtBrancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBrancoActionPerformed
+        alternativa = "*";
+    }//GEN-LAST:event_rbtBrancoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup gbtnAlternativas;
     private javax.swing.JLabel lblNumeroQuestao;
     private javax.swing.JRadioButton rbtA;
     private javax.swing.JRadioButton rbtB;

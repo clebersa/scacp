@@ -4,38 +4,19 @@
  */
 package scacp;
 
-import javax.swing.ButtonGroup;
 
 /**
  *
  * @author cleber
  */
-public class FormularioQuestaoVF extends javax.swing.JPanel {
-    private int numeroQuestao, numeroInscricao;
+public class FormularioQuestaoVF extends FormularioQuestao {
     
     /**
      * Creates new form FormularioQuestaoME
      */
     public FormularioQuestaoVF(int numeroQuestao, int numeroInscricao) {
-        this.numeroQuestao = numeroQuestao;
-        this.numeroInscricao = numeroInscricao;
+        super(numeroQuestao, numeroInscricao);
         initComponents();
-    }
-
-    public ButtonGroup getBtnGrupoAlternativas() {
-        return gbtnAlternativas;
-    }
-
-    public void setBtnGrupoAlternativas(ButtonGroup btnGrupoAlternativas) {
-        this.gbtnAlternativas = btnGrupoAlternativas;
-    }
-
-    public int getNumeroQuestao() {
-        return numeroQuestao;
-    }
-
-    public void setNumeroQuestao(int numeroQuestao) {
-        this.numeroQuestao = numeroQuestao;
     }
 
     /**
@@ -47,10 +28,9 @@ public class FormularioQuestaoVF extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        gbtnAlternativas = new javax.swing.ButtonGroup();
         lblNumeroQuestao = new javax.swing.JLabel();
-        rbtA = new javax.swing.JRadioButton();
-        rbtB = new javax.swing.JRadioButton();
+        rbtV = new javax.swing.JRadioButton();
+        rbtF = new javax.swing.JRadioButton();
         rbtMultipla = new javax.swing.JRadioButton();
         rbtBranco = new javax.swing.JRadioButton();
 
@@ -59,40 +39,65 @@ public class FormularioQuestaoVF extends javax.swing.JPanel {
         lblNumeroQuestao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroQuestao.setText(String.format("%2d", numeroQuestao));
 
-        gbtnAlternativas.add(rbtA);
-        rbtA.setText("V");
+        rbtV.setText("V");
+        gbtnAlternativas.add(rbtV);
+        alternativas.add(rbtV);
+        rbtV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtVActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtB);
-        rbtB.setText("F");
+        rbtF.setText("F");
+        gbtnAlternativas.add(rbtF);
+        alternativas.add(rbtF);
+        rbtF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtFActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtMultipla);
         rbtMultipla.setText("#");
+        gbtnAlternativas.add(rbtMultipla);
+        alternativas.add(rbtMultipla);
+        rbtMultipla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtMultiplaActionPerformed(evt);
+            }
+        });
 
-        gbtnAlternativas.add(rbtBranco);
         rbtBranco.setText("*");
         if(numeroInscricao == 9999990){
             rbtBranco.setVisible(false);
         }
 
+        gbtnAlternativas.add(rbtBranco);
+        alternativas.add(rbtBranco);
+        rbtBranco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtBrancoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(rbtB)
+            .addComponent(rbtF)
             .addComponent(rbtMultipla)
             .addComponent(rbtBranco)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addComponent(lblNumeroQuestao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(rbtA, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(rbtV, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblNumeroQuestao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtA)
+                .addComponent(rbtV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rbtB)
+                .addComponent(rbtF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rbtMultipla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -100,12 +105,28 @@ public class FormularioQuestaoVF extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbtVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtVActionPerformed
+        alternativa = "v";
+    }//GEN-LAST:event_rbtVActionPerformed
+
+    private void rbtFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtFActionPerformed
+        alternativa = "f";
+    }//GEN-LAST:event_rbtFActionPerformed
+
+    private void rbtMultiplaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtMultiplaActionPerformed
+        alternativa = "#";
+    }//GEN-LAST:event_rbtMultiplaActionPerformed
+
+    private void rbtBrancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtBrancoActionPerformed
+        alternativa = "*";
+    }//GEN-LAST:event_rbtBrancoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup gbtnAlternativas;
     private javax.swing.JLabel lblNumeroQuestao;
-    private javax.swing.JRadioButton rbtA;
-    private javax.swing.JRadioButton rbtB;
     private javax.swing.JRadioButton rbtBranco;
+    private javax.swing.JRadioButton rbtF;
     private javax.swing.JRadioButton rbtMultipla;
+    private javax.swing.JRadioButton rbtV;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,10 @@
 package scacp;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JViewport;
 
 /**
  *
@@ -13,7 +17,14 @@ import javax.swing.JFrame;
 public class TestesVIEW {
     public static void main(String args[]){
         JFrame janela = new JFrame("Teste formulário!");
-        janela.add(new PainelQuestoes(9999990, 20, TipoProva.MULTIPLA_ESCOLHA));
+        /*PainelGerencimentoCartao ger = new PainelGerencimentoCartao(TipoProva.MULTIPLA_ESCOLHA, 40, 999999);
+        JPanel scroll = (JPanel) ((JViewport)((JScrollPane) ger.getComponent(0)).getViewport()).getComponent(1);
+        
+        scroll.add(new PainelQuestoes(9999999, 20, TipoProva.MULTIPLA_ESCOLHA));
+        janela.add(ger);*/
+        PainelQuestoes pnl = new PainelQuestoes(9999990, 11, 20, TipoProva.MULTIPLA_ESCOLHA);
+        pnl.setMarcacao("abdebc*#dc");
+        janela.add(pnl);
         //janela.add(new PainelQuestoes(9999990, 20, TipoProva.VERDADEIRO_FALSO));
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

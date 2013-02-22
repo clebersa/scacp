@@ -92,11 +92,11 @@ public class ProvaDAO {
         return prova;
     }
     
-    public List<Provas> buscarProvas(){
+    //public List<Provas> buscarProvas(){
         //Método para buscar todas as provas existentes no banco de dados.
         // Neste caso, deve-se buscar somente o código da prova e o nome. Busque somente isso e armazene uma prova e retorne esta prova
         // Perceba que os demais atributos da prova terão valores nulos ou padrões.
-    }
+    //}
     
     public void excluirProva(int idProva) {
         Connection conexao = Conexao.getConexao();

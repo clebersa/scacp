@@ -23,11 +23,11 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
     }
 
     public ButtonGroup getBtnGrupoAlternativas() {
-        return btnGrupoAlternativas;
+        return gbtnAlternativas;
     }
 
     public void setBtnGrupoAlternativas(ButtonGroup btnGrupoAlternativas) {
-        this.btnGrupoAlternativas = btnGrupoAlternativas;
+        this.gbtnAlternativas = btnGrupoAlternativas;
     }
 
     public int getNumeroQuestao() {
@@ -47,7 +47,7 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGrupoAlternativas = new javax.swing.ButtonGroup();
+        gbtnAlternativas = new javax.swing.ButtonGroup();
         lblNumeroQuestao = new javax.swing.JLabel();
         rbtA = new javax.swing.JRadioButton();
         rbtB = new javax.swing.JRadioButton();
@@ -57,24 +57,33 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
         rbtMultipla = new javax.swing.JRadioButton();
         rbtBranco = new javax.swing.JRadioButton();
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         lblNumeroQuestao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroQuestao.setText(String.format("%2d", numeroQuestao));
 
+        gbtnAlternativas.add(rbtA);
         rbtA.setText("a");
 
+        gbtnAlternativas.add(rbtB);
         rbtB.setText("b");
 
+        gbtnAlternativas.add(rbtC);
         rbtC.setText("c");
 
+        gbtnAlternativas.add(rbtD);
         rbtD.setText("d");
 
+        gbtnAlternativas.add(rbtE);
         rbtE.setText("e");
 
+        gbtnAlternativas.add(rbtMultipla);
         rbtMultipla.setText("#");
 
+        gbtnAlternativas.add(rbtBranco);
         rbtBranco.setText("*");
         if(numeroInscricao == 9999990){
-            rbtBranco.setEnabled(false);
+            rbtBranco.setVisible(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -112,7 +121,7 @@ public class FormularioQuestaoME extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup btnGrupoAlternativas;
+    private javax.swing.ButtonGroup gbtnAlternativas;
     private javax.swing.JLabel lblNumeroQuestao;
     private javax.swing.JRadioButton rbtA;
     private javax.swing.JRadioButton rbtB;

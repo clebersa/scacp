@@ -28,7 +28,6 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
 
         painelCartao = new javax.swing.JPanel();
         painelCartcao = new javax.swing.JPanel();
-        cartaoFormulario1 = new scacp.CartaoFormulario();
         pnlBotoesCartao = new javax.swing.JPanel();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -42,32 +41,15 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
 
         painelCartcao.setBackground(new java.awt.Color(162, 162, 162));
 
-        javax.swing.GroupLayout cartaoFormulario1Layout = new javax.swing.GroupLayout(cartaoFormulario1);
-        cartaoFormulario1.setLayout(cartaoFormulario1Layout);
-        cartaoFormulario1Layout.setHorizontalGroup(
-            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        cartaoFormulario1Layout.setVerticalGroup(
-            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout painelCartcaoLayout = new javax.swing.GroupLayout(painelCartcao);
         painelCartcao.setLayout(painelCartcaoLayout);
         painelCartcaoLayout.setHorizontalGroup(
             painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartcaoLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         painelCartcaoLayout.setVerticalGroup(
             painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartcaoLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addGap(0, 178, Short.MAX_VALUE)
         );
 
         pnlBotoesCartao.setBackground(new java.awt.Color(255, 209, 164));
@@ -209,7 +191,6 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLocalizar;
-    private scacp.CartaoFormulario cartaoFormulario1;
     private javax.swing.JPanel painelCartao;
     private javax.swing.JPanel painelCartcao;
     private javax.swing.JPanel pnlBotoesCartao;

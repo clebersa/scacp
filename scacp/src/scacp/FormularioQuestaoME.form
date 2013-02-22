@@ -2,9 +2,16 @@
 
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="btnGrupoAlternativas">
+    <Component class="javax.swing.ButtonGroup" name="gbtnAlternativas">
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+      <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+        <LineBorder/>
+      </Border>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -65,40 +72,61 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtA">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="a"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtB">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="b"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtC">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="c"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtD">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="d"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtE">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="e"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtMultipla">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="#"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="rbtBranco">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="gbtnAlternativas"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="*"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(numeroInscricao == 9999990){&#xa;    rbtBranco.setEnabled(false);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(numeroInscricao == 9999990){&#xa;    rbtBranco.setVisible(false);&#xa;}"/>
       </AuxValues>
     </Component>
   </SubComponents>

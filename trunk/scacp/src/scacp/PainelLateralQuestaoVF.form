@@ -16,59 +16,56 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-          </Group>
+          <Component id="lblRespostas" min="-2" max="-2" attributes="0"/>
+          <Component id="lblV" min="-2" max="-2" attributes="0"/>
+          <Component id="lblF" min="-2" max="-2" attributes="0"/>
+          <Component id="lblMultipla" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Component id="lblBranco" alignment="0" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblRespostas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <Component id="lblV" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Component id="lblF" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              <Component id="lblMultipla" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="lblBranco" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblRespostas">
       <Properties>
         <Property name="text" type="java.lang.String" value="Respostas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblV">
       <Properties>
         <Property name="text" type="java.lang.String" value="(V)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblF">
       <Properties>
         <Property name="text" type="java.lang.String" value="(F)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblMultipla">
       <Properties>
         <Property name="text" type="java.lang.String" value="(#)"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblBranco">
       <Properties>
         <Property name="text" type="java.lang.String" value="(*)"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(numeroInscricao == 9999990){&#xa;    jLabel5.setVisible(false);&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="if(numeroInscricao == 9999990){&#xa;    lblBranco.setVisible(false);&#xa;}"/>
       </AuxValues>
     </Component>
   </SubComponents>

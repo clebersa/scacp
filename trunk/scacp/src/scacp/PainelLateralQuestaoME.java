@@ -28,76 +28,75 @@ public class PainelLateralQuestaoME extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblRespostas = new javax.swing.JLabel();
+        lblA = new javax.swing.JLabel();
+        lblB = new javax.swing.JLabel();
+        lblC = new javax.swing.JLabel();
+        lblD = new javax.swing.JLabel();
+        lblE = new javax.swing.JLabel();
+        lblMultipla = new javax.swing.JLabel();
+        lblBranco = new javax.swing.JLabel();
 
-        jLabel1.setText("Respostas");
+        lblRespostas.setText("Respostas");
 
-        jLabel2.setText("(a)");
+        lblA.setText("(a)");
 
-        jLabel3.setText("(b)");
+        lblB.setText("(b)");
 
-        jLabel4.setText("(c)");
+        lblC.setText("(c)");
 
-        jLabel5.setText("(d)");
+        lblD.setText("(d)");
 
-        jLabel6.setText("(e)");
+        lblE.setText("(e)");
 
-        jLabel7.setText("(#)");
+        lblMultipla.setText("(#)");
 
-        jLabel8.setText("(*)");
+        lblBranco.setText("(*)");
         if(numeroInscricao == 9999990){
-            jLabel8.setVisible(false);
+            lblBranco.setVisible(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-            .addComponent(jLabel2)
-            .addComponent(jLabel7)
-            .addComponent(jLabel5)
-            .addComponent(jLabel8)
-            .addComponent(jLabel3)
-            .addComponent(jLabel4)
-            .addComponent(jLabel6)
+            .addComponent(lblRespostas)
+            .addComponent(lblA)
+            .addComponent(lblMultipla)
+            .addComponent(lblD)
+            .addComponent(lblBranco)
+            .addComponent(lblB)
+            .addComponent(lblC)
+            .addComponent(lblE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(lblRespostas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblB)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
+                .addComponent(lblE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addComponent(lblMultipla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addContainerGap())
+                .addComponent(lblBranco))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lblA;
+    private javax.swing.JLabel lblB;
+    private javax.swing.JLabel lblBranco;
+    private javax.swing.JLabel lblC;
+    private javax.swing.JLabel lblD;
+    private javax.swing.JLabel lblE;
+    private javax.swing.JLabel lblMultipla;
+    private javax.swing.JLabel lblRespostas;
     // End of variables declaration//GEN-END:variables
 }

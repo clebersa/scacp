@@ -10,12 +10,12 @@ import javax.swing.JFrame;
  *
  * @author cleber
  */
-public class Testes {
+public class TestesVIEW {
     public static void main(String args[]){
         JFrame janela = new JFrame("Teste formulário!");
-        janela.add(new FormularioQuestoes(9999990, 20, TipoProva.MULTIPLA_ESCOLHA));
-        //janela.add(new FormularioQuestoes(9999990, 20, TipoProva.VERDADEIRO_FALSO));
-        /*try {
+        janela.add(new PainelQuestoes(9999990, 20, TipoProva.MULTIPLA_ESCOLHA));
+        //janela.add(new PainelQuestoes(9999990, 20, TipoProva.VERDADEIRO_FALSO));
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 System.out.println(info.getName());
                 if ("GTK+".equals(info.getName())) {
@@ -31,7 +31,7 @@ public class Testes {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        }
         janela.pack();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);

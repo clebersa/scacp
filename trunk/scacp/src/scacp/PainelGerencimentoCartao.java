@@ -27,30 +27,18 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
     private void initComponents() {
 
         painelCartao = new javax.swing.JPanel();
-        painelCartcao = new javax.swing.JPanel();
         pnlBotoesCartao = new javax.swing.JPanel();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
         btnLocalizar = new javax.swing.JButton();
         btnCorrigirCartoes = new javax.swing.JButton();
+        scrpnlQuestoesCartao = new javax.swing.JScrollPane();
+        pnlQuestoesCartao = new javax.swing.JPanel();
 
         painelCartao.setBackground(new java.awt.Color(242, 151, 128));
         painelCartao.setPreferredSize(new java.awt.Dimension(569, 184));
         painelCartao.setVisible(false);
-
-        painelCartcao.setBackground(new java.awt.Color(162, 162, 162));
-
-        javax.swing.GroupLayout painelCartcaoLayout = new javax.swing.GroupLayout(painelCartcao);
-        painelCartcao.setLayout(painelCartcaoLayout);
-        painelCartcaoLayout.setHorizontalGroup(
-            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        painelCartcaoLayout.setVerticalGroup(
-            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
-        );
 
         pnlBotoesCartao.setBackground(new java.awt.Color(255, 209, 164));
         pnlBotoesCartao.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções de Cartão"));
@@ -122,23 +110,34 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
                 .addComponent(btnCorrigirCartoes))
         );
 
+        javax.swing.GroupLayout pnlQuestoesCartaoLayout = new javax.swing.GroupLayout(pnlQuestoesCartao);
+        pnlQuestoesCartao.setLayout(pnlQuestoesCartaoLayout);
+        pnlQuestoesCartaoLayout.setHorizontalGroup(
+            pnlQuestoesCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 468, Short.MAX_VALUE)
+        );
+        pnlQuestoesCartaoLayout.setVerticalGroup(
+            pnlQuestoesCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 212, Short.MAX_VALUE)
+        );
+
+        scrpnlQuestoesCartao.setViewportView(pnlQuestoesCartao);
+
         javax.swing.GroupLayout painelCartaoLayout = new javax.swing.GroupLayout(painelCartao);
         painelCartao.setLayout(painelCartaoLayout);
         painelCartaoLayout.setHorizontalGroup(
             painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCartaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         painelCartaoLayout.setVerticalGroup(
             painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelCartaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -147,42 +146,38 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 485, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelCartao, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addContainerGap()))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        itmInserirCartaoActionPerformed(evt);
+        //itmInserirCartaoActionPerformed(evt);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        itmAlterarCartaoActionPerformed(evt);
+        //itmAlterarCartaoActionPerformed(evt);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        itmExcluirActionPerformed(evt);
+        //itmExcluirActionPerformed(evt);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        itmLocalizarActionPerformed(evt);
+        //itmLocalizarActionPerformed(evt);
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnCorrigirCartoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigirCartoesActionPerformed
-        menuCorrigirActionPerformed(evt);
+        //menuCorrigirActionPerformed(evt);
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,7 +187,8 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLocalizar;
     private javax.swing.JPanel painelCartao;
-    private javax.swing.JPanel painelCartcao;
     private javax.swing.JPanel pnlBotoesCartao;
+    private javax.swing.JPanel pnlQuestoesCartao;
+    private javax.swing.JScrollPane scrpnlQuestoesCartao;
     // End of variables declaration//GEN-END:variables
 }

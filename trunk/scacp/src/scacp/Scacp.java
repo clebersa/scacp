@@ -41,15 +41,6 @@ public class Scacp extends javax.swing.JFrame {
     private void initComponents() {
 
         btngrTipoProva = new javax.swing.ButtonGroup();
-        painelCartao = new javax.swing.JPanel();
-        painelCartcao = new javax.swing.JPanel();
-        cartaoFormulario1 = new scacp.CartaoFormulario();
-        pnlBotoesCartao = new javax.swing.JPanel();
-        btnIncluir = new javax.swing.JButton();
-        btnAlterar = new javax.swing.JButton();
-        btnExcluir = new javax.swing.JButton();
-        btnLocalizar = new javax.swing.JButton();
-        btnCorrigirCartoes = new javax.swing.JButton();
         painelDadosProva = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
@@ -90,136 +81,11 @@ public class Scacp extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setMinimumSize(new java.awt.Dimension(620, 480));
 
-        painelCartao.setBackground(new java.awt.Color(242, 151, 128));
-        painelCartao.setPreferredSize(new java.awt.Dimension(569, 184));
-        painelCartao.setVisible(false);
-
-        painelCartcao.setBackground(new java.awt.Color(162, 162, 162));
-
-        javax.swing.GroupLayout cartaoFormulario1Layout = new javax.swing.GroupLayout(cartaoFormulario1);
-        cartaoFormulario1.setLayout(cartaoFormulario1Layout);
-        cartaoFormulario1Layout.setHorizontalGroup(
-            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        cartaoFormulario1Layout.setVerticalGroup(
-            cartaoFormulario1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 71, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout painelCartcaoLayout = new javax.swing.GroupLayout(painelCartcao);
-        painelCartcao.setLayout(painelCartcaoLayout);
-        painelCartcaoLayout.setHorizontalGroup(
-            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartcaoLayout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        painelCartcaoLayout.setVerticalGroup(
-            painelCartcaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartcaoLayout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(cartaoFormulario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
-        );
-
-        pnlBotoesCartao.setBackground(new java.awt.Color(255, 209, 164));
-        pnlBotoesCartao.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções de Cartão"));
-
-        btnIncluir.setText("Incluir");
-        btnIncluir.setEnabled(false);
-        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIncluirActionPerformed(evt);
-            }
-        });
-
-        btnAlterar.setText("Alterar");
-        btnAlterar.setEnabled(false);
-        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarActionPerformed(evt);
-            }
-        });
-
-        btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
-        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExcluirActionPerformed(evt);
-            }
-        });
-
-        btnLocalizar.setText("Localizar");
-        btnLocalizar.setEnabled(false);
-        btnLocalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalizarActionPerformed(evt);
-            }
-        });
-
-        btnCorrigirCartoes.setText("Corrigir Cartões");
-        btnCorrigirCartoes.setEnabled(false);
-        btnCorrigirCartoes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCorrigirCartoesActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlBotoesCartaoLayout = new javax.swing.GroupLayout(pnlBotoesCartao);
-        pnlBotoesCartao.setLayout(pnlBotoesCartaoLayout);
-        pnlBotoesCartaoLayout.setHorizontalGroup(
-            pnlBotoesCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotoesCartaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnIncluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAlterar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnExcluir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnLocalizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 345, Short.MAX_VALUE)
-                .addComponent(btnCorrigirCartoes)
-                .addContainerGap())
-        );
-        pnlBotoesCartaoLayout.setVerticalGroup(
-            pnlBotoesCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBotoesCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnIncluir)
-                .addComponent(btnAlterar)
-                .addComponent(btnExcluir)
-                .addComponent(btnLocalizar)
-                .addComponent(btnCorrigirCartoes))
-        );
-
-        javax.swing.GroupLayout painelCartaoLayout = new javax.swing.GroupLayout(painelCartao);
-        painelCartao.setLayout(painelCartaoLayout);
-        painelCartaoLayout.setHorizontalGroup(
-            painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        painelCartaoLayout.setVerticalGroup(
-            painelCartaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelCartaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelCartcao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
         painelDadosProva.setLayout(painelDadosProvaLayout);
         painelDadosProvaLayout.setHorizontalGroup(
             painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         painelDadosProvaLayout.setVerticalGroup(
             painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,15 +314,13 @@ public class Scacp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE))
+                .addContainerGap(623, Short.MAX_VALUE))
         );
 
         pack();
@@ -489,17 +353,12 @@ public class Scacp extends javax.swing.JFrame {
             painelDadosProva.add(ppd);
             painelDadosProva.revalidate();
             
-            //Ativa os botões de cartão
-            for(Component component: pnlBotoesCartao.getComponents()){
-                component.setEnabled(true);
-            }
-            
             //Ativa os menu editar e configurar
             menuEditar.setEnabled(true);
             menuConfigurar.setEnabled(true);
             
             //Permite visualizar a parte dos cartões
-            painelCartao.setVisible(true);
+            //painelCartao.setVisible(true);
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
@@ -556,11 +415,7 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmSairActionPerformed
 
     private void itmInserirCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInserirCartaoActionPerformed
-        try{
         
-        }catch(NumberFormatException excecao){
-            JOptionPane.showMessageDialog(painelCartao, evt);
-        }
     }//GEN-LAST:event_itmInserirCartaoActionPerformed
 
     private void itmAlterarCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarCartaoActionPerformed
@@ -641,26 +496,6 @@ public class Scacp extends javax.swing.JFrame {
         janelaSobre.setVisible(true);
     }//GEN-LAST:event_itmSobreActionPerformed
 
-    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        itmInserirCartaoActionPerformed(evt);
-    }//GEN-LAST:event_btnIncluirActionPerformed
-
-    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        itmAlterarCartaoActionPerformed(evt);
-    }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        itmExcluirActionPerformed(evt);
-    }//GEN-LAST:event_btnExcluirActionPerformed
-
-    private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        itmLocalizarActionPerformed(evt);
-    }//GEN-LAST:event_btnLocalizarActionPerformed
-
-    private void btnCorrigirCartoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigirCartoesActionPerformed
-        menuCorrigirActionPerformed(evt);
-    }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
-
     
     
     /**
@@ -700,13 +535,7 @@ public class Scacp extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JMenuBar barraMenuPrincipal;
-    javax.swing.JButton btnAlterar;
-    javax.swing.JButton btnCorrigirCartoes;
-    javax.swing.JButton btnExcluir;
-    javax.swing.JButton btnIncluir;
-    javax.swing.JButton btnLocalizar;
     javax.swing.ButtonGroup btngrTipoProva;
-    scacp.CartaoFormulario cartaoFormulario1;
     javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
     javax.swing.JMenuItem itmAbrir;
     javax.swing.JMenuItem itmAjuda;
@@ -736,9 +565,6 @@ public class Scacp extends javax.swing.JFrame {
     javax.swing.JMenu menuEscalaPontuacao;
     javax.swing.JMenu menuSistemaPenalizacao;
     javax.swing.JMenu menuTipoProva;
-    javax.swing.JPanel painelCartao;
-    javax.swing.JPanel painelCartcao;
     javax.swing.JPanel painelDadosProva;
-    javax.swing.JPanel pnlBotoesCartao;
     // End of variables declaration//GEN-END:variables
 }

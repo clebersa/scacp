@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,12 +47,13 @@ public class CartaoDAO {
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
+        alterarCartaoNota(cartao);
     }
 
     public void alterarCartaoNota(Cartao cartao) {
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement st = conexao.prepareStatement("update cartoes set nota='?' where  numero_inscricao = ?");
+            PreparedStatement st = conexao.prepareStatement("update cartoes set nota= ? where  numero_inscricao = ?");
             st.setDouble(1, cartao.getNota());
             st.setInt(2, cartao.getNumeroInscricao());
             st.execute();
@@ -59,36 +62,57 @@ public class CartaoDAO {
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a nota.");
         }
-        // Passos para alteração de cartão
     }
 
-    public void buscarCartao(int numeroInscricao, int idProva) {
+    public Cartao buscarCartao(int numeroInscricao, int idProva) {
         Connection conexao = Conexao.getConexao();
-        Prova prova = new Prova();
         Cartao cartao = new Cartao();
+        
         try {
-            PreparedStatement st = conexao.prepareStatement("select from cartoes where numero_inscricao = ? and id_prova = ?");
+            PreparedStatement st = conexao.prepareStatement("select * from cartoes where numero_inscricao = ? and fk_id_prova = ?");
             st.setInt(1, numeroInscricao);
             st.setInt(2, idProva);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
-                System.out.println("Número de inscrição do candidato:" + rs.getInt("numero_inscricao"));
                 cartao.setMarcacao(rs.getString("marcacao"));
-                System.out.println("Tipo de marcação da prova:" + rs.getString("marcacao"));
                 cartao.setNota(rs.getDouble("nota"));
-                System.out.println("Nota da prova:" + rs.getDouble("nota"));
-               
-
             }
-
             st.execute();
+            rs.close();
+            st.close();
+            conexao.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
+        } finally{
+        
+        }
+        return cartao;
+    }
+
+    public List<Cartao> buscarCartoes(int idProva) {
+        List<Cartao> cartoes = new ArrayList<>();
+        Cartao cartao = new Cartao();
+        Connection conexao = Conexao.getConexao();
+
+        try {
+            PreparedStatement st = conexao.prepareStatement("select * from cartoes where fk_id_prova = ?");
+            st.setInt(1, idProva);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
+                cartao.setMarcacao(rs.getString("marcacao"));
+                cartao.setNota(rs.getDouble("nota"));
+                cartoes.add(cartao);
+            }
+            st.execute();
+            rs.close();
             st.close();
             conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
         }
-        // Passos para localização de cartão
+        return cartoes;
     }
 
     public void excluirCartao(int numeroInscricao) {

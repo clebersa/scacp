@@ -28,56 +28,54 @@ public class PainelLateralQuestaoVF extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblRespostas = new javax.swing.JLabel();
+        lblV = new javax.swing.JLabel();
+        lblF = new javax.swing.JLabel();
+        lblMultipla = new javax.swing.JLabel();
+        lblBranco = new javax.swing.JLabel();
 
-        jLabel1.setText("Respostas");
+        lblRespostas.setText("Respostas");
 
-        jLabel2.setText("(V)");
+        lblV.setText("(V)");
 
-        jLabel3.setText("(F)");
+        lblF.setText("(F)");
 
-        jLabel4.setText("(#)");
+        lblMultipla.setText("(#)");
 
-        jLabel5.setText("(*)");
+        lblBranco.setText("(*)");
         if(numeroInscricao == 9999990){
-            jLabel5.setVisible(false);
+            lblBranco.setVisible(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
-            .addComponent(jLabel2)
-            .addComponent(jLabel3)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jLabel4)
-                .addComponent(jLabel5))
+            .addComponent(lblRespostas)
+            .addComponent(lblV)
+            .addComponent(lblF)
+            .addComponent(lblMultipla)
+            .addComponent(lblBranco)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(lblRespostas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(lblV)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblF)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
+                .addComponent(lblMultipla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addContainerGap())
+                .addComponent(lblBranco))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblBranco;
+    private javax.swing.JLabel lblF;
+    private javax.swing.JLabel lblMultipla;
+    private javax.swing.JLabel lblRespostas;
+    private javax.swing.JLabel lblV;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,13 +8,18 @@ package scacp;
  *
  * @author cleber
  */
-public class FormularioQuestoes extends javax.swing.JPanel {
+public class PainelQuestoes extends javax.swing.JPanel {
     private int quantidadeQuestoes, numeroInscricao;
     private TipoProva tipoProva;
     /**
      * Creates new form FormularioRespostas
      */
-    public FormularioQuestoes(int numeroInscricao, int quantidadeQuestoes, TipoProva tipoProva) {
+    public PainelQuestoes(){
+        quantidadeQuestoes = 20;
+        numeroInscricao = 9999990;
+        tipoProva = TipoProva.MULTIPLA_ESCOLHA;
+    }
+    public PainelQuestoes(int numeroInscricao, int quantidadeQuestoes, TipoProva tipoProva) {
         this.numeroInscricao = numeroInscricao;
         this.quantidadeQuestoes = quantidadeQuestoes;
         this.tipoProva = tipoProva;
@@ -48,17 +53,6 @@ public class FormularioQuestoes extends javax.swing.JPanel {
         }
 
         add(pnlLateralDireito, java.awt.BorderLayout.LINE_END);
-
-        javax.swing.GroupLayout pnlLateralEsquerdoLayout = new javax.swing.GroupLayout(pnlLateralEsquerdo);
-        pnlLateralEsquerdo.setLayout(pnlLateralEsquerdoLayout);
-        pnlLateralEsquerdoLayout.setHorizontalGroup(
-            pnlLateralEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        pnlLateralEsquerdoLayout.setVerticalGroup(
-            pnlLateralEsquerdoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 84, Short.MAX_VALUE)
-        );
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
             pnlLateralEsquerdo = new PainelLateralQuestaoME();

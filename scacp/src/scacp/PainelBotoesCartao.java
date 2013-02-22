@@ -8,12 +8,12 @@ package scacp;
  *
  * @author cleber
  */
-public class PainelOpcoesCartao extends javax.swing.JPanel {
+public class PainelBotoesCartao extends javax.swing.JPanel {
 
     /**
-     * Creates new form PainelOpcoesCartao
+     * Creates new form PainelBotoesCartao
      */
-    public PainelOpcoesCartao() {
+    public PainelBotoesCartao() {
         initComponents();
     }
 
@@ -103,23 +103,23 @@ public class PainelOpcoesCartao extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCorrigirCartoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigirCartoesActionPerformed
-        menuCorrigirActionPerformed(evt);
+        //menuCorrigirActionPerformed(evt);
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        itmLocalizarActionPerformed(evt);
+        //itmLocalizarActionPerformed(evt);
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        itmExcluirActionPerformed(evt);
+        //itmExcluirActionPerformed(evt);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        itmAlterarCartaoActionPerformed(evt);
+        //itmAlterarCartaoActionPerformed(evt);
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        itmInserirCartaoActionPerformed(evt);
+        //itmInserirCartaoActionPerformed(evt);
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

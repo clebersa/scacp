@@ -8,12 +8,12 @@ package scacp;
  *
  * @author cleber
  */
-public class FormularioQuestaoME extends FormularioQuestao {
+public class QuestaoMEFormulario extends QuestaoFormulario {
 
     /**
-     * Creates new form FormularioQuestaoME
+     * Creates new form QuestaoMEFormulario
      */
-    public FormularioQuestaoME(int numeroQuestao, int numeroInscricao) {
+    public QuestaoMEFormulario(int numeroQuestao, int numeroInscricao) {
         super(numeroQuestao, numeroInscricao);
         initComponents();
     }
@@ -36,13 +36,11 @@ public class FormularioQuestaoME extends FormularioQuestao {
         rbtMultipla = new javax.swing.JRadioButton();
         rbtBranco = new javax.swing.JRadioButton();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         lblNumeroQuestao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroQuestao.setText(String.format("%2d", numeroQuestao));
 
         rbtA.setText("a");
-        gbtnAlternativas.add(rbtA);
+        rbtgAlternativas.add(rbtA);
         alternativas.add(rbtA);
         rbtA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,7 +49,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
         });
 
         rbtB.setText("b");
-        gbtnAlternativas.add(rbtB);
+        rbtgAlternativas.add(rbtB);
         alternativas.add(rbtB);
         rbtB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,7 +58,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
         });
 
         rbtC.setText("c");
-        gbtnAlternativas.add(rbtC);
+        rbtgAlternativas.add(rbtC);
         alternativas.add(rbtC);
         rbtC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +67,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
         });
 
         rbtD.setText("d");
-        gbtnAlternativas.add(rbtD);
+        rbtgAlternativas.add(rbtD);
         alternativas.add(rbtD);
         rbtD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +76,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
         });
 
         rbtE.setText("e");
-        gbtnAlternativas.add(rbtE);
+        rbtgAlternativas.add(rbtE);
         alternativas.add(rbtE);
         rbtE.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +85,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
         });
 
         rbtMultipla.setText("#");
-        gbtnAlternativas.add(rbtMultipla);
+        rbtgAlternativas.add(rbtMultipla);
         alternativas.add(rbtMultipla);
         rbtMultipla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +98,7 @@ public class FormularioQuestaoME extends FormularioQuestao {
             rbtBranco.setVisible(false);
         }
 
-        gbtnAlternativas.add(rbtBranco);
+        rbtgAlternativas.add(rbtBranco);
         alternativas.add(rbtBranco);
         rbtBranco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,4 +179,5 @@ public class FormularioQuestaoME extends FormularioQuestao {
     private javax.swing.JRadioButton rbtE;
     private javax.swing.JRadioButton rbtMultipla;
     // End of variables declaration//GEN-END:variables
+
 }

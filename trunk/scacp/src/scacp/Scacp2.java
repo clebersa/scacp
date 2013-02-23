@@ -95,7 +95,7 @@ public class Scacp2 extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 393, Short.MAX_VALUE)
+            .addGap(0, 401, Short.MAX_VALUE)
         );
 
         menuArquivo.setText("Arquivo");
@@ -361,9 +361,9 @@ public class Scacp2 extends javax.swing.JFrame {
             menuConfigurar.setEnabled(true);
 
             //Permite visualizar a parte dos cartões
-            jPanel1.add(new PainelGerencimentoCartao());
+            //jPanel1.add(new CartaoPainelGerencimento());
             //painelGerenciamentoCartao.removeAll();
-            //painelGerenciamentoCartao = new PainelGerencimentoCartao();
+            //painelGerenciamentoCartao = new CartaoPainelGerencimento();
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
@@ -497,7 +497,7 @@ public class Scacp2 extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAjudaActionPerformed
 
     private void itmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSobreActionPerformed
-        JanelaSobre janelaSobre = new JanelaSobre();
+        SobreJanela janelaSobre = new SobreJanela();
         janelaSobre.setVisible(true);
     }//GEN-LAST:event_itmSobreActionPerformed
 

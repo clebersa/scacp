@@ -9,12 +9,12 @@ package scacp;
  *
  * @author cleber
  */
-public class FormularioQuestaoVF extends FormularioQuestao {
+public class QuestaoVFFormulario extends QuestaoFormulario {
     
     /**
      * Creates new form FormularioQuestaoME
      */
-    public FormularioQuestaoVF(int numeroQuestao, int numeroInscricao) {
+    public QuestaoVFFormulario(int numeroQuestao, int numeroInscricao) {
         super(numeroQuestao, numeroInscricao);
         initComponents();
     }
@@ -34,13 +34,11 @@ public class FormularioQuestaoVF extends FormularioQuestao {
         rbtMultipla = new javax.swing.JRadioButton();
         rbtBranco = new javax.swing.JRadioButton();
 
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         lblNumeroQuestao.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNumeroQuestao.setText(String.format("%2d", numeroQuestao));
 
         rbtV.setText("V");
-        gbtnAlternativas.add(rbtV);
+        rbtgAlternativas.add(rbtV);
         alternativas.add(rbtV);
         rbtV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -49,7 +47,7 @@ public class FormularioQuestaoVF extends FormularioQuestao {
         });
 
         rbtF.setText("F");
-        gbtnAlternativas.add(rbtF);
+        rbtgAlternativas.add(rbtF);
         alternativas.add(rbtF);
         rbtF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,7 +56,7 @@ public class FormularioQuestaoVF extends FormularioQuestao {
         });
 
         rbtMultipla.setText("#");
-        gbtnAlternativas.add(rbtMultipla);
+        rbtgAlternativas.add(rbtMultipla);
         alternativas.add(rbtMultipla);
         rbtMultipla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,7 +69,7 @@ public class FormularioQuestaoVF extends FormularioQuestao {
             rbtBranco.setVisible(false);
         }
 
-        gbtnAlternativas.add(rbtBranco);
+        rbtgAlternativas.add(rbtBranco);
         alternativas.add(rbtBranco);
         rbtBranco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,4 +127,5 @@ public class FormularioQuestaoVF extends FormularioQuestao {
     private javax.swing.JRadioButton rbtMultipla;
     private javax.swing.JRadioButton rbtV;
     // End of variables declaration//GEN-END:variables
+
 }

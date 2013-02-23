@@ -493,7 +493,7 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAjudaActionPerformed
 
     private void itmSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSobreActionPerformed
-        JanelaSobre janelaSobre = new JanelaSobre();
+        SobreJanela janelaSobre = new SobreJanela();
         janelaSobre.setVisible(true);
     }//GEN-LAST:event_itmSobreActionPerformed
 

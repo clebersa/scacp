@@ -10,14 +10,14 @@ import java.util.HashMap;
  *
  * @author cleber
  */
-public class PainelQuestoes extends javax.swing.JPanel {
+public class QuestoesPainel extends javax.swing.JPanel {
     private int inicioQuestoes, fimQuestoes, numeroInscricao;
-    private HashMap<Integer, FormularioQuestao> questoes;
+    private HashMap<Integer, QuestaoFormulario> questoes;
     private TipoProva tipoProva;
     /**
      * Creates new form FormularioRespostas
      */
-    public PainelQuestoes(int numeroInscricao, int inicioQuestoes, int fimQuestoes, TipoProva tipoProva) {
+    public QuestoesPainel(int numeroInscricao, int inicioQuestoes, int fimQuestoes, TipoProva tipoProva) {
         this.numeroInscricao = numeroInscricao;
         this.inicioQuestoes = inicioQuestoes;
         this.fimQuestoes = fimQuestoes;
@@ -37,9 +37,9 @@ public class PainelQuestoes extends javax.swing.JPanel {
     }
     
     public void setMarcacao(String marcacao){
-        int contador;
-        for(contador = inicioQuestoes; contador <= fimQuestoes; contador++){
-            questoes.get(contador).setAlternativa(String.format("%c", marcacao.charAt(inicioQuestoes-(fimQuestoes/2))));
+        int contador, questao;
+        for(contador = inicioQuestoes, questao = 0; contador <= fimQuestoes; contador++, questao++){
+            questoes.get(contador).setAlternativa(String.format("%c", marcacao.charAt(questao)));
         }
     }
 
@@ -60,39 +60,38 @@ public class PainelQuestoes extends javax.swing.JPanel {
         setLayout(new java.awt.BorderLayout());
 
         rotuloRespostas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        rotuloRespostas.setText(String.format("Questões de 01 a %2d - Inscrição: %7d", fimQuestoes, numeroInscricao));
+        rotuloRespostas.setText(String.format("Questões de %02d a %02d - Inscrição: %07d", inicioQuestoes, fimQuestoes, numeroInscricao));
         add(rotuloRespostas, java.awt.BorderLayout.PAGE_START);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralDireito = new PainelLateralQuestaoME();
+            pnlLateralDireito = new QuestaoMEPainelLateral();
         }else{
-            pnlLateralDireito = new PainelLateralQuestaoVF();
+            pnlLateralDireito = new QuestaoVFPainelLateral();
         }
 
         add(pnlLateralDireito, java.awt.BorderLayout.LINE_END);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralEsquerdo = new PainelLateralQuestaoME();
+            pnlLateralEsquerdo = new QuestaoMEPainelLateral();
         }else{
-            pnlLateralEsquerdo = new PainelLateralQuestaoVF();
+            pnlLateralEsquerdo = new QuestaoVFPainelLateral();
         }
 
         add(pnlLateralEsquerdo, java.awt.BorderLayout.LINE_START);
 
         pnlQuestoes.setBackground(new java.awt.Color(122, 108, 94));
-        pnlQuestoes.setAlignmentY(0.5F);
         pnlQuestoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlQuestoes.setLayout(new javax.swing.BoxLayout(pnlQuestoes, javax.swing.BoxLayout.LINE_AXIS));
 
         pnlQuestoes.setBackground(new java.awt.Color(166, 166, 166));
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
             for(int cont = inicioQuestoes; cont <= fimQuestoes; cont++){
-                questoes.put(cont, new FormularioQuestaoME(cont, numeroInscricao));
+                questoes.put(cont, new scacp.QuestaoMEFormulario(cont, numeroInscricao));
                 pnlQuestoes.add(questoes.get(cont));
             }
         }else{
             for(int cont = inicioQuestoes; cont <= fimQuestoes; cont++){
-                questoes.put(cont, new FormularioQuestaoVF(cont, numeroInscricao));
+                questoes.put(cont, new scacp.QuestaoVFFormulario(cont, numeroInscricao));
                 pnlQuestoes.add(questoes.get(cont));
             }
         }

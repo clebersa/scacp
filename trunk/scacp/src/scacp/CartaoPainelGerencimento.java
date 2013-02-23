@@ -8,12 +8,12 @@ package scacp;
  *
  * @author cleber
  */
-public class PainelGerencimentoCartao extends javax.swing.JPanel {
-
+public class CartaoPainelGerencimento extends javax.swing.JPanel {
+    Prova prova;
     /**
-     * Creates new form PainelGerencimentoCartao
+     * Creates new form CartaoPainelGerencimento
      */
-    public PainelGerencimentoCartao(TipoProva tipoProva, int quantidadeQuestoes, int inscricao) {
+    public CartaoPainelGerencimento(Prova prova, int inscricao) {
         initComponents();
     }
 
@@ -126,13 +126,10 @@ public class PainelGerencimentoCartao extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(scrpnlQuestoesCartao))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(scrpnlQuestoesCartao)
+                    .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

@@ -8,12 +8,12 @@ package scacp;
  *
  * @author cleber
  */
-public class PainelLateralQuestaoVF extends javax.swing.JPanel {
+public class QuestaoMEPainelLateral extends javax.swing.JPanel {
     private int numeroInscricao;
     /**
-     * Creates new form PainelLateralQuestaoVF
+     * Creates new form PainelLateralQuestoesME
      */
-    public PainelLateralQuestaoVF() {
+    public QuestaoMEPainelLateral() {
         int numeroInscricao = 00;
         this.numeroInscricao = numeroInscricao;
         initComponents();
@@ -29,16 +29,25 @@ public class PainelLateralQuestaoVF extends javax.swing.JPanel {
     private void initComponents() {
 
         lblRespostas = new javax.swing.JLabel();
-        lblV = new javax.swing.JLabel();
-        lblF = new javax.swing.JLabel();
+        lblA = new javax.swing.JLabel();
+        lblB = new javax.swing.JLabel();
+        lblC = new javax.swing.JLabel();
+        lblD = new javax.swing.JLabel();
+        lblE = new javax.swing.JLabel();
         lblMultipla = new javax.swing.JLabel();
         lblBranco = new javax.swing.JLabel();
 
         lblRespostas.setText("Respostas");
 
-        lblV.setText("(V)");
+        lblA.setText("(a)");
 
-        lblF.setText("(F)");
+        lblB.setText("(b)");
+
+        lblC.setText("(c)");
+
+        lblD.setText("(d)");
+
+        lblE.setText("(e)");
 
         lblMultipla.setText("(#)");
 
@@ -52,19 +61,28 @@ public class PainelLateralQuestaoVF extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRespostas)
-            .addComponent(lblV)
-            .addComponent(lblF)
+            .addComponent(lblA)
             .addComponent(lblMultipla)
+            .addComponent(lblD)
             .addComponent(lblBranco)
+            .addComponent(lblB)
+            .addComponent(lblC)
+            .addComponent(lblE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblRespostas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblV)
+                .addComponent(lblA)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblF)
+                .addComponent(lblB)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblC)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblD)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblMultipla)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -72,10 +90,13 @@ public class PainelLateralQuestaoVF extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel lblA;
+    private javax.swing.JLabel lblB;
     private javax.swing.JLabel lblBranco;
-    private javax.swing.JLabel lblF;
+    private javax.swing.JLabel lblC;
+    private javax.swing.JLabel lblD;
+    private javax.swing.JLabel lblE;
     private javax.swing.JLabel lblMultipla;
     private javax.swing.JLabel lblRespostas;
-    private javax.swing.JLabel lblV;
     // End of variables declaration//GEN-END:variables
 }

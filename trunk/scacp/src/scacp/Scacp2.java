@@ -39,7 +39,7 @@ public class Scacp2 extends javax.swing.JFrame {
     private void initComponents() {
 
         painelDadosProva = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        painelConteudo = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -85,17 +85,17 @@ public class Scacp2 extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(94, 172, 255));
+        painelConteudo.setBackground(new java.awt.Color(94, 172, 255));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout painelConteudoLayout = new javax.swing.GroupLayout(painelConteudo);
+        painelConteudo.setLayout(painelConteudoLayout);
+        painelConteudoLayout.setHorizontalGroup(
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+        painelConteudoLayout.setVerticalGroup(
+            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 405, Short.MAX_VALUE)
         );
 
         menuArquivo.setText("Arquivo");
@@ -316,14 +316,14 @@ public class Scacp2 extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,7 +361,7 @@ public class Scacp2 extends javax.swing.JFrame {
             menuConfigurar.setEnabled(true);
 
             //Permite visualizar a parte dos cartões
-            //jPanel1.add(new CartaoPainelGerencimento());
+            
             //painelGerenciamentoCartao.removeAll();
             //painelGerenciamentoCartao = new CartaoPainelGerencimento();
         }
@@ -558,7 +558,6 @@ public class Scacp2 extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmSobre;
     private javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
     private javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu menuAjuda;
     private javax.swing.JMenu menuArquivo;
     private javax.swing.JMenu menuConfigurar;
@@ -567,6 +566,7 @@ public class Scacp2 extends javax.swing.JFrame {
     private javax.swing.JMenu menuEscalaPontuacao;
     private javax.swing.JMenu menuSistemaPenalizacao;
     private javax.swing.JMenu menuTipoProva;
+    private javax.swing.JPanel painelConteudo;
     private javax.swing.JPanel painelDadosProva;
     // End of variables declaration//GEN-END:variables
 }

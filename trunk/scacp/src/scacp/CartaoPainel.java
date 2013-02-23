@@ -4,6 +4,8 @@
  */
 package scacp;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author cleber
@@ -20,10 +22,18 @@ public class CartaoPainel extends javax.swing.JPanel {
         this.quantidadeQuestoes = quantidadeQuestoes;
         questoesBloco1 = new QuestoesPainel(numeroInscricao, 01, quantidadeQuestoes/2, tipoProva);
         questoesBloco2 = new QuestoesPainel(numeroInscricao, (quantidadeQuestoes/2)+1, quantidadeQuestoes, tipoProva);
-        initComponents();
-        
+        System.out.println("Cartão Painel antes das inserções: " + getSize());
+        System.out.println("Cartão Painel inicializado: " + getSize());
         add(questoesBloco1);
+        questoesBloco1.setSize(new Dimension(500, 300));
+        System.out.println("Cartão Painel 1: " + getSize());
         add(questoesBloco2);
+        System.out.println("Cartão Painel 2: " + getSize());
+        initComponents();
+        //revalidate();
+        //validate();
+        //repaint();
+
     }
 
     public int getNumeroInscricao() {
@@ -60,7 +70,9 @@ public class CartaoPainel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
+        setBackground(new java.awt.Color(48, 253, 26));
+        setPreferredSize(new java.awt.Dimension(1000, 800));
+        setLayout(new java.awt.GridLayout(2, 1));
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

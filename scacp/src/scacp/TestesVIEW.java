@@ -26,15 +26,22 @@ public class TestesVIEW {
         // Teste de QuestoesPainel
         /*QuestoesPainel pnl = new QuestoesPainel(9999999, 11, 20, TipoProva.MULTIPLA_ESCOLHA);
         pnl.setMarcacao("abdebc*#dc");
-        janela.add(pnl);
-        */
+        janela.add(pnl);*/
+        
         
         // Teste de CartaoPainel
-        CartaoPainel cartaoPainel = new CartaoPainel(9999999, 30, TipoProva.MULTIPLA_ESCOLHA);
+        /*CartaoPainel cartaoPainel = new CartaoPainel(9999999, 30, TipoProva.MULTIPLA_ESCOLHA);
         cartaoPainel.setMarcacao("ac*dbdc*ab#eddc#aeecbed#cba*#e");
         janela.add(cartaoPainel);
-        
-        
+        janela.pack();
+        System.out.println("janela: " + janela.getSize());
+        System.out.println("cartaopainel: " + cartaoPainel.getSize());*/
+        // Teste CartaoPainelGereciamento
+        Prova prova = new Prova();
+        prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
+        prova.setQuantidadeQuestoes(20);
+        CartaoPainelGerencimento cpg = new CartaoPainelGerencimento(prova, 9988776);
+        janela.add(cpg);
         
         
         /*

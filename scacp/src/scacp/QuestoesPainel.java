@@ -24,6 +24,8 @@ public class QuestoesPainel extends javax.swing.JPanel {
         this.tipoProva = tipoProva;
         questoes = new HashMap<>();
         initComponents();
+        
+        System.out.println("tamanho: " + getPreferredSize());
     }
     
     public String getMarcacao(){
@@ -57,6 +59,9 @@ public class QuestoesPainel extends javax.swing.JPanel {
         pnlLateralEsquerdo = new javax.swing.JPanel();
         pnlQuestoes = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(216, 133, 50));
+        setMinimumSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(0, 252));
         setLayout(new java.awt.BorderLayout());
 
         rotuloRespostas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -64,22 +69,22 @@ public class QuestoesPainel extends javax.swing.JPanel {
         add(rotuloRespostas, java.awt.BorderLayout.PAGE_START);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralDireito = new QuestaoMEPainelLateral();
+            pnlLateralDireito = new scacp.QuestaoMEPainelLateral();
         }else{
-            pnlLateralDireito = new QuestaoVFPainelLateral();
+            pnlLateralDireito = new scacp.QuestaoVFPainelLateral();
         }
 
         add(pnlLateralDireito, java.awt.BorderLayout.LINE_END);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralEsquerdo = new QuestaoMEPainelLateral();
+            pnlLateralEsquerdo = new scacp.QuestaoMEPainelLateral();
         }else{
-            pnlLateralEsquerdo = new QuestaoVFPainelLateral();
+            pnlLateralEsquerdo = new scacp.QuestaoVFPainelLateral();
         }
 
         add(pnlLateralEsquerdo, java.awt.BorderLayout.LINE_START);
 
-        pnlQuestoes.setBackground(new java.awt.Color(122, 108, 94));
+        pnlQuestoes.setBackground(new java.awt.Color(235, 122, 227));
         pnlQuestoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlQuestoes.setLayout(new javax.swing.BoxLayout(pnlQuestoes, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -95,6 +100,7 @@ public class QuestoesPainel extends javax.swing.JPanel {
                 pnlQuestoes.add(questoes.get(cont));
             }
         }
+        System.out.println("Painel das questões em si: "+pnlQuestoes.getSize());
 
         add(pnlQuestoes, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

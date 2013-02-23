@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -92,11 +94,31 @@ public class ProvaDAO {
         return prova;
     }
     
-    //public List<Provas> buscarProvas(){
-        //Método para buscar todas as provas existentes no banco de dados.
-        // Neste caso, deve-se buscar somente o código da prova e o nome. Busque somente isso e armazene uma prova e retorne esta prova
-        // Perceba que os demais atributos da prova terão valores nulos ou padrões.
-    //}
+ 
+   
+     public List<Prova> buscarProvas(int idProva) {
+        List<Prova> provas = new ArrayList<>();
+        Prova prova = new Prova();
+        Connection conexao = Conexao.getConexao();
+
+        try {
+            PreparedStatement st = conexao.prepareStatement("select * from provas");
+            
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                prova.setIdProva(rs.getInt("id_prova"));
+                prova.setNome(rs.getString("nome"));
+                provas.add(prova);
+            }
+            st.execute();
+            rs.close();
+            st.close();
+            conexao.close();
+        } catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca");
+        }
+        return provas;
+    }
     
     public void excluirProva(int idProva) {
         Connection conexao = Conexao.getConexao();

@@ -1,26 +1,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Ajuda para o Jogo da Vida</title>
+        <title>Ajuda para o Sistema de correção automática de provas.</title>
     </head>
     <body>
         <h3><a name="topo"></a></h3>
-        <h1>Ajuda para o Jogo da Vida</h1>
+        <h1>Ajuda para o Sistema de correção automática de provas.</h1>
         <hr>
         <ol>
             <li>
-                <a href="#topico1">História do Jogo da Vida</a>
+                <a href="#topico1">Regras e Descrição</a>
                 <ol type = a>
                     <li><a href="#subtopico1.1">Introdução</a></li>
-                    <li><a href="#subtopico1.2">Origem</a></li>
+                    <li><a href="#subtopico1.2">Pontuação</a></li>
+                    <li><a href="#subtopico1.3">Penalização</a></li>
+                    <li><a href="#subtopico1.4">Legenda do Cartão.</a></li>
                 </ol>
-            </li>
-            <li><a href="#topico2">Regras e Descrição do Jogo da Vida</a>
-                <ol type = a>
-                    <li><a href="#subtopico2.1">Regras</a></li>
-                    <li><a href="#subtopico2.2">Descrição</a></li>
-                </ol>
-            </li>
+           
             <li><a href="#topico3">Interface</a>
                 <ol type = a>
                     <li><a href="#subtopico3.1">Tela Inicial</a>
@@ -50,34 +46,62 @@
 
         <ol>
 
-            <li><h3><a name="topico1">História do Jogo da vida</a></h3>
+            <li><h3><a name="topico1">Regras e descrição.</a></h3>
                 <ol type = a>
                     <li><h4><a name="subtopico1.1">Introdução</a></h4>
-                        <p align = justify>O Jogo da Vida é um autómato celular desenvolvido pelo matemático britânico John Horton Conway em 1970. É o exemplo mais bem conhecido de autómato celular.</p>
-                        <p align = justify>O jogo foi criado de modo a reproduzir, através de regras simples, as alterações e mudanças em grupos de seres vivos, tendo aplicações em diversas áreas da ciência.</p>
-                        <p align = justify>As regras definidas são aplicadas a cada nova geração, assim, a partir de uma imagem em um tabuleiro bidimensional definida pelo jogador, percebem-se mudanças
-                            muitas vezes inesperadas e belas a cada nova geração, variando de padrões fixos a caóticos.</p></li>
-                    <h3><i><p align=Right><a href="#topo">Ir para o topo</a></center></i></h3>
+                        <p align = justify> Um administrador de uma Instituição de Ensino Superior (IES) deseja implantar um sistema computadorizado para realizar a correção automática de cartões de provas que são aplicadas em seus processos seletivos (concurso vestibular) semestrais.</p>
+                        <p align = justify> Juntamente com sua equipe pedagógica, definiu que haverá somente dois tipos possíveis – e mutuamente excludentes – de provas que podem ser aplicadas:
+                                            Tipo 1: Prova de múltipla escolha, com as alternativas nomeadas de (a), (b), (c), (d) e (e).
+                                            Tipo 2: Prova do tipo verdadeiro ou falso.</p>
+                        <p align = justify>Cada prova poderá ser constituída por uma quantidade predefinida de questões (Quantidade de Questões da Prova), sempre em múltiplos de dez, ou seja: 10, 20, 30, …, 100. Observe que 100 é o maior número possível de questões numa única prova.</p>
+                    </li>
+                        <h3><i><p align=Right><a href="#topo">Ir para o topo</a></center></i></h3>
 
-                    <li><h4><a name="subtopico1.2">Origem</a></h4>
-                        <p align = justify>Um dos problemas matemáticos mais famosos dos anos 40, do século XX, era o de achar uma máquina capaz de construir cópias de si mesma, que teve uma solução baseada
-                            em um autômato celular extremamente engenhoso e complicado inventado pelo renomado matemático John von Neumann. Conway inventou o Jogo da Vida (ou Game of Life) ao utilizar
-                            suas descobertas anteriores relacionadas com o problema de encontrar um grupo simétrico de esferas em 24 dimensões, proposto por John Leech para simplificar a solução de von
-                            Neumann.</p>
-                        <p align = justify>O jogo fez sua primeira aparição na edição de Outubro de 1970 da Scientific American, na coluna de jogos matemáticos de Martin Gardner. De um ponto de vista teórico, ele é
-                            interessante, pois tem o poder de uma máquina de Turing universal: tudo pode ser computado através de algoritmos no Jogo da Vida de Conway. Também era dito desde 1970 que foi
-                            destinado mais tempo de computação ao Jogo da Vida do que a qualquer outra atividade. Gardner escreveu: "O jogo fez Conway famoso instantaneamente, mas ele também abriu um novo
-                            "O jogo fez Conway famoso instantaneamente, mas ele também abriu um novo campo na pesquisa matemática, o campo dos autômatos celulares... Por causa das analogias de Life com o
-                            aumento, redução e alteração de uma sociedade de organismos vivos, isto pertence a uma classe crescente que é chamada "jogos de simulação" - jogos que recriam processos do mundo-real."</p>
-                        <p align = justify>Desde sua publicação, ele tem atraído muito interesse devido aos caminhos surpreendentes que pode tomar. Life é um exemplo de auto-organização. Ele é interessante para biólogos,
-                            matemáticos, estatísticos, economistas, filósofos e artistas por permitir a observação do modo como imagens complexas podem surgir de implementações de regras muito simples.</p>
-                        <p align = justify>O Jogo da Vida tem um número de imagens reconhecidas que emergem de posições iniciais particulares. Antes da publicação, muitas imagens interessantes já haviam sido descobertas,
-                            incluindo o sempre envolvente R-pentomino (mais conhecido como "F-pentomino" fora do jogo), o auto propulsionado "glider", e várias "guns" (armas) que geravam um fluxo sem fim de 
-                            novas imagens, todas aumentando o interesse no jogo. Sua popularidade foi ajudada pelo fato de ele ter vindo justo no momento em que uma nova geração de minicomputadores de baixo
-                            custo estavam sendo disponibilizados no mercado, significando que o jogo poderia ser rodado por horas nessa máquinas que não eram utilizadas de noite. Isto escondeu a popularidade
-                            posterior dos fractais gerados por computador. Para muitos aficionados, Life era simplesmente um desafio de programação, um método divertido de gastar os ciclos da CPU. Para alguns,
-                            no entanto, Life tinha conotações mais filosóficas. Ele desenvolveu um culto através dos anos 70 e no meio dos 80; os desenvolvimentos atuais foram tão longe a ponto de criar emulações
-                            teóricas de sistemas de computadores com as regras de um tabuleiro de Life.</p></li>
+                    <li><h4><a name="subtopico1.2">Pontuação.</a></h4>
+                        <p align = justify>A pontuação de cada prova (ou seja, de cada cartão) será aferida numa escala cujo intervalo é especificado por três parâmetros:
+                                           Parâmetro 1: Pontuação Mínima – é a menor pontuação possível de ser associada a um cartão de provas já corrigido.
+                                           Parâmetro 2: Pontuação Máxima – é a maior pontuação possível de ser associada a um cartão de provas já corrigido.
+                                           Parâmetro 3: Precisão da Pontuação – é a quantidade de casas decimais com que a pontuação aferida a um cartão de provas corrigido será aferido. Pode ser 0 (zero), 1 (uma) ou 2
+                                           (duas) casas decimais, empregando-se o sistema de arredondamento com a pontuação sendo calculada com três casas decimais e arredondada para 0, 1 ou 2 casas de acordo com o especificado neste parâmetro..</p>
+                   </li>
+                </ol>
+
+            </li>
+
+            <h3><i><p align=Right><a href="#topo">Ir para o topo</a></center></i></h3>
+                <li><h4><a name="subtopico1.3">Penalização.</a></h4>
+                        <p align = justify>Outra informação relevante é que as provas podem ser corrigidas com ou sem um sistema de penalização por erros. Explica-se: quando se deseja aplicar o sistema de penalização, um certo número de questões incorretamente respondidas anulará uma questão corretamente respondida. Assim, o sistema
+                                           de penalização será definido por dois parâmetros:
+                                               Parâmetro 1: Incidência de Penalização – indica se será, ou não, aplicado o sistema de penalização por erros. A resposta SIM indica que será aplicada a penalização e a resposta NÃO que este não será aplicado durante o processo de correção das provas.
+                                               Parâmetro 2: Proporção de Penalização – indica qual é o número de questões incorretas que anulará uma questão corretamente respondida, ou seja, a proporção 1 (um) indica que uma questão incorreta anula uma questão correta, a proporção 2 (dois) indica que duas questões incorretas anulam uma questão correta e assim sucessivamente.</p>
+                        <p align = justify>A pontuação de um cartão de provas já corrigido será, portanto, calculada da seguinte maneira:
+                                               (1) Sem a incidência de penalização:
+                                                        PC = Pont Min + (((PontMax - PontMin)/ QtdeQuest) x NumCorretas)
+                                               (2) Com a incidência de penalização:
+                                                        Fator = ((Propen x NumCorretas) - NumIncorretas) / PropPen
+                                               Se Fator < 0, então considerase que Fator = 0
+                                                        PC = PontMin + (((PontMax - PontMin) / QtdeQuest) x Fator)</p>
+                        <p align = justify>Onde:
+                                           PC = Pontuação obtida na prova com três casas de precisão. Ela deverá ser arredonda para o número desejado de casas decimais, conforme especificado no parâmetro Precisão de Pontuação.
+                                           PontMin = Pontuação mínima possível na prova
+                                           PontMax = Pontuação máxima possível na prova
+                                           QtdeQuest = Quantidade de questões que compõem a prova, valendo a seguinte relação:
+                                              
+                                               QtdeQuest = NumCorretas + NumIncorretas + NumBrancos
+
+                                           NumCorretas = Número de questões corretas, ou seja, cuja marcação do cartão é idêntica àquela presente no cartão de gabarito da prova.
+                                           NumIncorretas = Número de questões incorretas, ou seja, cuja marcação do cartão é diferente daquela presente no cartão de gabarito da prova.
+                                           Este número inclui as questões para as quais há multiplicidade de marcação, ou seja, aquelas em que o cartão possui mais de uma marcação para a questão.
+                                           NumBrancos = Número de questões para as quais não há marcação de resposta no cartão.
+                                           PropPen = Número que representa a proporção da penalização entre questões corretas e questões incorretas (1, 2, 3, …).
+                                           Fator = Número que estabelece a relação de pontuação obtida entre o número de questões corretas e o de incorretas. Aplicável apenas quando se está empregando o sistema de penalização.</p>
+                   </li>
+                   <li><h4><a name="subtopico1.4">Legenda do Cartão.</a></h4>
+                        <p align = justify>Por fim, as seguintes observações devem ser consideradas no problema:
+                                                a) O símbolo especial “*” (asterisco) será utilizado para indicar que uma determinada questão no cartão de prova de um candidato foi “deixada em branco”, ou seja, não respondida por ele. Uma questão assim não é considerada nem como correta, nem como incorreta, ou seja, não participa do cômputo da pontuação na prova.
+                                                b) O símbolo especial “#” (cancela ou quadrado) será utilizado para indicar que uma determinada questão no cartão de prova de um candidato foi “marcada em multiplicidade”, ou seja, foi respondida com a marcação de duas ou mais resposta. Uma questão assim é considerada incorreta.
+                                                c) Se for necessário anular uma questão no cartão destinado ao gabarito de uma prova, esta deverá ser marcada com o símbolo “#” (cancela ou quadrado) e para todos os cartões de prova (dos candidatos) deverá ser considerada como uma questão correta, independente mente da marcação realizada no cartão sendo processado.</p>
+                   </li>
                 </ol>
 
             </li>

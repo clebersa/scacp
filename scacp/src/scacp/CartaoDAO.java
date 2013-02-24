@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class CartaoDAO {
 
-    public void inserirCartao(Cartao cartao) {
+    public void inserirCartao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("insert into cartoes (numero_inscricao, fk_id_prova, marcacao, nota) values (?,?,?,?)");
@@ -47,10 +47,10 @@ public class CartaoDAO {
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
-        alterarCartaoNota(cartao);
+        alterarCartaoNota(cartao, cartao.getIdProva());
     }
 
-    public void alterarCartaoNota(Cartao cartao) {
+    public void alterarCartaoNota(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("update cartoes set nota= ? where  numero_inscricao = ?");
@@ -115,7 +115,7 @@ public class CartaoDAO {
         return cartoes;
     }
 
-    public void excluirCartao(int numeroInscricao) {
+    public void excluirCartao(int numeroInscricao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("delete from cartoes where numero_inscricao = ?");

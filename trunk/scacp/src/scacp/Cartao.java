@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 public class Cartao {
 
     private int numeroInscricao;
-    private int idProva;
     private String marcacao;
     private double nota;
 
@@ -22,6 +21,10 @@ public class Cartao {
         this.numeroInscricao = numeroInscricao;
         this.marcacao = marcacao;
         this.nota = nota;
+    }
+
+    public Cartao(int numeroInscricao, int idProva) {
+        this.numeroInscricao = numeroInscricao;
     }
 
     public Cartao() {
@@ -35,13 +38,6 @@ public class Cartao {
         this.numeroInscricao = numeroInscricao;
     }
 
-    public int getIdProva() {
-        return idProva;
-    }
-
-    public void setIdProva(int idProva) {
-        this.idProva = idProva;
-    }
 
     public String getMarcacao() {
         return marcacao;
@@ -55,9 +51,7 @@ public class Cartao {
         return nota;
     }
     
-    public void setNota(double nota) {
-        this.nota = nota;
-    }
+   
 
     public static boolean validarInscricao(int numeroInscricao) {
         String stringNumeroInscricao = String.format("%d", numeroInscricao);
@@ -110,18 +104,13 @@ public class Cartao {
             return false;
         }
     }
-    
-
-    
-
-
 
     public void calcularNota(Prova prova) {
         String stringMarcacao = getMarcacao();
         String stringGabarito = prova.getGabarito();
 
         int contador, questoesIncorretas = 0, questoesCorretas = 0, questoesBranco = 0;
-        double notaFinal;
+     //   double notaFinal;
         //Contagem de questoes corretas, incorretas e em branco
         for (contador = 0; contador < stringMarcacao.length(); contador++) {
             if (stringGabarito.charAt(contador) == '#') {
@@ -145,9 +134,9 @@ public class Cartao {
                 fator = 0;
             }
 
-            notaFinal = prova.getPontuacaoMinima() + ((prova.getPontuacaoMaxima() - prova.getPontuacaoMinima()) / prova.getQuantidadeQuestoes()) * fator;
+            nota = prova.getPontuacaoMinima() + ((prova.getPontuacaoMaxima() - prova.getPontuacaoMinima()) / prova.getQuantidadeQuestoes()) * fator;
         } else {
-            notaFinal = prova.getPontuacaoMinima() + ((prova.getPontuacaoMaxima() - prova.getPontuacaoMinima()) / prova.getQuantidadeQuestoes()) * questoesCorretas;
+            nota = prova.getPontuacaoMinima() + ((prova.getPontuacaoMaxima() - prova.getPontuacaoMinima()) / prova.getQuantidadeQuestoes()) * questoesCorretas;
         }
 
     }

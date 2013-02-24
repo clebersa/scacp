@@ -137,7 +137,6 @@ public class Prova {
          Set<Integer> chaves = cartoes.keySet();  
         for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)  
         {  
-            
             Integer chave = iterator.next();  
           prova.cartoes.get(chave).calcularNota(prova);
         }  

@@ -4,9 +4,11 @@
  */
 package scacp;
 
-import java.util.ArrayList;
-import java.util.List;
-
+//import java.util.ArrayList;
+//import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 /**
  *
  * @author Cleber
@@ -21,7 +23,7 @@ public class Prova {
     private int precisaoPontuacao;
     private boolean incidenciaPenalizacao;
     private int proporcaoPenalizacao;
-    private List<Cartao> cartoes = new ArrayList<>();
+    private HashMap<Integer, Cartao> cartoes = new HashMap<Integer, Cartao>();
     private  String gabarito;
     private boolean provaSalva; // Atributo que não vai para o BD
 
@@ -103,13 +105,15 @@ public class Prova {
         this.proporcaoPenalizacao = proporcaoPenalizacao;
     }
 
-    public List<Cartao> getCartoes() {
+    public HashMap<Integer, Cartao> getCartoes() {
         return cartoes;
     }
 
-    public void setCartoes(List<Cartao> cartoes) {
+    public void setCartoes(HashMap<Integer, Cartao> cartoes) {
         this.cartoes = cartoes;
     }
+
+   
 
     public String getGabarito() {
         return gabarito;
@@ -128,5 +132,14 @@ public class Prova {
     }
     
     
-    
+    public void corrigirCartoes (Prova prova){
+        
+         Set<Integer> chaves = cartoes.keySet();  
+        for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)  
+        {  
+            
+            Integer chave = iterator.next();  
+          prova.cartoes.get(chave).calcularNota(prova);
+        }  
+    }
 }

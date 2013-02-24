@@ -24,7 +24,7 @@ public class ProvaDAO {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("insert into provas (tipo, quantidade_questoes, pontuacao_minima, pontuacao_maxima,"
-                    + " precisao_pontuacao, incidencia_penalizacao, proporcao_penalizacao, gabarito,nome) values (?,?,?,?,?,?,?,?)");
+                    + " precisao_pontuacao, incidencia_penalizacao, proporcao_penalizacao, gabarito,nome) values (?,?,?,?,?,?,?,?,?)");
             st.setInt(1, prova.getIdProva());
             if (prova.getTipoProva() == TipoProva.MULTIPLA_ESCOLHA) {
                 st.setInt(1, 0);
@@ -61,25 +61,25 @@ public class ProvaDAO {
             while (rs.next()) {
                 // exclua estes system.out.println depois. você não precisa deles
                 prova.setIdProva(rs.getInt("id_prova"));
-                System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
-                prova.setIdProva(rs.getInt("nome"));
-                System.out.println("Nome da prova:" + rs.getString("nome"));
-                prova.setIdProva(rs.getInt("tipo"));
-                System.out.println("Tipo de prova:" + rs.getInt("tipo"));
-                prova.setIdProva(rs.getInt("quantidade_questoes"));
-                System.out.println("Quantidade de questões:" + rs.getInt("quantidade_questoes"));
-                prova.setIdProva(rs.getInt("pontuacao_minima"));
-                System.out.println("Pontuação mínima:" + rs.getDouble("pontuacao_minima"));
-                prova.setIdProva(rs.getInt("pontuacao_maxima"));
-                System.out.println("Pontuação máxima:" + rs.getDouble("pontuacao_maxima"));
-                prova.setIdProva(rs.getInt("precisao_pontuacao"));
-                System.out.println("Precisão da pontuação:" + rs.getBoolean("precisao_pontuacao"));
-                prova.setIdProva(rs.getInt("incidencia_penalizacao"));
-                System.out.println("Incidência da penalização:" + rs.getBoolean("incidencia_penalizacao"));
-                prova.setIdProva(rs.getInt("proporcao_penalizacao"));
-                System.out.println("Proporção da penalização:" + rs.getInt("proporcao_penalizacao"));
-                prova.setIdProva(rs.getInt("gabarito"));
-                System.out.println("Gabarito:" + rs.getString("gabarito"));
+               // System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
+                prova.setNome(rs.getString("nome"));
+                //System.out.println("Nome da prova:" + rs.getString("nome"));
+                prova.setTipoProva(rs.getInt("tipo"));
+                //System.out.println("Tipo de prova:" + rs.getInt("tipo"));
+                prova.setQuantidadeQuestoes(rs.getInt("quantidade_questoes"));
+                //System.out.println("Quantidade de questões:" + rs.getInt("quantidade_questoes"));
+                prova.setPontuacaoMinima(rs.getDouble("pontuacao_minima"));
+                //System.out.println("Pontuação mínima:" + rs.getDouble("pontuacao_minima"));
+                prova.setPontuacaoMaxima(rs.getDouble("pontuacao_maxima"));
+                //System.out.println("Pontuação máxima:" + rs.getDouble("pontuacao_maxima"));
+                prova.setPrecisaoPontuacao(rs.getInt("precisao_pontuacao"));
+                //System.out.println("Precisão da pontuação:" + rs.getBoolean("precisao_pontuacao"));
+                prova.setIncidenciaPenalizacao(rs.getBoolean("incidencia_penalizacao"));
+                //System.out.println("Incidência da penalização:" + rs.getBoolean("incidencia_penalizacao"));
+                prova.setProporcaoPenalizacao(rs.getInt("proporcao_penalizacao"));
+                //System.out.println("Proporção da penalização:" + rs.getInt("proporcao_penalizacao"));
+                prova.setGabarito(rs.getString("gabarito"));
+               // System.out.println("Gabarito:" + rs.getString("gabarito"));
                 
             }
 

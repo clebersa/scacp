@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -90,8 +91,8 @@ public class CartaoDAO {
         return cartao;
     }
 
-    public List<Cartao> buscarCartoes(int idProva) {
-        List<Cartao> cartoes = new ArrayList<>();
+    public HashMap<Integer,Cartao> buscarCartoes(int idProva) {
+        HashMap<Integer,Cartao> cartoes = new HashMap<Integer,Cartao>();
         Cartao cartao = new Cartao();
         Connection conexao = Conexao.getConexao();
 
@@ -103,7 +104,7 @@ public class CartaoDAO {
                 cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
                 cartao.setMarcacao(rs.getString("marcacao"));
                 cartao.setNota(rs.getDouble("nota"));
-                cartoes.add(cartao);
+                cartoes.put(idProva, cartao);
             }
             st.execute();
             rs.close();

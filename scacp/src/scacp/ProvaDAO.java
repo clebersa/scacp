@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -96,8 +97,8 @@ public class ProvaDAO {
     
  
    
-     public List<Prova> buscarProvas(int idProva) {
-        List<Prova> provas = new ArrayList<>();
+     public HashMap<Integer,Prova> buscarProvas(int idProva) {
+        HashMap<Integer,Prova> provas = new HashMap<Integer,Prova>();
         Prova prova = new Prova();
         Connection conexao = Conexao.getConexao();
 
@@ -108,7 +109,7 @@ public class ProvaDAO {
             while (rs.next()) {
                 prova.setIdProva(rs.getInt("id_prova"));
                 prova.setNome(rs.getString("nome"));
-                provas.add(prova);
+                provas.put(idProva, prova);
             }
             st.execute();
             rs.close();

@@ -23,7 +23,7 @@ public class CartaoDAO {
         try {
             PreparedStatement st = conexao.prepareStatement("insert into cartoes (numero_inscricao, fk_id_prova, marcacao, nota) values (?,?,?,?)");
             st.setInt(1, cartao.getNumeroInscricao());
-            st.setInt(2, cartao.getIdProva());
+            st.setInt(2, IdProva);
             st.setString(3, cartao.getMarcacao());
             st.setDouble(4, cartao.getNota());
             st.execute();
@@ -34,20 +34,20 @@ public class CartaoDAO {
         }
     }
 
-    public void alterarCartaoMarcacao(Cartao cartao) {
+    public void alterarCartaoMarcacao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString(1, cartao.getMarcacao());
             st.setInt(2, cartao.getNumeroInscricao());
-            st.setInt(3, cartao.getIdProva());
+            st.setInt(3, IdProva);
             st.execute();
             st.close();
             conexao.close();
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
         }
-        alterarCartaoNota(cartao, cartao.getIdProva());
+        alterarCartaoNota(cartao, IdProva);
     }
 
     public void alterarCartaoNota(Cartao cartao, int IdProva) {

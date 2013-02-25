@@ -4,25 +4,23 @@
  */
 package scacp;
 
-import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.FlowLayout;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author Cleber
+ * @author cleber
  */
 public class Scacp extends javax.swing.JFrame {
 
     Prova prova;
     ProvaController provaController;
-
+    CartaoPainelGerencimento painelGerenciamentoCartao;
+    
     /**
      * Creates new form Scacp
      */
@@ -41,8 +39,8 @@ public class Scacp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btngrTipoProva = new javax.swing.ButtonGroup();
         painelDadosProva = new javax.swing.JPanel();
+        painelConteudo = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -74,24 +72,21 @@ public class Scacp extends javax.swing.JFrame {
         itmAjuda = new javax.swing.JMenuItem();
         itmSobre = new javax.swing.JMenuItem();
 
-        btngrTipoProva.add(itmrbMultiplaEscolha);
-        btngrTipoProva.add(itmrbVerdadeiroFalso);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SCACP - Sistema de Correção Automática de Cartões de Provas");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setMinimumSize(new java.awt.Dimension(620, 480));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
         painelDadosProva.setLayout(painelDadosProvaLayout);
         painelDadosProvaLayout.setHorizontalGroup(
             painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         painelDadosProvaLayout.setVerticalGroup(
             painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
+
+        painelConteudo.setLayout(new javax.swing.BoxLayout(painelConteudo, javax.swing.BoxLayout.LINE_AXIS));
 
         menuArquivo.setText("Arquivo");
 
@@ -264,11 +259,6 @@ public class Scacp extends javax.swing.JFrame {
         menuSistemaPenalizacao.setText("Sistema de Penalização");
 
         chbmIncidenciaPenalizacao.setSelected(prova.getIncidenciaPenalizacao());
-        if (chbmIncidenciaPenalizacao.isSelected()) {
-            itmProporcaoPenalizacao.setEnabled(true);
-        } else {
-            itmProporcaoPenalizacao.setEnabled(false);
-        }
         chbmIncidenciaPenalizacao.setText("Incidência de Penalização");
         chbmIncidenciaPenalizacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -316,12 +306,14 @@ public class Scacp extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(558, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
         );
 
         pack();
@@ -331,14 +323,14 @@ public class Scacp extends javax.swing.JFrame {
         if(!prova.isProvaSalva()){
             switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
                 case 0: // "Ok" option
-                    itmSalvarActionPerformed(evt);
-                    itmFecharActionPerformed(evt);
-                    break;
+                itmSalvarActionPerformed(evt);
+                itmFecharActionPerformed(evt);
+                break;
                 case 1: // "No" option
-                    itmFecharActionPerformed(evt);
-                    break;
+                itmFecharActionPerformed(evt);
+                break;
                 case 2: // "Cancel" option
-                    return;
+                return;
             }
         }
         prova = new Prova();
@@ -346,20 +338,25 @@ public class Scacp extends javax.swing.JFrame {
         formularioProva.setTitle("Nova Prova");
         formularioProva.setLocationRelativeTo(this);
         formularioProva.setVisible(true);
-        
+
         if(!prova.isProvaSalva()){
             ProvaPainelDados ppd = new ProvaPainelDados(prova, this);
             painelDadosProva.removeAll();
             painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
             painelDadosProva.add(ppd);
             painelDadosProva.revalidate();
-            
+
             //Ativa os menu editar e configurar
             menuEditar.setEnabled(true);
+            menuCorrigir.setEnabled(true);
             menuConfigurar.setEnabled(true);
-            
+
             //Permite visualizar a parte dos cartões
-            //painelCartao.setVisible(true);
+            painelGerenciamentoCartao = new CartaoPainelGerencimento(prova);
+            painelConteudo.removeAll();
+            painelConteudo.add(painelGerenciamentoCartao);
+            painelConteudo.revalidate();
+            painelConteudo.repaint();
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
@@ -368,7 +365,8 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
-        // TODO add your handling code here:
+        ProvaDAO provaDao = new ProvaDAO();
+        provaDao.inserirProva(prova);
     }//GEN-LAST:event_itmSalvarActionPerformed
 
     private void itmSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarComoActionPerformed
@@ -383,16 +381,17 @@ public class Scacp extends javax.swing.JFrame {
         if(!prova.isProvaSalva()){
             switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
                 case 0: // "Ok" option
-                    itmSalvarActionPerformed(evt);
-                    break;
+                itmSalvarActionPerformed(evt);
+                break;
                 case 1: // "No" option
-                    break;
+                break;
                 case 2: // "Cancel" option
-                    return;
+                return;
             }
         }
-        
+
         painelDadosProva.removeAll();
+        painelConteudo.removeAll();
         //painelCartao.resetar();
         prova = new Prova();
         validate();
@@ -403,36 +402,36 @@ public class Scacp extends javax.swing.JFrame {
         if(!prova.isProvaSalva()){
             switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
                 case 0: // "Ok" option
-                    itmSalvarActionPerformed(evt);
-                    itmFecharActionPerformed(evt);
-                    break;
+                itmSalvarActionPerformed(evt);
+                itmFecharActionPerformed(evt);
+                break;
                 case 1: // "No" option
-                    break;
+                break;
                 case 2: // "Cancel" option
-                    return;
+                return;
             }
         }
         System.exit(0);
     }//GEN-LAST:event_itmSairActionPerformed
 
     private void itmInserirCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInserirCartaoActionPerformed
-        
+        painelGerenciamentoCartao.incluirCartao(evt);
     }//GEN-LAST:event_itmInserirCartaoActionPerformed
 
     private void itmAlterarCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarCartaoActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.alterarCartao(evt);
     }//GEN-LAST:event_itmAlterarCartaoActionPerformed
 
     private void itmExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.excluirCartao(evt);
     }//GEN-LAST:event_itmExcluirActionPerformed
 
     private void itmLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmLocalizarActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.localizarCartao(evt);
     }//GEN-LAST:event_itmLocalizarActionPerformed
 
     private void menuCorrigirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCorrigirActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.corrigirCartoes(evt);
     }//GEN-LAST:event_menuCorrigirActionPerformed
 
     private void itmrbMultiplaEscolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmrbMultiplaEscolhaActionPerformed
@@ -497,8 +496,6 @@ public class Scacp extends javax.swing.JFrame {
         janelaSobre.setVisible(true);
     }//GEN-LAST:event_itmSobreActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -510,10 +507,9 @@ public class Scacp extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                System.out.println(info.getName());
                 if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    //break;
+                    break;
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -535,37 +531,37 @@ public class Scacp extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JMenuBar barraMenuPrincipal;
-    javax.swing.ButtonGroup btngrTipoProva;
-    javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
-    javax.swing.JMenuItem itmAbrir;
-    javax.swing.JMenuItem itmAjuda;
-    javax.swing.JMenuItem itmAlterarCartao;
-    javax.swing.JMenuItem itmExcluir;
-    javax.swing.JMenuItem itmFechar;
-    javax.swing.JMenuItem itmImprimir;
-    javax.swing.JMenuItem itmInserirCartao;
-    javax.swing.JMenuItem itmLocalizar;
-    javax.swing.JMenuItem itmNovo;
-    javax.swing.JMenuItem itmPontuacaoMaximo;
-    javax.swing.JMenuItem itmPontuacaoMinima;
-    javax.swing.JMenuItem itmPrecisaoPontuacao;
-    javax.swing.JMenuItem itmProporcaoPenalizacao;
-    javax.swing.JMenuItem itmQuantidadeQuestoes;
-    javax.swing.JMenuItem itmSair;
-    javax.swing.JMenuItem itmSalvar;
-    javax.swing.JMenuItem itmSalvarComo;
-    javax.swing.JMenuItem itmSobre;
-    javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
-    javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
-    javax.swing.JMenu menuAjuda;
-    javax.swing.JMenu menuArquivo;
-    javax.swing.JMenu menuConfigurar;
-    javax.swing.JMenu menuCorrigir;
-    javax.swing.JMenu menuEditar;
-    javax.swing.JMenu menuEscalaPontuacao;
-    javax.swing.JMenu menuSistemaPenalizacao;
-    javax.swing.JMenu menuTipoProva;
-    javax.swing.JPanel painelDadosProva;
+    private javax.swing.JMenuBar barraMenuPrincipal;
+    private javax.swing.JCheckBoxMenuItem chbmIncidenciaPenalizacao;
+    private javax.swing.JMenuItem itmAbrir;
+    private javax.swing.JMenuItem itmAjuda;
+    private javax.swing.JMenuItem itmAlterarCartao;
+    private javax.swing.JMenuItem itmExcluir;
+    private javax.swing.JMenuItem itmFechar;
+    private javax.swing.JMenuItem itmImprimir;
+    private javax.swing.JMenuItem itmInserirCartao;
+    private javax.swing.JMenuItem itmLocalizar;
+    private javax.swing.JMenuItem itmNovo;
+    private javax.swing.JMenuItem itmPontuacaoMaximo;
+    private javax.swing.JMenuItem itmPontuacaoMinima;
+    private javax.swing.JMenuItem itmPrecisaoPontuacao;
+    private javax.swing.JMenuItem itmProporcaoPenalizacao;
+    private javax.swing.JMenuItem itmQuantidadeQuestoes;
+    private javax.swing.JMenuItem itmSair;
+    private javax.swing.JMenuItem itmSalvar;
+    private javax.swing.JMenuItem itmSalvarComo;
+    private javax.swing.JMenuItem itmSobre;
+    private javax.swing.JRadioButtonMenuItem itmrbMultiplaEscolha;
+    private javax.swing.JRadioButtonMenuItem itmrbVerdadeiroFalso;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenu menuConfigurar;
+    private javax.swing.JMenu menuCorrigir;
+    private javax.swing.JMenu menuEditar;
+    private javax.swing.JMenu menuEscalaPontuacao;
+    private javax.swing.JMenu menuSistemaPenalizacao;
+    private javax.swing.JMenu menuTipoProva;
+    private javax.swing.JPanel painelConteudo;
+    private javax.swing.JPanel painelDadosProva;
     // End of variables declaration//GEN-END:variables
 }

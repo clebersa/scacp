@@ -38,7 +38,7 @@ public class TestesVIEW {
         janela.pack();*/
         
         // Teste CartaoPainelGereciamento
-        Prova prova = new Prova();
+        /*Prova prova = new Prova();
         prova.setNome("Vestibular 2013");
         prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
         prova.setQuantidadeQuestoes(50);
@@ -72,7 +72,12 @@ public class TestesVIEW {
         }
         janela.pack();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setVisible(true);
+        janela.setVisible(true);*/
+        
+        for(int cont=0; cont<9999999; cont++){
+            System.out.println(cont + ": " + GeradorDados.validarNumeroInscricao(cont));
+        }
+        
     }
     
     

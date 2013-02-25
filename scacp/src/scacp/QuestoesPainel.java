@@ -4,6 +4,7 @@
  */
 package scacp;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 
 /**
@@ -25,7 +26,24 @@ public class QuestoesPainel extends javax.swing.JPanel {
         questoes = new HashMap<>();
         initComponents();
         
-        System.out.println("tamanho: " + getPreferredSize());
+        int largura;
+        int altura;
+        largura = 35*(fimQuestoes-inicioQuestoes+1) + 2 * 80;
+        if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
+            if(numeroInscricao == 9999990){
+                altura = 18 + 220;
+            }else{
+                altura = 18 + 240;
+            }
+        }else{
+            if(numeroInscricao == 9999990){
+                altura = 18 + 130;
+            }else{
+                altura = 18+ 150;
+            }
+            
+        }
+        setPreferredSize(new Dimension(largura, altura));        
     }
     
     public String getMarcacao(){
@@ -59,32 +77,33 @@ public class QuestoesPainel extends javax.swing.JPanel {
         pnlLateralEsquerdo = new javax.swing.JPanel();
         pnlQuestoes = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(216, 133, 50));
         setMinimumSize(new java.awt.Dimension(0, 0));
         setPreferredSize(new java.awt.Dimension(0, 252));
         setLayout(new java.awt.BorderLayout());
 
+        rotuloRespostas.setBackground(new java.awt.Color(156, 156, 156));
+        rotuloRespostas.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         rotuloRespostas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rotuloRespostas.setText(String.format("Questões de %02d a %02d - Inscrição: %07d", inicioQuestoes, fimQuestoes, numeroInscricao));
         add(rotuloRespostas, java.awt.BorderLayout.PAGE_START);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralDireito = new scacp.QuestaoMEPainelLateral();
+            pnlLateralDireito = new scacp.QuestaoMEPainelLateral(numeroInscricao);
         }else{
-            pnlLateralDireito = new scacp.QuestaoVFPainelLateral();
+            pnlLateralDireito = new scacp.QuestaoVFPainelLateral(numeroInscricao);
         }
 
         add(pnlLateralDireito, java.awt.BorderLayout.LINE_END);
 
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
-            pnlLateralEsquerdo = new scacp.QuestaoMEPainelLateral();
+            pnlLateralEsquerdo = new scacp.QuestaoMEPainelLateral(numeroInscricao);
         }else{
-            pnlLateralEsquerdo = new scacp.QuestaoVFPainelLateral();
+            pnlLateralEsquerdo = new scacp.QuestaoVFPainelLateral(numeroInscricao);
         }
 
         add(pnlLateralEsquerdo, java.awt.BorderLayout.LINE_START);
 
-        pnlQuestoes.setBackground(new java.awt.Color(235, 122, 227));
+        pnlQuestoes.setAlignmentX(0.0F);
         pnlQuestoes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         pnlQuestoes.setLayout(new javax.swing.BoxLayout(pnlQuestoes, javax.swing.BoxLayout.LINE_AXIS));
 
@@ -100,7 +119,6 @@ public class QuestoesPainel extends javax.swing.JPanel {
                 pnlQuestoes.add(questoes.get(cont));
             }
         }
-        System.out.println("Painel das questões em si: "+pnlQuestoes.getSize());
 
         add(pnlQuestoes, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents

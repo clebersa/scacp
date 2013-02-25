@@ -19,6 +19,7 @@ public class Scacp2 extends javax.swing.JFrame {
 
     Prova prova;
     ProvaController provaController;
+    CartaoPainelGerencimento painelGerenciamentoCartao;
     
     /**
      * Creates new form Scacp2
@@ -85,18 +86,7 @@ public class Scacp2 extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        painelConteudo.setBackground(new java.awt.Color(94, 172, 255));
-
-        javax.swing.GroupLayout painelConteudoLayout = new javax.swing.GroupLayout(painelConteudo);
-        painelConteudo.setLayout(painelConteudoLayout);
-        painelConteudoLayout.setHorizontalGroup(
-            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        painelConteudoLayout.setVerticalGroup(
-            painelConteudoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 405, Short.MAX_VALUE)
-        );
+        painelConteudo.setLayout(new javax.swing.BoxLayout(painelConteudo, javax.swing.BoxLayout.LINE_AXIS));
 
         menuArquivo.setText("Arquivo");
 
@@ -323,7 +313,7 @@ public class Scacp2 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
         );
 
         pack();
@@ -358,17 +348,20 @@ public class Scacp2 extends javax.swing.JFrame {
 
             //Ativa os menu editar e configurar
             menuEditar.setEnabled(true);
+            menuCorrigir.setEnabled(true);
             menuConfigurar.setEnabled(true);
 
             //Permite visualizar a parte dos cartões
-            
-            //painelGerenciamentoCartao.removeAll();
-            //painelGerenciamentoCartao = new CartaoPainelGerencimento();
+            painelGerenciamentoCartao = new CartaoPainelGerencimento(prova);
+            painelConteudo.removeAll();
+            painelConteudo.add(painelGerenciamentoCartao);
+            painelConteudo.revalidate();
+            painelConteudo.repaint();
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
-
+        
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
@@ -397,6 +390,7 @@ public class Scacp2 extends javax.swing.JFrame {
         }
 
         painelDadosProva.removeAll();
+        painelConteudo.removeAll();
         //painelCartao.resetar();
         prova = new Prova();
         validate();
@@ -420,23 +414,23 @@ public class Scacp2 extends javax.swing.JFrame {
     }//GEN-LAST:event_itmSairActionPerformed
 
     private void itmInserirCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmInserirCartaoActionPerformed
-
+        painelGerenciamentoCartao.incluirCartao(evt);
     }//GEN-LAST:event_itmInserirCartaoActionPerformed
 
     private void itmAlterarCartaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarCartaoActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.alterarCartao(evt);
     }//GEN-LAST:event_itmAlterarCartaoActionPerformed
 
     private void itmExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.excluirCartao(evt);
     }//GEN-LAST:event_itmExcluirActionPerformed
 
     private void itmLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmLocalizarActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.localizarCartao(evt);
     }//GEN-LAST:event_itmLocalizarActionPerformed
 
     private void menuCorrigirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCorrigirActionPerformed
-        // TODO add your handling code here:
+        painelGerenciamentoCartao.corrigirCartoes(evt);
     }//GEN-LAST:event_menuCorrigirActionPerformed
 
     private void itmrbMultiplaEscolhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmrbMultiplaEscolhaActionPerformed
@@ -512,7 +506,7 @@ public class Scacp2 extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -13,8 +13,7 @@ public class QuestaoMEPainelLateral extends javax.swing.JPanel {
     /**
      * Creates new form PainelLateralQuestoesME
      */
-    public QuestaoMEPainelLateral() {
-        int numeroInscricao = 00;
+    public QuestaoMEPainelLateral(int numeroInscricao) {
         this.numeroInscricao = numeroInscricao;
         initComponents();
     }
@@ -61,13 +60,16 @@ public class QuestaoMEPainelLateral extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRespostas)
-            .addComponent(lblA)
-            .addComponent(lblMultipla)
-            .addComponent(lblD)
-            .addComponent(lblBranco)
-            .addComponent(lblB)
-            .addComponent(lblC)
-            .addComponent(lblE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblA)
+                    .addComponent(lblMultipla)
+                    .addComponent(lblD)
+                    .addComponent(lblBranco)
+                    .addComponent(lblB)
+                    .addComponent(lblC)
+                    .addComponent(lblE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

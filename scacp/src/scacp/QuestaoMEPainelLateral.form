@@ -17,13 +17,18 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="lblRespostas" min="-2" max="-2" attributes="0"/>
-          <Component id="lblA" min="-2" max="-2" attributes="0"/>
-          <Component id="lblMultipla" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="lblD" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="lblBranco" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="lblB" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="lblC" alignment="0" min="-2" max="-2" attributes="0"/>
-          <Component id="lblE" alignment="0" min="-2" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblA" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblMultipla" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblD" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblBranco" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblB" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblC" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblE" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">

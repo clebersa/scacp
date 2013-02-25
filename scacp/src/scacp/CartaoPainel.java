@@ -6,52 +6,43 @@ package scacp;
 
 import java.awt.Dimension;
 
+
 /**
  *
  * @author cleber
  */
 public class CartaoPainel extends javax.swing.JPanel {
-    private int numeroInscricao, quantidadeQuestoes;
+    private int quantidadeQuestoes;
     private QuestoesPainel questoesBloco1, questoesBloco2;
     private Cartao cartao;
     /**
      * Creates new form CartaoPainel
      */
-    public CartaoPainel(int numeroInscricao, int quantidadeQuestoes, TipoProva tipoProva) {
-        this.numeroInscricao = numeroInscricao;
+    public CartaoPainel(Cartao cartao, int quantidadeQuestoes, TipoProva tipoProva) {
+        this.cartao = cartao;
         this.quantidadeQuestoes = quantidadeQuestoes;
-        questoesBloco1 = new QuestoesPainel(numeroInscricao, 01, quantidadeQuestoes/2, tipoProva);
-        questoesBloco2 = new QuestoesPainel(numeroInscricao, (quantidadeQuestoes/2)+1, quantidadeQuestoes, tipoProva);
-        System.out.println("Cartão Painel antes das inserções: " + getSize());
-        System.out.println("Cartão Painel inicializado: " + getSize());
+        questoesBloco1 = new QuestoesPainel(cartao.getNumeroInscricao(), 01, quantidadeQuestoes/2, tipoProva);
+        questoesBloco2 = new QuestoesPainel(cartao.getNumeroInscricao(), (quantidadeQuestoes/2)+1, quantidadeQuestoes, tipoProva);
         add(questoesBloco1);
-        questoesBloco1.setSize(new Dimension(500, 300));
-        System.out.println("Cartão Painel 1: " + getSize());
         add(questoesBloco2);
-        System.out.println("Cartão Painel 2: " + getSize());
         initComponents();
-        //revalidate();
-        //validate();
-        //repaint();
-
-    }
-
-    public int getNumeroInscricao() {
-        return numeroInscricao;
-    }
-
-    public void setNumeroInscricao(int numeroInscricao) {
-        this.numeroInscricao = numeroInscricao;
+        try{
+            if(!cartao.getMarcacao().equals("")){
+                setMarcacao(cartao.getMarcacao());
+            }
+        }catch(NullPointerException excecao){
+        }
+        setPreferredSize(new Dimension(questoesBloco1.getPreferredSize().width, questoesBloco1.getPreferredSize().height*2));
     }
     
-    public String getMarcacao(){
+    private String getMarcacao(){
         String marcacao;
         marcacao = questoesBloco1.getMarcacao();
         marcacao +=questoesBloco2.getMarcacao();
         return marcacao;
     }
     
-    public void setMarcacao(String marcacao){
+    private void setMarcacao(String marcacao){
         String marcacaoBloco1, marcacaoBloco2;
         marcacaoBloco1 = marcacao.substring(0, quantidadeQuestoes/2);
         marcacaoBloco2 = marcacao.substring(quantidadeQuestoes/2, quantidadeQuestoes);
@@ -59,8 +50,20 @@ public class CartaoPainel extends javax.swing.JPanel {
         System.out.println(marcacaoBloco2);
         questoesBloco1.setMarcacao(marcacaoBloco1);
         questoesBloco2.setMarcacao(marcacaoBloco2);
+        questoesBloco1.repaint();
+        questoesBloco2.repaint();
     }
 
+    public Cartao getCartao(){
+        cartao.setMarcacao(getMarcacao());
+        return cartao;
+    }
+
+    public void setCartao(Cartao cartao) {
+        this.cartao = cartao;
+        setMarcacao(cartao.getMarcacao());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,8 +73,7 @@ public class CartaoPainel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(48, 253, 26));
-        setPreferredSize(new java.awt.Dimension(1000, 800));
+        setPreferredSize(new java.awt.Dimension(300, 300));
         setLayout(new java.awt.GridLayout(2, 1));
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

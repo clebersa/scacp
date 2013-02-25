@@ -3,7 +3,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- Comandos personalizados para definir usuário
-create user if not exists 'scacp'@'localhost' identified by '123456';
+create user 'scacp'@'localhost' identified by '123456';
 grant all on scacp.* to 'scacp'@'localhost';
 
 

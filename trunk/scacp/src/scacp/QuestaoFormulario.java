@@ -27,7 +27,7 @@ public abstract class QuestaoFormulario extends javax.swing.JPanel {
         this.numeroQuestao = numeroQuestao;
         this.numeroInscricao = numeroInscricao;
         alternativas = new ArrayList<>();
-        alternativa = null;
+        alternativa = "0";
         rbtgAlternativas = new ButtonGroup();
     }
 

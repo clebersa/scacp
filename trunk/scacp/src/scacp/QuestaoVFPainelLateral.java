@@ -13,8 +13,7 @@ public class QuestaoVFPainelLateral extends javax.swing.JPanel {
     /**
      * Creates new form QuestaoVFPainelLateral
      */
-    public QuestaoVFPainelLateral() {
-        int numeroInscricao = 00;
+    public QuestaoVFPainelLateral(int numeroInscricao) {
         this.numeroInscricao = numeroInscricao;
         initComponents();
     }
@@ -52,10 +51,13 @@ public class QuestaoVFPainelLateral extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblRespostas)
-            .addComponent(lblV)
-            .addComponent(lblF)
-            .addComponent(lblMultipla)
-            .addComponent(lblBranco)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblV)
+                    .addComponent(lblF)
+                    .addComponent(lblMultipla)
+                    .addComponent(lblBranco)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -30,21 +30,29 @@ public class TestesVIEW {
         
         
         // Teste de CartaoPainel
-        /*CartaoPainel cartaoPainel = new CartaoPainel(9999999, 30, TipoProva.MULTIPLA_ESCOLHA);
-        cartaoPainel.setMarcacao("ac*dbdc*ab#eddc#aeecbed#cba*#e");
+        /*Cartao cartao = new Cartao();
+        cartao.setNumeroInscricao(9999990);
+        cartao.setMarcacao("ac*dbdc*ab#eddc#aeecbed#cba*#e");
+        CartaoPainel cartaoPainel = new CartaoPainel(cartao, 80, TipoProva.VERDADEIRO_FALSO);
         janela.add(cartaoPainel);
-        janela.pack();
-        System.out.println("janela: " + janela.getSize());
-        System.out.println("cartaopainel: " + cartaoPainel.getSize());*/
+        janela.pack();*/
+        
         // Teste CartaoPainelGereciamento
         Prova prova = new Prova();
+        prova.setNome("Vestibular 2013");
         prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
-        prova.setQuantidadeQuestoes(20);
-        CartaoPainelGerencimento cpg = new CartaoPainelGerencimento(prova, 9988776);
+        prova.setQuantidadeQuestoes(50);
+        Cartao cartao = new Cartao();
+        //cartao.setMarcacao("ac*dbdc*ab#eddc#aeec");
+        cartao.setMarcacao("ac*dbdc*ab");
+        cartao.setNumeroInscricao(123456789);
+        cartao.setNota(12.5);
+        prova.getCartoes().put(cartao.getNumeroInscricao(), cartao);
+        CartaoPainelGerencimento cpg = new CartaoPainelGerencimento(prova);
         janela.add(cpg);
         
         
-        /*
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 System.out.println(info.getName());
@@ -61,7 +69,7 @@ public class TestesVIEW {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Scacp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }*/
+        }
         janela.pack();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);

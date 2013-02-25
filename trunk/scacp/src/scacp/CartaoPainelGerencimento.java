@@ -4,22 +4,23 @@
  */
 package scacp;
 
-import java.awt.FlowLayout;
-import javax.swing.JFrame;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author cleber
  */
 public class CartaoPainelGerencimento extends javax.swing.JPanel {
-    int numeroInscricao;
     Prova prova;
     /**
      * Creates new form CartaoPainelGerencimento
      */
-    public CartaoPainelGerencimento(Prova prova, int numeroInscricao) {
+    public CartaoPainelGerencimento(){}
+    
+    public CartaoPainelGerencimento(Prova prova) {
         this.prova = prova;
-        this.numeroInscricao = numeroInscricao;
         initComponents();
     }
 
@@ -33,7 +34,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
     private void initComponents() {
 
         scrpnlQuestoesCartao = new javax.swing.JScrollPane();
-        pnlQuestoesCartao = new javax.swing.JPanel();
+        painelInternoScroll = new javax.swing.JPanel();
         pnlBotoesCartao = new javax.swing.JPanel();
         btnIncluir = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
@@ -46,33 +47,14 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         scrpnlQuestoesCartao.getHorizontalScrollBar().setUnitIncrement(10);
         scrpnlQuestoesCartao.getVerticalScrollBar().setUnitIncrement(10);
 
-        pnlQuestoesCartao.setBackground(new java.awt.Color(218, 95, 110));
-        pnlQuestoesCartao.setMinimumSize(new java.awt.Dimension(200, 200));
-        pnlQuestoesCartao.setPreferredSize(new java.awt.Dimension(500, 450));
-        CartaoPainel cartaoPainel = new CartaoPainel(numeroInscricao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
-        JFrame janela = new JFrame();
-        cartaoPainel.revalidate();
-        cartaoPainel.repaint();
-        System.out.println("Cartao: " + cartaoPainel.getSize());
-        janela.setLayout(new FlowLayout());
-        janela.add(cartaoPainel);
-        janela.setVisible(true);
-        janela.pack();
-        janela.revalidate();
-        janela.repaint();
-        System.out.println("Janela: " + janela.getSize());
-        pnlQuestoesCartao.add(cartaoPainel);
-        pnlQuestoesCartao.revalidate();
-        pnlQuestoesCartao.repaint();
-        System.out.println("Cartao: " + pnlQuestoesCartao.getSize());
-        pnlQuestoesCartao.setLayout(new javax.swing.BoxLayout(pnlQuestoesCartao, javax.swing.BoxLayout.Y_AXIS));
-        scrpnlQuestoesCartao.setViewportView(pnlQuestoesCartao);
+        painelInternoScroll.setAlignmentX(0.0F);
+        painelInternoScroll.setAlignmentY(0.0F);
+        painelInternoScroll.setPreferredSize(new java.awt.Dimension(100, 100));
+        scrpnlQuestoesCartao.setViewportView(painelInternoScroll);
 
-        pnlBotoesCartao.setBackground(new java.awt.Color(255, 209, 164));
         pnlBotoesCartao.setBorder(javax.swing.BorderFactory.createTitledBorder("Opções de Cartão"));
 
         btnIncluir.setText("Incluir");
-        btnIncluir.setEnabled(false);
         btnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirActionPerformed(evt);
@@ -80,7 +62,6 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnAlterar.setText("Alterar");
-        btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -88,7 +69,6 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -96,7 +76,6 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnLocalizar.setText("Localizar");
-        btnLocalizar.setEnabled(false);
         btnLocalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLocalizarActionPerformed(evt);
@@ -104,7 +83,6 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnCorrigirCartoes.setText("Corrigir Cartões");
-        btnCorrigirCartoes.setEnabled(false);
         btnCorrigirCartoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCorrigirCartoesActionPerformed(evt);
@@ -124,7 +102,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                 .addComponent(btnExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLocalizar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addComponent(btnCorrigirCartoes)
                 .addContainerGap())
         );
@@ -153,7 +131,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -161,33 +139,169 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
-        //itmInserirCartaoActionPerformed(evt);
+        int numeroInscricao;
+        Cartao novoCartao = new Cartao();
+        CartaoPainel cartaoPainel;
+        if(salvarCartaoAtual()){
+            try{
+                numeroInscricao = Integer.parseInt(JOptionPane.showInputDialog(this, "Informe o número de inscrição do candidato:", "Número de Inscrição", JOptionPane.OK_OPTION));
+                if(prova.getCartoes().isEmpty() && numeroInscricao != 9999990){
+                    JOptionPane.showMessageDialog(this, "O primeiro cartão a ser informado deve ser o gabarito!", "Primeiro cartão!", JOptionPane.OK_CANCEL_OPTION);
+                }else if(novoCartao.validarInscricao(numeroInscricao) || (prova.getCartoes().isEmpty() && numeroInscricao == 9999990)){
+                    if(numeroInscricao == 0){
+                        corrigirCartoes(evt);
+                        super.removeAll();
+                        JOptionPane.showMessageDialog(this, "Último cartão informado!", "Último cartão!", JOptionPane.OK_CANCEL_OPTION);
+                        return;
+                    }
+                    novoCartao.setNumeroInscricao(numeroInscricao);
+                    cartaoPainel = new CartaoPainel(novoCartao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
+                    cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width+30, cartaoPainel.getPreferredSize().height));
+                    painelInternoScroll.removeAll();
+                    painelInternoScroll.add(cartaoPainel);
+                    painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
+                    painelInternoScroll.validate();
+                    painelInternoScroll.repaint();
+                    scrpnlQuestoesCartao.validate();
+                    scrpnlQuestoesCartao.repaint();
+                    
+                    btnAlterar.setEnabled(true);
+                }else{
+                    JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+                }
+            }catch(NumberFormatException excecao){
+                JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        //itmAlterarCartaoActionPerformed(evt);
+        int novoNumeroInscricao;
+        Cartao cartao = new Cartao();
+        try{
+            novoNumeroInscricao = Integer.parseInt(JOptionPane.showInputDialog(this, "Informe o número correto de inscrição do candidato:", "Número de Inscrição", JOptionPane.OK_OPTION));
+            if(cartao.validarInscricao(novoNumeroInscricao)){
+                ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().setNumeroInscricao(novoNumeroInscricao);
+            }else{
+                    JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+            }
+        }catch(NumberFormatException excecao){
+            JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        //itmExcluirActionPerformed(evt);
+        btnAlterar.setEnabled(false);
+        try{
+            prova.getCartoes().remove(((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().getNumeroInscricao());
+        }catch(ArrayIndexOutOfBoundsException exception){
+            JOptionPane.showMessageDialog(this, "Nenhum cartão para remover!", "Atenção!", JOptionPane.YES_NO_CANCEL_OPTION);
+        }
+        painelInternoScroll.removeAll();
+        painelInternoScroll.validate();
+        painelInternoScroll.repaint();
+        painelInternoScroll.setEnabled(true);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        //itmLocalizarActionPerformed(evt);
+        Cartao novoCartao = new Cartao();
+        CartaoPainel cartaoPainel;
+        
+        CartaoLocalizar localizadorCartao = new CartaoLocalizar(null, true, prova.getCartoes(), novoCartao);
+        localizadorCartao.pack();
+        localizadorCartao.setVisible(true);
+        if(novoCartao.getNumeroInscricao() != 0){
+            if(salvarCartaoAtual()){
+                cartaoPainel = new CartaoPainel(novoCartao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
+                cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width, cartaoPainel.getPreferredSize().height));
+                painelInternoScroll.removeAll();
+                painelInternoScroll.add(cartaoPainel);
+                painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
+                painelInternoScroll.validate();
+                painelInternoScroll.repaint();
+                scrpnlQuestoesCartao.validate();
+                scrpnlQuestoesCartao.repaint();
+                
+                btnAlterar.setEnabled(false);
+            }
+        }
+        
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnCorrigirCartoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigirCartoesActionPerformed
-        //menuCorrigirActionPerformed(evt);
+        if(salvarCartaoAtual()){
+            if(!prova.getCartoes().isEmpty()){
+                prova.corrigirCartoes();
+                JOptionPane.showMessageDialog(this, "Todos os cartões da prova \'" +prova.getNome()+ "\' foram corrigidos com sucesso.", "Cartões corrigidos", JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this, "A prova não contém nenhum cartão!", "Sem cartões", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
+    public boolean salvarCartaoAtual(){
+        Cartao cartaoAtual;
+        if(painelInternoScroll.getComponentCount() != 0){
+            cartaoAtual = ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao();
+            
+            switch(JOptionPane.showConfirmDialog(this, "Deseja salvar o cartão ("+((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().getNumeroInscricao() +")?", "Excluir cartão", JOptionPane.INFORMATION_MESSAGE)){
+                case 0: // "Ok" option
+                    String questoesFaltando = "";
+                    for(int contador = 0; contador< cartaoAtual.getMarcacao().length(); contador++){
+                        if(cartaoAtual.getMarcacao().charAt(contador) == '0'){
+                            questoesFaltando += String.format("%d, ", (contador+1));
+                        }
+                    }
+                    if(questoesFaltando.isEmpty()){
+                        prova.getCartoes().put(cartaoAtual.getNumeroInscricao(), cartaoAtual);
+                        return true;
+                    }else{
+                        questoesFaltando = questoesFaltando.substring(0, questoesFaltando.length()-2)+".";
+                        JOptionPane.showMessageDialog(this, "Alguma(s) questão(ões) não tiveram a resposta informada!\nInforme a resposta da(s) questão(ões): "+questoesFaltando, "Questão(ões) faltando", JOptionPane.ERROR_MESSAGE);
+                        return false;
+                    }
+                case 1: // "No" option
+                    excluirCartao(null);
+                    return true;
+                case 2: // "Cancel" option
+                    return false;
+                default:
+                    return false;
+            }
+        }else{
+            return true;
+        }
+    }
+    
+    public void incluirCartao(ActionEvent evt){
+        btnIncluirActionPerformed(evt);
+    }
+    
+    public void excluirCartao(ActionEvent evt){
+        btnExcluirActionPerformed(evt);
+    }
+    
+    public void alterarCartao(ActionEvent evt){
+        btnAlterarActionPerformed(evt);
+    }
+    
+    public void localizarCartao(ActionEvent evt){
+        btnLocalizarActionPerformed(evt);
+    }
+    
+    public void corrigirCartoes(ActionEvent evt){
+        btnCorrigirCartoesActionPerformed(evt);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCorrigirCartoes;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnIncluir;
     private javax.swing.JButton btnLocalizar;
+    private javax.swing.JPanel painelInternoScroll;
     private javax.swing.JPanel pnlBotoesCartao;
-    private javax.swing.JPanel pnlQuestoesCartao;
     private javax.swing.JScrollPane scrpnlQuestoesCartao;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,7 +35,6 @@ public class BotoesCartao extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createTitledBorder("Opções"));
 
         btnCorrigirCartoes.setText("Corrigir Cartões");
-        btnCorrigirCartoes.setEnabled(false);
         btnCorrigirCartoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCorrigirCartoesActionPerformed(evt);
@@ -43,7 +42,6 @@ public class BotoesCartao extends javax.swing.JPanel {
         });
 
         btnLocalizar.setText("Localizar");
-        btnLocalizar.setEnabled(false);
         btnLocalizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLocalizarActionPerformed(evt);
@@ -51,7 +49,6 @@ public class BotoesCartao extends javax.swing.JPanel {
         });
 
         btnExcluir.setText("Excluir");
-        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -59,7 +56,6 @@ public class BotoesCartao extends javax.swing.JPanel {
         });
 
         btnAlterar.setText("Alterar");
-        btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -67,7 +63,6 @@ public class BotoesCartao extends javax.swing.JPanel {
         });
 
         btnIncluir.setText("Incluir");
-        btnIncluir.setEnabled(false);
         btnIncluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIncluirActionPerformed(evt);
@@ -93,12 +88,14 @@ public class BotoesCartao extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnIncluir)
-                .addComponent(btnAlterar)
-                .addComponent(btnExcluir)
-                .addComponent(btnLocalizar)
-                .addComponent(btnCorrigirCartoes))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIncluir)
+                    .addComponent(btnAlterar)
+                    .addComponent(btnExcluir)
+                    .addComponent(btnLocalizar)
+                    .addComponent(btnCorrigirCartoes))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

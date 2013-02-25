@@ -85,7 +85,7 @@ public class Cartao {
         int tamanhoDaInscricao = 7;
         int contador, somador = 0, numero, digitoVerificador;
         char cDigito;
-        for (contador = 0; contador < tamanhoDaInscricao - 2; contador++) {
+        for (contador = 0; contador < tamanhoDaInscricao - 1; contador++) {
 
             cDigito = stringNumeroInscricao.charAt(contador);
             numero = Character.getNumericValue(cDigito);

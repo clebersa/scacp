@@ -64,7 +64,7 @@ public class ProvaDAO {
                // System.out.println("Identificação da prova:" + rs.getInt("id_prova"));
                 prova.setNome(rs.getString("nome"));
                 //System.out.println("Nome da prova:" + rs.getString("nome"));
-                prova.setTipoProva(rs.getInt("tipo"));
+                prova.setIdProva(rs.getInt("tipo"));
                 //System.out.println("Tipo de prova:" + rs.getInt("tipo"));
                 prova.setQuantidadeQuestoes(rs.getInt("quantidade_questoes"));
                 //System.out.println("Quantidade de questões:" + rs.getInt("quantidade_questoes"));

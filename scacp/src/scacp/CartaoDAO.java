@@ -38,7 +38,7 @@ public class CartaoDAO {
     public void alterarCartaoMarcacao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao='?' where  numero_inscricao = ? and fk_id_prova = ?");
+            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao=? where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString(1, cartao.getMarcacao());
             st.setInt(2, cartao.getNumeroInscricao());
             st.setInt(3, IdProva);

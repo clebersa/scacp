@@ -132,13 +132,13 @@ public class Prova {
     }
     
     
-    public void corrigirCartoes (Prova prova){
+    public void corrigirCartoes (){
         
          Set<Integer> chaves = cartoes.keySet();  
         for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)  
         {  
             Integer chave = iterator.next();  
-          prova.cartoes.get(chave).calcularNota(prova);
+          cartoes.get(chave).calcularNota(this);
         }  
     }
 }

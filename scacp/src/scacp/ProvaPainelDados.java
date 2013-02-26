@@ -49,8 +49,9 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblPontuacaoMinimaD = new javax.swing.JLabel();
         lblPontuacaoMaximaD = new javax.swing.JLabel();
         lblIncidenciaPenalizacaoD = new javax.swing.JLabel();
+        btnConcluir = new javax.swing.JButton();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prova: ", 0, 0, new java.awt.Font("Cantarell", 1, 14))); // NOI18N
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Prova: ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cantarell", 1, 14))); // NOI18N
         setMinimumSize(new java.awt.Dimension(441, 114));
         setName("painelDadosProva"); // NOI18N
 
@@ -104,6 +105,13 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblIncidenciaPenalizacaoD.setText("MISC");
         lblIncidenciaPenalizacaoD.setName("incidenciaPenalizacaoBoolean"); // NOI18N
 
+        btnConcluir.setText("Concluir");
+        btnConcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,7 +143,9 @@ public class ProvaPainelDados extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblProporcaoD)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAlterar))
+                        .addComponent(btnAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnConcluir))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -147,7 +157,7 @@ public class ProvaPainelDados extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblIncidenciaPenalizacaoD)))
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +187,9 @@ public class ProvaPainelDados extends javax.swing.JPanel {
                             .addComponent(lblPrecicaoPontuacaoD))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAlterar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAlterar)
+                            .addComponent(btnConcluir))
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +203,11 @@ public class ProvaPainelDados extends javax.swing.JPanel {
             preencherPainel(prova);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnConcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConcluirActionPerformed
+        btnAlterar.setVisible(false);
+        btnConcluir.setVisible(false);
+    }//GEN-LAST:event_btnConcluirActionPerformed
 
     public void preencherPainel(Prova prova){
         this.prova = prova;
@@ -331,6 +348,7 @@ public class ProvaPainelDados extends javax.swing.JPanel {
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnConcluir;
     private javax.swing.JLabel lblIncidenciaPenalizacao;
     private javax.swing.JLabel lblIncidenciaPenalizacaoD;
     private javax.swing.JLabel lblPontuacaoMaxima;

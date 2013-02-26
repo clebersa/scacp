@@ -347,9 +347,9 @@ public class Scacp extends javax.swing.JFrame {
             painelDadosProva.revalidate();
 
             //Ativa os menu editar e configurar
-            menuEditar.setEnabled(true);
+            //menuEditar.setEnabled(true);
             menuCorrigir.setEnabled(true);
-            menuConfigurar.setEnabled(true);
+            //menuConfigurar.setEnabled(true);
 
             //Permite visualizar a parte dos cartões
             painelGerenciamentoCartao = new CartaoPainelGerencimento(prova);

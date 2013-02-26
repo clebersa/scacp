@@ -74,10 +74,6 @@ public class TestesVIEW {
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         janela.setVisible(true);*/
         
-        for(int cont=0; cont<9999999; cont++){
-            System.out.println(cont + ": " + GeradorDados.validarNumeroInscricao(cont));
-        }
-        
     }
     
     

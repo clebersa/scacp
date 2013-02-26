@@ -4,32 +4,31 @@
  */
 package scacp;
 
-//import java.util.ArrayList;
-//import java.util.List;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Set;
+
 /**
  *
  * @author Cleber
  */
 public class Prova {
+
     private int idProva;
     private String nome;
-    private  TipoProva tipoProva;
+    private TipoProva tipoProva;
     private int quantidadeQuestoes;
     private double pontuacaoMinima;
     private double pontuacaoMaxima;
     private int precisaoPontuacao;
     private boolean incidenciaPenalizacao;
     private int proporcaoPenalizacao;
-    private HashMap<Integer, Cartao> cartoes = new HashMap<Integer, Cartao>();
-    private  String gabarito;
+    private HashMap<Integer, Cartao> cartoes = new HashMap<>();
+    private String gabarito;
     private boolean provaSalva; // Atributo que não vai para o BD
 
     public Prova() {
         provaSalva = true;
         proporcaoPenalizacao = 1;
+        gabarito = "";
     }
 
     public int getIdProva() {
@@ -48,7 +47,6 @@ public class Prova {
         this.nome = nome;
     }
 
-    
     public TipoProva getTipoProva() {
         return tipoProva;
     }
@@ -113,8 +111,6 @@ public class Prova {
         this.cartoes = cartoes;
     }
 
-   
-
     public String getGabarito() {
         return gabarito;
     }
@@ -130,15 +126,16 @@ public class Prova {
     public void setProvaSalva(boolean precisaSalvar) {
         this.provaSalva = precisaSalvar;
     }
+
+    @Override
+    public String toString() {
+        return "Prova{" + "idProva=" + idProva + ", nome=" + nome + ", tipoProva=" + tipoProva + ", quantidadeQuestoes=" + quantidadeQuestoes + ", pontuacaoMinima=" + pontuacaoMinima + ", pontuacaoMaxima=" + pontuacaoMaxima + ", precisaoPontuacao=" + precisaoPontuacao + ", incidenciaPenalizacao=" + incidenciaPenalizacao + ", proporcaoPenalizacao=" + proporcaoPenalizacao + ", cartoes=" + cartoes + ", gabarito=" + gabarito + ", provaSalva=" + provaSalva + '}';
+    }
+
     
-    
-    public void corrigirCartoes (){
-        
-         Set<Integer> chaves = cartoes.keySet();  
-        for (Iterator<Integer> iterator = chaves.iterator(); iterator.hasNext();)  
-        {  
-            Integer chave = iterator.next();  
-          cartoes.get(chave).calcularNota(this);
-        }  
+    public void corrigirCartoes() {
+        for(Cartao cartao: cartoes.values()){
+            cartao.calcularNota(this);
+        }
     }
 }

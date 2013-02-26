@@ -30,7 +30,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="scrpnlQuestoesCartao" pref="237" max="32767" attributes="0"/>
+              <Component id="scrpnlQuestoesCartao" pref="231" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="pnlBotoesCartao" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -122,6 +122,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnAlterar.setEnabled(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnExcluir">
           <Properties>
@@ -130,6 +133,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="btnExcluir.setEnabled(false);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="btnLocalizar">
           <Properties>

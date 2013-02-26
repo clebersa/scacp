@@ -13,12 +13,15 @@ import javax.swing.JOptionPane;
  * @author cleber
  */
 public class CartaoPainelGerencimento extends javax.swing.JPanel {
+
     Prova prova;
+
     /**
      * Creates new form CartaoPainelGerencimento
      */
-    public CartaoPainelGerencimento(){}
-    
+    public CartaoPainelGerencimento() {
+    }
+
     public CartaoPainelGerencimento(Prova prova) {
         this.prova = prova;
         initComponents();
@@ -62,6 +65,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnAlterar.setText("Alterar");
+        btnAlterar.setEnabled(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -69,6 +73,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         });
 
         btnExcluir.setText("Excluir");
+        btnExcluir.setEnabled(false);
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExcluirActionPerformed(evt);
@@ -131,7 +136,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                .addComponent(scrpnlQuestoesCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlBotoesCartao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -140,80 +145,108 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         int numeroInscricao;
-        Cartao novoCartao = new Cartao();
+        String numeroInscricaoString;
+        Cartao novoCartao;
         CartaoPainel cartaoPainel;
-        if(salvarCartaoAtual()){
-            try{
-                numeroInscricao = Integer.parseInt(JOptionPane.showInputDialog(this, "Informe o número de inscrição do candidato:", "Número de Inscrição", JOptionPane.OK_OPTION));
-                if(prova.getCartoes().isEmpty() && numeroInscricao != 9999990){
-                    JOptionPane.showMessageDialog(this, "O primeiro cartão a ser informado deve ser o gabarito!", "Primeiro cartão!", JOptionPane.OK_CANCEL_OPTION);
-                }else if(novoCartao.validarInscricao(numeroInscricao) || (prova.getCartoes().isEmpty() && numeroInscricao == 9999990)){
-                    if(numeroInscricao == 0){
-                        corrigirCartoes(evt);
-                        super.removeAll();
-                        JOptionPane.showMessageDialog(this, "Último cartão informado!", "Último cartão!", JOptionPane.OK_CANCEL_OPTION);
-                        return;
+        System.out.println("Número:" + GeradorDados.gerarNumeroInscricao());
+        if (salvarCartaoAtual()) {
+            try {
+                numeroInscricaoString = JOptionPane.showInputDialog(this, "Informe o número de inscrição do candidato:", "Número de Inscrição", JOptionPane.OK_OPTION);
+                if (numeroInscricaoString != null) {
+                    numeroInscricao = Integer.parseInt(numeroInscricaoString);
+                    if (Cartao.validarNumeroInscricao(numeroInscricao)) {
+                        if (prova.getGabarito().equals("")) {
+                            if (numeroInscricao != 9999990) {
+                                JOptionPane.showMessageDialog(this, "O primeiro cartão a ser informado deve ser o gabarito!", "Primeiro cartão!", JOptionPane.OK_CANCEL_OPTION);
+                                return;
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Estas são as respostas do gabarito!\nCuidado para não informar as respostas erradas,\npois não será possível alterá-las posteriormente.", "Inserção do gabarito", JOptionPane.OK_CANCEL_OPTION);
+                            }
+                        } else if (numeroInscricao == 9999990) {
+                            JOptionPane.showMessageDialog(this, "Este número de inscrição é do gabarito!\nNão é permitido inserir um cartão de prova com o mesmo número do gabarito!\nInforme outro número de inscrição!", "Número de inscrição do gabarito", JOptionPane.OK_CANCEL_OPTION);
+                            return;
+                        } else if (numeroInscricao == 0) {
+                            btnExcluirActionPerformed(evt);
+                            JOptionPane.showMessageDialog(this, "Número de inscrição do último cartão informado!\nClique para corrigir as provas.", "Último cartão!", JOptionPane.OK_CANCEL_OPTION);
+                            btnIncluir.setEnabled(false);
+                            btnExcluir.setEnabled(false);
+                            btnLocalizar.setEnabled(false);
+                            btnAlterar.setEnabled(false);
+                            btnCorrigirCartoes.setEnabled(true);
+                            return;
+                        } else if (prova.getCartoes().containsKey(numeroInscricao)) {
+                            JOptionPane.showMessageDialog(this, "Este número de inscrição já foi informado!\nNão é permitido haver dois cartões de prova com o mesmo número!\nInforme outro número de inscrição!", "Número de inscrição existente", JOptionPane.OK_CANCEL_OPTION);
+                            return;
+                        }
+                        novoCartao = new Cartao(numeroInscricao);
+                        cartaoPainel = new CartaoPainel(novoCartao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
+                        //cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width+30, cartaoPainel.getPreferredSize().height));
+                        btnIncluir.setEnabled(true);
+                        btnExcluir.setEnabled(true);
+                        btnLocalizar.setEnabled(true);
+                        btnAlterar.setEnabled(false);
+                        btnCorrigirCartoes.setEnabled(false);
+                        btnExcluirActionPerformed(evt);
+                        painelInternoScroll.add(cartaoPainel);
+                        painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
+                        painelInternoScroll.validate();
+                        painelInternoScroll.repaint();
+                        scrpnlQuestoesCartao.validate();
+                        scrpnlQuestoesCartao.repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
                     }
-                    novoCartao.setNumeroInscricao(numeroInscricao);
-                    cartaoPainel = new CartaoPainel(novoCartao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
-                    cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width+30, cartaoPainel.getPreferredSize().height));
-                    painelInternoScroll.removeAll();
-                    painelInternoScroll.add(cartaoPainel);
-                    painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
-                    painelInternoScroll.validate();
-                    painelInternoScroll.repaint();
-                    scrpnlQuestoesCartao.validate();
-                    scrpnlQuestoesCartao.repaint();
-                    
-                    btnAlterar.setEnabled(true);
-                }else{
-                    JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    btnExcluirActionPerformed(evt);
                 }
-            }catch(NumberFormatException excecao){
+            } catch (NumberFormatException excecao) {
                 JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnIncluirActionPerformed
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
-        int novoNumeroInscricao;
-        Cartao cartao = new Cartao();
-        try{
-            novoNumeroInscricao = Integer.parseInt(JOptionPane.showInputDialog(this, "Informe o número correto de inscrição do candidato:", "Número de Inscrição", JOptionPane.OK_OPTION));
-            if(cartao.validarInscricao(novoNumeroInscricao)){
-                ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().setNumeroInscricao(novoNumeroInscricao);
-            }else{
-                    JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
-            }
-        }catch(NumberFormatException excecao){
-            JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
+        if (painelInternoScroll.getComponentCount() != 0) {
+            ((CartaoPainel) painelInternoScroll.getComponent(0)).setEnabled(true);
+            ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().setCartaoSalvo(false);
+            btnExcluir.setEnabled(true);
+            btnAlterar.setEnabled(false);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        btnAlterar.setEnabled(false);
-        try{
-            prova.getCartoes().remove(((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().getNumeroInscricao());
-        }catch(ArrayIndexOutOfBoundsException exception){
-            JOptionPane.showMessageDialog(this, "Nenhum cartão para remover!", "Atenção!", JOptionPane.YES_NO_CANCEL_OPTION);
-        }
-        painelInternoScroll.removeAll();
-        painelInternoScroll.validate();
-        painelInternoScroll.repaint();
-        painelInternoScroll.setEnabled(true);
+        if (painelInternoScroll.getComponentCount() != 0) {
+            btnExcluir.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnIncluir.setEnabled(true);
+            painelInternoScroll.removeAll();
+            painelInternoScroll.validate();
+            painelInternoScroll.repaint();
+            scrpnlQuestoesCartao.validate();
+            scrpnlQuestoesCartao.repaint();
+        }/*else{
+         JOptionPane.showMessageDialog(this, "Nenhum cartão para remover!", "Atenção!", JOptionPane.YES_NO_CANCEL_OPTION);
+         }*/
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        Cartao novoCartao = new Cartao();
+        Cartao novoCartao;
         CartaoPainel cartaoPainel;
-        
+
+        novoCartao = new Cartao();
+
         CartaoLocalizar localizadorCartao = new CartaoLocalizar(null, true, prova.getCartoes(), novoCartao);
         localizadorCartao.pack();
         localizadorCartao.setVisible(true);
-        if(novoCartao.getNumeroInscricao() != 0){
-            if(salvarCartaoAtual()){
+
+        if (novoCartao.getNumeroInscricao() != 0) {
+            if (salvarCartaoAtual()) {
                 cartaoPainel = new CartaoPainel(novoCartao, prova.getQuantidadeQuestoes(), prova.getTipoProva());
-                cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width, cartaoPainel.getPreferredSize().height));
+                //cartaoPainel.setPreferredSize(new Dimension(cartaoPainel.getPreferredSize().width, cartaoPainel.getPreferredSize().height));
+                cartaoPainel.setEnabled(false);
+                btnAlterar.setEnabled(true);
+                btnIncluir.setEnabled(true);
+                btnExcluir.setEnabled(false);
                 painelInternoScroll.removeAll();
                 painelInternoScroll.add(cartaoPainel);
                 painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
@@ -221,79 +254,123 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                 painelInternoScroll.repaint();
                 scrpnlQuestoesCartao.validate();
                 scrpnlQuestoesCartao.repaint();
-                
-                btnAlterar.setEnabled(false);
             }
         }
-        
     }//GEN-LAST:event_btnLocalizarActionPerformed
 
     private void btnCorrigirCartoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCorrigirCartoesActionPerformed
-        if(salvarCartaoAtual()){
-            if(!prova.getCartoes().isEmpty()){
+        if (salvarCartaoAtual()) {
+            if (!prova.getCartoes().isEmpty()) {
                 prova.corrigirCartoes();
-                JOptionPane.showMessageDialog(this, "Todos os cartões da prova \'" +prova.getNome()+ "\' foram corrigidos com sucesso.", "Cartões corrigidos", JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this, "A prova não contém nenhum cartão!", "Sem cartões", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Todos os cartões da prova \'" + prova.getNome() + "\' foram corrigidos com sucesso.", "Cartões corrigidos!", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "A prova não contém nenhum cartão!", "Sem cartões!", JOptionPane.INFORMATION_MESSAGE);
             }
         }
-        
+
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
-    public boolean salvarCartaoAtual(){
+    public boolean salvarCartaoAtual() {
         Cartao cartaoAtual;
-        if(painelInternoScroll.getComponentCount() != 0){
+        int opcao;
+
+        if (painelInternoScroll.getComponentCount() != 0) {
             cartaoAtual = ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao();
-            
-            switch(JOptionPane.showConfirmDialog(this, "Deseja salvar o cartão ("+((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao().getNumeroInscricao() +")?", "Excluir cartão", JOptionPane.INFORMATION_MESSAGE)){
-                case 0: // "Ok" option
-                    String questoesFaltando = "";
-                    for(int contador = 0; contador< cartaoAtual.getMarcacao().length(); contador++){
-                        if(cartaoAtual.getMarcacao().charAt(contador) == '0'){
-                            questoesFaltando += String.format("%d, ", (contador+1));
+            if (!cartaoAtual.isCartaoSalvo()) {
+                if (cartaoAtual.getNumeroInscricao() == 9999990) {
+                    opcao = JOptionPane.showConfirmDialog(this, "Deseja salvar o gabarito da prova (" + prova.getNome() + ")?", "Salvar gabarito", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    opcao = JOptionPane.showConfirmDialog(this, "Deseja salvar o cartão (" + cartaoAtual.getNumeroInscricao() + ")?", "Salvar cartão", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                switch (opcao) {
+                    case 0: // "Ok" option
+                        String questoesFaltando = "";
+                        for (int contador = 0; contador < cartaoAtual.getMarcacao().length(); contador++) {
+                            if (cartaoAtual.getMarcacao().charAt(contador) == '0') {
+                                questoesFaltando += String.format("%02d, ", (contador + 1));
+                            }
                         }
-                    }
-                    if(questoesFaltando.isEmpty()){
-                        prova.getCartoes().put(cartaoAtual.getNumeroInscricao(), cartaoAtual);
+                        if (questoesFaltando.isEmpty()) {
+                            if (cartaoAtual.getNumeroInscricao() != 9999990) {
+                                prova.getCartoes().put(cartaoAtual.getNumeroInscricao(), cartaoAtual);
+                            } else {
+                                cartaoAtual.setCartaoSalvo(true);
+                                prova.setGabarito(cartaoAtual.getMarcacao());
+                            }
+                            btnExcluirActionPerformed(null);
+                            return true;
+                        } else {
+                            questoesFaltando = questoesFaltando.substring(0, questoesFaltando.length() - 2);
+                            if (questoesFaltando.length() == 2) {
+                                JOptionPane.showMessageDialog(this, "A questão " + questoesFaltando + " não teve a resposta informada.", "Questão faltando", JOptionPane.ERROR_MESSAGE);
+                            } else {
+                                String novaString = "";
+                                while (48 < questoesFaltando.length()) {
+                                    novaString += questoesFaltando.substring(0, 48) + "\n";
+                                    questoesFaltando = questoesFaltando.substring(48);
+                                }
+                                novaString += questoesFaltando;
+                                JOptionPane.showMessageDialog(this, "Algumas questões não tiveram a resposta informada!\nInforme a resposta das questões:\n" + novaString + ".", "Questões faltando", JOptionPane.ERROR_MESSAGE);
+                            }
+                            return false;
+                        }
+                    case 1: // "No" option
+                        btnExcluirActionPerformed(null);
                         return true;
-                    }else{
-                        questoesFaltando = questoesFaltando.substring(0, questoesFaltando.length()-2)+".";
-                        JOptionPane.showMessageDialog(this, "Alguma(s) questão(ões) não tiveram a resposta informada!\nInforme a resposta da(s) questão(ões): "+questoesFaltando, "Questão(ões) faltando", JOptionPane.ERROR_MESSAGE);
+                    case 2: // "Cancel" option
                         return false;
-                    }
-                case 1: // "No" option
-                    excluirCartao(null);
-                    return true;
-                case 2: // "Cancel" option
-                    return false;
-                default:
-                    return false;
+                    default:
+                        return false;
+                }
+            } else {
+                btnExcluirActionPerformed(null);
+                return true;
             }
-        }else{
+        } else {
             return true;
         }
     }
-    
-    public void incluirCartao(ActionEvent evt){
-        btnIncluirActionPerformed(evt);
+
+    public void incluirCartao(ActionEvent evt) {
+        if (btnIncluir.isEnabled()) {
+            btnIncluirActionPerformed(evt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível incluir cartões neste momento!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
-    public void excluirCartao(ActionEvent evt){
-        btnExcluirActionPerformed(evt);
+
+    public void excluirCartao(ActionEvent evt) {
+        if (btnExcluir.isEnabled()) {
+            btnExcluirActionPerformed(evt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível excluir cartões neste momento!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
-    public void alterarCartao(ActionEvent evt){
-        btnAlterarActionPerformed(evt);
+
+    public void alterarCartao(ActionEvent evt) {
+        if (btnAlterar.isEnabled()) {
+            btnAlterarActionPerformed(evt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível alterar cartões neste momento!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
-    public void localizarCartao(ActionEvent evt){
-        btnLocalizarActionPerformed(evt);
+
+    public void localizarCartao(ActionEvent evt) {
+        if (btnLocalizar.isEnabled()) {
+            btnLocalizarActionPerformed(evt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível localizar cartões neste momento!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
-    public void corrigirCartoes(ActionEvent evt){
-        btnCorrigirCartoesActionPerformed(evt);
+
+    public void corrigirCartoes(ActionEvent evt) {
+        if (btnCorrigirCartoes.isEnabled()) {
+            btnCorrigirCartoesActionPerformed(evt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não é possível corrigir cartões neste momento!", "Erro!", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCorrigirCartoes;

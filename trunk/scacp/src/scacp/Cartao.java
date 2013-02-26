@@ -4,9 +4,6 @@
  */
 package scacp;
 
-import java.math.BigDecimal;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author cleber
@@ -16,14 +13,16 @@ public class Cartao {
     private int numeroInscricao;
     private String marcacao;
     private double nota;
+    private boolean cartaoSalvo;
 
-    public Cartao(int numeroInscricao, int tipoProva, String marcacao, double nota) {
+    public Cartao(int numeroInscricao, String marcacao, double nota, boolean cartaoSalvo) {
         this.numeroInscricao = numeroInscricao;
         this.marcacao = marcacao;
         this.nota = nota;
+        this.cartaoSalvo = cartaoSalvo;
     }
 
-    public Cartao(int numeroInscricao, int idProva) {
+    public Cartao(int numeroInscricao) {
         this.numeroInscricao = numeroInscricao;
     }
 
@@ -54,59 +53,40 @@ public class Cartao {
     public void setNota(double nota) {
         this.nota = nota;
     }
+
+    public boolean isCartaoSalvo() {
+        return cartaoSalvo;
+    }
+
+    public void setCartaoSalvo(boolean cartaoSalvo) {
+        this.cartaoSalvo = cartaoSalvo;
+    }
+
+    @Override
+    public String toString() {
+        return "Cartao{" + "numeroInscricao=" + numeroInscricao + ", marcacao=" + marcacao + ", nota=" + nota + ", cartaoSalvo=" + cartaoSalvo + '}';
+    }
     
-   
-
-    public static boolean validarInscricao(int numeroInscricao) {
-        String stringNumeroInscricao = String.format("%d", numeroInscricao);
-        if (stringNumeroInscricao.length() > 7) {
-            JOptionPane.showMessageDialog(null, "O número de inscrição não é válido");
-            return false;
+    
+    public static boolean validarNumeroInscricao(int numeroInscricao){
+        int contador, verificadorOriginal, verificadorReal, numeros[];
+        numeros = new int[6];
+        verificadorReal = 0;
+        verificadorOriginal = numeroInscricao % 10;
+        numeroInscricao = (numeroInscricao-verificadorOriginal)/10;
+        for(contador = 0; contador < 6; contador ++){
+            numeros[contador] = numeroInscricao % 10;
+            numeroInscricao = (numeroInscricao-numeros[contador])/10;
+            //Multiplicadores:      10  9   8   7   6   5   4   3   2
+            //numeros[contador]:                5   4   3   2   1   0 (posições)
+            verificadorReal += numeros[contador] * (contador+2);
         }
-        if (stringNumeroInscricao.length() < 7) {
-            switch (7 - stringNumeroInscricao.length()) {
-                case 1:
-                    stringNumeroInscricao = String.format("%01d", numeroInscricao);
-                case 2:
-                    stringNumeroInscricao = String.format("%02d", numeroInscricao);
-                case 3:
-                    stringNumeroInscricao = String.format("%03d", numeroInscricao);
-                case 4:
-                    stringNumeroInscricao = String.format("%04d", numeroInscricao);
-                case 5:
-                    stringNumeroInscricao = String.format("%05d", numeroInscricao);
-                case 6:
-                    stringNumeroInscricao = String.format("%06d", numeroInscricao);
-
-            }
+        if(verificadorReal%11 < 2){
+            verificadorReal = 0;
+        }else{
+            verificadorReal = 11 - verificadorReal % 11;
         }
-        System.out.println(stringNumeroInscricao);
-
-        int tamanhoDaInscricao = 7;
-        int contador, somador = 0, numero, digitoVerificador;
-        char cDigito;
-        for (contador = 0; contador < tamanhoDaInscricao - 1; contador++) {
-
-            cDigito = stringNumeroInscricao.charAt(contador);
-            numero = Character.getNumericValue(cDigito);
-            
-            somador += numero * (tamanhoDaInscricao - contador);
-        }
-
-        if ((somador % 11 == 0) || (somador % 11 == 10)) {
-            digitoVerificador = 0;
-        } 
-        else {
-            digitoVerificador = 11 - somador % 11;
-        }
-        cDigito = stringNumeroInscricao.charAt(contador);
-        numero = Character.getNumericValue(cDigito);
-        
-        if (digitoVerificador == numero) {
-            return true;
-        } else {
-            return false;
-        }
+        return verificadorOriginal == verificadorReal;
     }
 
     public void calcularNota(Prova prova) {

@@ -46,8 +46,6 @@ public class CartaoPainel extends javax.swing.JPanel {
         String marcacaoBloco1, marcacaoBloco2;
         marcacaoBloco1 = marcacao.substring(0, quantidadeQuestoes/2);
         marcacaoBloco2 = marcacao.substring(quantidadeQuestoes/2, quantidadeQuestoes);
-        System.out.println(marcacaoBloco1);
-        System.out.println(marcacaoBloco2);
         questoesBloco1.setMarcacao(marcacaoBloco1);
         questoesBloco2.setMarcacao(marcacaoBloco2);
         questoesBloco1.repaint();
@@ -63,6 +61,14 @@ public class CartaoPainel extends javax.swing.JPanel {
         this.cartao = cartao;
         setMarcacao(cartao.getMarcacao());
     }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        questoesBloco1.setEnabled(enabled);
+        questoesBloco2.setEnabled(enabled);
+    }
+    
+    
     
     /**
      * This method is called from within the constructor to initialize the form.

@@ -5,7 +5,6 @@
 package scacp;
 
 import java.awt.Desktop;
-import java.awt.FlowLayout;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -39,8 +38,8 @@ public class Scacp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painelDadosProva = new javax.swing.JPanel();
-        painelConteudo = new javax.swing.JPanel();
+        painelConteudoProva = new javax.swing.JPanel();
+        painelConteudoCartao = new javax.swing.JPanel();
         barraMenuPrincipal = new javax.swing.JMenuBar();
         menuArquivo = new javax.swing.JMenu();
         itmNovo = new javax.swing.JMenuItem();
@@ -75,18 +74,9 @@ public class Scacp extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        javax.swing.GroupLayout painelDadosProvaLayout = new javax.swing.GroupLayout(painelDadosProva);
-        painelDadosProva.setLayout(painelDadosProvaLayout);
-        painelDadosProvaLayout.setHorizontalGroup(
-            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        painelDadosProvaLayout.setVerticalGroup(
-            painelDadosProvaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
+        painelConteudoProva.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
 
-        painelConteudo.setLayout(new javax.swing.BoxLayout(painelConteudo, javax.swing.BoxLayout.LINE_AXIS));
+        painelConteudoCartao.setLayout(new javax.swing.BoxLayout(painelConteudoCartao, javax.swing.BoxLayout.LINE_AXIS));
 
         menuArquivo.setText("Arquivo");
 
@@ -305,63 +295,82 @@ public class Scacp extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelDadosProva, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelConteudoProva, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelDadosProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelConteudoProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConteudo, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE))
+                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void itmNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmNovoActionPerformed
-        if(!prova.isProvaSalva()){
-            switch(JOptionPane.showConfirmDialog(rootPane, "A prova atual ("+prova.getNome()+") não está salva!\nDeseja salvar a prova atual?", "Atenção!", JOptionPane.INFORMATION_MESSAGE)){
-                case 0: // "Ok" option
-                itmSalvarActionPerformed(evt);
-                itmFecharActionPerformed(evt);
-                break;
-                case 1: // "No" option
-                itmFecharActionPerformed(evt);
-                break;
-                case 2: // "Cancel" option
-                return;
-            }
-        }
-        prova = new Prova();
-        ProvaFormulario formularioProva = new ProvaFormulario(this, true, prova);
+        ProvaFormulario formularioProva;
+        itmFecharActionPerformed(evt);
+        
+        formularioProva = new ProvaFormulario(this, true, prova);
         formularioProva.setTitle("Nova Prova");
         formularioProva.setLocationRelativeTo(this);
         formularioProva.setVisible(true);
 
         if(!prova.isProvaSalva()){
-            ProvaPainelDados ppd = new ProvaPainelDados(prova, this);
-            painelDadosProva.removeAll();
-            painelDadosProva.setLayout(new FlowLayout(FlowLayout.LEFT));
-            painelDadosProva.add(ppd);
-            painelDadosProva.revalidate();
+            ProvaPainelDados painelDadosProva = new ProvaPainelDados(prova, this);
+            painelConteudoProva.add(painelDadosProva);
+            painelConteudoProva.validate();
+            painelConteudoProva.repaint();
 
             //Ativa os menu editar e configurar
-            //menuEditar.setEnabled(true);
+            menuEditar.setEnabled(true);
             menuCorrigir.setEnabled(true);
-            //menuConfigurar.setEnabled(true);
+            menuConfigurar.setEnabled(true);
 
             //Permite visualizar a parte dos cartões
             painelGerenciamentoCartao = new CartaoPainelGerencimento(prova);
-            painelConteudo.removeAll();
-            painelConteudo.add(painelGerenciamentoCartao);
-            painelConteudo.revalidate();
-            painelConteudo.repaint();
+            painelConteudoCartao.removeAll();
+            painelConteudoCartao.add(painelGerenciamentoCartao);
+            painelConteudoCartao.revalidate();
+            painelConteudoCartao.repaint();
         }
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
+        System.out.println("Valor da prova global:" + prova);
+
+        Prova novaProva = new Prova();
+        novaProva.setIdProva(0);
+        ProvaLocalizar localizadorProva = new ProvaLocalizar(this, true, novaProva);
+
+        localizadorProva.pack();
+        localizadorProva.setVisible(true);
         
+        novaProva = localizadorProva.getProva();
+        if(novaProva.getIdProva() != 0){
+        }
+        
+        itmFecharActionPerformed(evt);
+        
+        this.prova = novaProva;
+        ProvaPainelDados painelDadosProva = new ProvaPainelDados(this.prova, this);
+        painelConteudoProva.add(painelDadosProva);
+        painelConteudoProva.validate();
+        painelConteudoProva.repaint();
+
+        //Ativa os menu editar e configurar
+        menuEditar.setEnabled(true);
+        menuCorrigir.setEnabled(true);
+        menuConfigurar.setEnabled(true);
+
+        //Permite visualizar a parte dos cartões
+        painelGerenciamentoCartao = new CartaoPainelGerencimento(this.prova);
+        painelConteudoCartao.removeAll();
+        painelConteudoCartao.add(painelGerenciamentoCartao);
+        painelConteudoCartao.revalidate();
+        painelConteudoCartao.repaint();
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
@@ -370,6 +379,7 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmSalvarActionPerformed
 
     private void itmSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarComoActionPerformed
+        System.out.println(prova);
         // TODO add your handling code here:
     }//GEN-LAST:event_itmSalvarComoActionPerformed
 
@@ -390,9 +400,10 @@ public class Scacp extends javax.swing.JFrame {
             }
         }
 
-        painelDadosProva.removeAll();
-        painelConteudo.removeAll();
-        //painelCartao.resetar();
+        painelConteudoProva.removeAll();
+        painelConteudoCartao.removeAll();
+        menuEditar.setEnabled(false);
+        menuCorrigir.setEnabled(false);
         prova = new Prova();
         validate();
         repaint();
@@ -464,7 +475,7 @@ public class Scacp extends javax.swing.JFrame {
         } else {
             itmProporcaoPenalizacao.setEnabled(false);
         }
-        ProvaPainelDados ppd = (ProvaPainelDados) painelDadosProva.getComponent(0);
+        ProvaPainelDados ppd = (ProvaPainelDados) painelConteudoProva.getComponent(0);
         ppd.setIncidenciaPenalizacao(chbmIncidenciaPenalizacao.isSelected());
     }//GEN-LAST:event_chbmIncidenciaPenalizacaoActionPerformed
 
@@ -475,7 +486,7 @@ public class Scacp extends javax.swing.JFrame {
         try {
             proporcaoPenalizacao = Integer.parseInt(strProporcaoPenalizacao);
             prova.setProporcaoPenalizacao(proporcaoPenalizacao);
-            ProvaPainelDados ppd = (ProvaPainelDados) painelDadosProva.getComponent(0); // Pego o painel com as informações da prova
+            ProvaPainelDados ppd = (ProvaPainelDados) painelConteudoProva.getComponent(0); // Pego o painel com as informações da prova
             ppd.setProporcaoPenalizacao(proporcaoPenalizacao);
         } catch (NumberFormatException excecao) {
             JOptionPane.showMessageDialog(rootPane, "Por favor, informe um número maior que 0.", "Formato inválido!", JOptionPane.ERROR_MESSAGE);
@@ -561,7 +572,7 @@ public class Scacp extends javax.swing.JFrame {
     private javax.swing.JMenu menuEscalaPontuacao;
     private javax.swing.JMenu menuSistemaPenalizacao;
     private javax.swing.JMenu menuTipoProva;
-    private javax.swing.JPanel painelConteudo;
-    private javax.swing.JPanel painelDadosProva;
+    private javax.swing.JPanel painelConteudoCartao;
+    private javax.swing.JPanel painelConteudoProva;
     // End of variables declaration//GEN-END:variables
 }

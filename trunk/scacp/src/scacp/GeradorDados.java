@@ -41,26 +41,7 @@ public class GeradorDados {
         return numeroInscricao;
     }
     
-    public static boolean validarNumeroInscricao(int numeroInscricao){
-        int contador, verificadorOriginal, verificadorReal, numeros[];
-        numeros = new int[6];
-        verificadorReal = 0;
-        verificadorOriginal = numeroInscricao % 10;
-        numeroInscricao = (numeroInscricao-verificadorOriginal)/10;
-        for(contador = 0; contador < 6; contador ++){
-            numeros[contador] = numeroInscricao % 10;
-            numeroInscricao = (numeroInscricao-numeros[contador])/10;
-            //Multiplicadores:      10  9   8   7   6   5   4   3   2
-            //numeros[contador]:                5   4   3   2   1   0 (posições)
-            verificadorReal += numeros[contador] * (contador+2);
-        }
-        if(verificadorReal%11 < 2){
-            verificadorReal = 0;
-        }else{
-            verificadorReal = 11 - verificadorReal % 11;
-        }
-        return verificadorOriginal == verificadorReal;
-    }
+
     
 }
 

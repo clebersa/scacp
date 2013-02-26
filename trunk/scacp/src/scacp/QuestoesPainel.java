@@ -19,6 +19,9 @@ public class QuestoesPainel extends javax.swing.JPanel {
      * Creates new form FormularioRespostas
      */
     public QuestoesPainel(int numeroInscricao, int inicioQuestoes, int fimQuestoes, TipoProva tipoProva) {
+        int largura;
+        int altura;
+        
         this.numeroInscricao = numeroInscricao;
         this.inicioQuestoes = inicioQuestoes;
         this.fimQuestoes = fimQuestoes;
@@ -26,9 +29,10 @@ public class QuestoesPainel extends javax.swing.JPanel {
         questoes = new HashMap<>();
         initComponents();
         
-        int largura;
-        int altura;
         largura = 35*(fimQuestoes-inicioQuestoes+1) + 2 * 80;
+        if(largura < 350){
+            largura = 350;
+        }
         if(tipoProva == TipoProva.MULTIPLA_ESCOLHA){
             if(numeroInscricao == 9999990){
                 altura = 18 + 220;
@@ -41,8 +45,8 @@ public class QuestoesPainel extends javax.swing.JPanel {
             }else{
                 altura = 18+ 150;
             }
-            
         }
+        altura += 12;
         setPreferredSize(new Dimension(largura, altura));        
     }
     
@@ -52,7 +56,6 @@ public class QuestoesPainel extends javax.swing.JPanel {
         for(contador = inicioQuestoes; contador <= fimQuestoes; contador++){
             marcacao += questoes.get(contador).getAlternativa();
         }
-        System.out.println("Marcação: " + marcacao);
         return marcacao;
     }
     
@@ -62,6 +65,15 @@ public class QuestoesPainel extends javax.swing.JPanel {
             questoes.get(contador).setAlternativa(String.format("%c", marcacao.charAt(questao)));
         }
     }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        for(QuestaoFormulario questaoFormulario : questoes.values()){
+            questaoFormulario.setEnabled(enabled);
+        }
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

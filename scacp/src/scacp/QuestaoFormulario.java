@@ -52,4 +52,13 @@ public abstract class QuestaoFormulario extends javax.swing.JPanel {
     public void setNumeroQuestao(int numeroQuestao) {
         this.numeroQuestao = numeroQuestao;
     }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        for(JRadioButton alternativa: alternativas){
+            alternativa.setEnabled(enabled);
+        }
+    }
+    
+    
 }

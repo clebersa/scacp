@@ -94,13 +94,13 @@ public class ProvaFormulario extends javax.swing.JDialog {
 
         lblPrecisaoPontucao.setText("Precisão da pontuação:");
 
-        spnPrecisaoPontucao.setModel(new javax.swing.SpinnerNumberModel(0, 0, 3, 1));
+        spnPrecisaoPontucao.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2, 1));
         spnPrecisaoPontucao.setValue(prova.getPrecisaoPontuacao());
 
-        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100.0d), null, null, Double.valueOf(1.0d)));
+        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100.0d), null, Double.valueOf(100.0d), Double.valueOf(1.0d)));
         spnPontuacaoMaxima.setValue(prova.getPontuacaoMaxima());
 
-        spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), null, null, Double.valueOf(1.0d)));
+        spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 1000.0d, 1.0d));
         spnPontuacaoMinima.setValue(prova.getPontuacaoMinima());
 
         javax.swing.GroupLayout pnlEscalaPontuacaoLayout = new javax.swing.GroupLayout(pnlEscalaPontuacao);
@@ -295,7 +295,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Informe uma quantidade de questões válida!", "Quantidade Inválida!", JOptionPane.ERROR_MESSAGE);
             validacaoOK = false;
         }
-        if((double) spnPontuacaoMinima.getValue() >= (double) spnPontuacaoMaxima.getValue()){
+        if((double) spnPontuacaoMinima.getValue() > (double) spnPontuacaoMaxima.getValue()){
             JOptionPane.showMessageDialog(rootPane, "O valor da pontuação mínima deve ser menor \ndo que o valor da pontuação máxima!", "Valor de pontuação incorreto!", JOptionPane.ERROR_MESSAGE);
             validacaoOK = false;
         }

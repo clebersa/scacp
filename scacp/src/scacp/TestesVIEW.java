@@ -38,15 +38,21 @@ public class TestesVIEW {
         janela.pack();*/
         
         // Teste CartaoPainelGereciamento
-        /*Prova prova = new Prova();
+        Prova prova = new Prova();
         prova.setNome("Vestibular 2013");
         prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);
-        prova.setQuantidadeQuestoes(50);
+        prova.setQuantidadeQuestoes(2);
         Cartao cartao = new Cartao();
         //cartao.setMarcacao("ac*dbdc*ab#eddc#aeec");
         cartao.setMarcacao("ac*dbdc*ab");
         cartao.setNumeroInscricao(123456789);
         cartao.setNota(12.5);
+        cartao.setCartaoSalvo(true);
+        prova.getCartoes().put(cartao.getNumeroInscricao(), cartao);
+        cartao.setMarcacao("dd*dbdc*ab");
+        cartao.setNumeroInscricao(6967817);
+        cartao.setNota(5);
+        cartao.setCartaoSalvo(true);
         prova.getCartoes().put(cartao.getNumeroInscricao(), cartao);
         CartaoPainelGerencimento cpg = new CartaoPainelGerencimento(prova);
         janela.add(cpg);
@@ -72,7 +78,7 @@ public class TestesVIEW {
         }
         janela.pack();
         janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        janela.setVisible(true);*/
+        janela.setVisible(true);
         
     }
     

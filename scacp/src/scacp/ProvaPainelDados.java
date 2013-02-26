@@ -64,6 +64,7 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblTipoProvaD.setName("tipoProva"); // NOI18N
 
         btnAlterar.setText("Alterar");
+        btnAlterar.setVisible(false);
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
@@ -106,6 +107,7 @@ public class ProvaPainelDados extends javax.swing.JPanel {
         lblIncidenciaPenalizacaoD.setName("incidenciaPenalizacaoBoolean"); // NOI18N
 
         btnConcluir.setText("Concluir");
+        btnConcluir.setVisible(false);
         btnConcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConcluirActionPerformed(evt);

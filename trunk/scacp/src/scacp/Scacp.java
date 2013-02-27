@@ -116,6 +116,7 @@ public class Scacp extends javax.swing.JFrame {
         menuArquivo.add(itmSalvarComo);
 
         itmImprimir.setText("Imprimir");
+        itmImprimir.setEnabled(false);
         itmImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itmImprimirActionPerformed(evt);
@@ -273,6 +274,7 @@ public class Scacp extends javax.swing.JFrame {
         barraMenuPrincipal.add(menuConfigurar);
 
         menuAjuda.setText("Ajuda");
+        menuAjuda.setEnabled(false);
 
         itmAjuda.setText("Ajuda");
         itmAjuda.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +308,7 @@ public class Scacp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelConteudoProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
         );
 
         pack();
@@ -347,7 +349,7 @@ public class Scacp extends javax.swing.JFrame {
         Prova novaProva = new Prova();
         novaProva.setIdProva(0);
         ProvaLocalizar localizadorProva = new ProvaLocalizar(this, true, novaProva);
-
+        localizadorProva.setLocationRelativeTo(this);
         localizadorProva.pack();
         localizadorProva.setVisible(true);
         
@@ -377,16 +379,56 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
-        ProvaDAO provaDao = new ProvaDAO();
-        Prova prova = new Prova();
-        prova.setIdProva(this.prova.getIdProva());
-        
-        provaDao.inserirProva(prova);
+        if(prova.getIdProva() != 0){
+            if(prova.getGabarito().equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(this, "O gabarito da prova não foi informado.\nInforme o gabarito da prova!", "Falta gabarito", JOptionPane.YES_NO_CANCEL_OPTION);
+            }else{
+                if(!prova.isProvaSalva()){
+                    ProvaDAO provaDAO = new ProvaDAO();
+                    if(provaDAO.provaJaExiste(prova.getNome())){
+                        CartaoDAO cartaoDAO = new CartaoDAO();
+                        for(Cartao cartao: prova.getCartoes().values()){
+                            System.out.println("entrou aqui");
+                            cartaoDAO.inserirCartao(cartao, prova.getIdProva());
+                        }
+                    }else{
+                        provaDAO.inserirProva(prova);
+                    }
+                    painelConteudoProva.removeAll();
+                    painelConteudoCartao.removeAll();
+                    menuEditar.setEnabled(false);
+                    menuCorrigir.setEnabled(false);
+                    prova = new Prova();
+                    validate();
+                    repaint();
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(this, "Já existe uma prova no banco de dados com este nome.\nEscolha a opção 'Salvar como' e especifique outro \nnome para salvar a prova atual.", "Nome de prova existente", JOptionPane.YES_NO_CANCEL_OPTION);
+        }
     }//GEN-LAST:event_itmSalvarActionPerformed
 
     private void itmSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarComoActionPerformed
-        System.out.println(prova);
-        // TODO add your handling code here:
+        
+            if(prova.getGabarito().equalsIgnoreCase("")){
+                JOptionPane.showMessageDialog(this, "O gabarito da prova não foi informado.\nInforme o gabarito da prova!", "Falta gabarito", JOptionPane.YES_NO_CANCEL_OPTION);
+            }else{
+                ProvaSalvarComo provaSalvarComo = new ProvaSalvarComo(this, true, prova);
+                provaSalvarComo.setLocationRelativeTo(this);
+                provaSalvarComo.pack();
+                provaSalvarComo.setVisible(true);
+
+                if(provaSalvarComo.salvou()){
+                    painelConteudoProva.removeAll();
+                    painelConteudoCartao.removeAll();
+                    menuEditar.setEnabled(false);
+                    menuCorrigir.setEnabled(false);
+                    prova = new Prova();
+                    validate();
+                    repaint();
+                }
+            }
+        
     }//GEN-LAST:event_itmSalvarComoActionPerformed
 
     private void itmImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmImprimirActionPerformed

@@ -45,7 +45,7 @@ public class ProvaLocalizar extends javax.swing.JDialog {
         btnCancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Localizar Cartão");
+        setTitle("Localizar Prova");
         setPreferredSize(new java.awt.Dimension(300, 400));
 
         lblNumeroinscricao.setText("Nome:");

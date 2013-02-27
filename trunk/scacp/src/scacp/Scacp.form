@@ -44,6 +44,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="itmImprimir">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmImprimirActionPerformed"/>
@@ -220,6 +221,7 @@
         <Menu class="javax.swing.JMenu" name="menuAjuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itmAjuda">
@@ -281,7 +283,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="painelConteudoProva" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelConteudoCartao" pref="302" max="32767" attributes="0"/>
+              <Component id="painelConteudoCartao" pref="306" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

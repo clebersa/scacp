@@ -88,6 +88,8 @@ public class ProvaDAO {
             prova.setProporcaoPenalizacao(rs.getInt("proporcao_penalizacao"));
             prova.setGabarito(rs.getString("gabarito"));
             
+            rs.close();
+            
             CartaoDAO cartaoDao = new CartaoDAO();
             prova.setCartoes(cartaoDao.buscarCartoes(idProva));
 
@@ -98,24 +100,29 @@ public class ProvaDAO {
         }
         return prova;
     }
-    /*
-    public boolean provaJaExiste(int idProva){
+    
+    public boolean provaJaExiste(String nome){
+        boolean jaExiste = false;
         Connection conexao = Conexao.getConexao();
-        Prova prova = new Prova();
 
         try {
             PreparedStatement st;
-            st = conexao.prepareStatement("select * from provas where id_prova = ?");
-            st.setInt(1, idProva);
+            st = conexao.prepareStatement("select * from provas where nome = ?");
+            st.setString(1, nome);
             ResultSet rs = st.executeQuery();
-            rs.get
-            
-        if(prova.getNome().equalsIgnoreCase("")){
-            return false;
-        }else{
-            return true;
+            if(rs.getFetchSize() == 0){
+                jaExiste = false;
+            }else{
+                jaExiste = true;
+            }
+            rs.close();
+            st.close();
+            conexao.close();
+        }catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca!\nErro: " + excecao.getMessage());
         }
-    }*/
+        return jaExiste;
+    }
 
     public List<Prova> buscarProvas() {
         List<Prova> provas = new ArrayList<>();

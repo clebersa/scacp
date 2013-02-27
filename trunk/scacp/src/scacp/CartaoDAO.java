@@ -8,9 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -127,5 +125,30 @@ public class CartaoDAO {
         } catch (SQLException excecao) {
             JOptionPane.showMessageDialog(null, "Erro ao tentar deletar");
         }
+    }
+    
+    public boolean cartaoJaExiste(int numeroInscricao, int idProva){
+        boolean jaExiste = false;
+        Connection conexao = Conexao.getConexao();
+
+        try {
+            PreparedStatement st;
+            st = conexao.prepareStatement("select * from cartoes where numero_inscricao = ? and fk_id_prova = ?");
+            st.setInt(1, numeroInscricao);
+            st.setInt(2, idProva);
+            ResultSet rs = st.executeQuery();
+            if(rs.getFetchSize() == 0){
+                jaExiste = false;
+            }else{
+                jaExiste = true;
+            }
+            System.out.println("existe: "+jaExiste);
+            rs.close();
+            st.close();
+            conexao.close();
+        }catch (SQLException excecao) {
+            JOptionPane.showMessageDialog(null, "Erro ao tentar realizar busca!\nErro: " + excecao.getMessage());
+        }
+        return jaExiste;
     }
 }

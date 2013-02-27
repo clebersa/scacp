@@ -4,23 +4,28 @@
  */
 package scacp;
 
-import java.util.HashMap;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author cleber
  */
-public class CartaoLocalizar extends javax.swing.JDialog {
-    Cartao cartao;
-    HashMap<Integer, Cartao> cartoes;
+public class ProvaSalvarComo extends javax.swing.JDialog {
+    private Prova prova;
+    private List<Prova> provas;
+    private ProvaDAO provaDAO;
+    private boolean salvou;
     /**
      * Creates new form CartaoLocalizar
      */
-    public CartaoLocalizar(java.awt.Frame parent, boolean modal, HashMap<Integer, Cartao> cartoes, Cartao cartao) {
+    public ProvaSalvarComo(java.awt.Frame parent, boolean modal, Prova prova) {
         super(parent, modal);
-        this.cartoes = cartoes;
-        this.cartao = cartao;
+        this.prova = prova;
+        provas = new ArrayList<>();
+        provaDAO = new ProvaDAO();
+        salvou = false;
         initComponents();
     }
 
@@ -33,47 +38,35 @@ public class CartaoLocalizar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblNumeroinscricao = new javax.swing.JLabel();
-        txfNumeroInscricao = new javax.swing.JTextField();
-        btnLocalizar = new javax.swing.JButton();
+        lblSalvarComo = new javax.swing.JLabel();
+        txfNomeProva = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listCartoes = new javax.swing.JList();
+        listProvas = new javax.swing.JList();
         btnAbrir = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        lblProvasExistentes = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Localizar Cartão");
-        setPreferredSize(new java.awt.Dimension(300, 400));
+        setTitle("Salvar como");
+        setResizable(false);
 
-        lblNumeroinscricao.setText("Número Inscrição:");
+        lblSalvarComo.setText("Salvar como:");
 
-        txfNumeroInscricao.setVisible(false);
+        txfNomeProva.setVisible(true);
 
-        btnLocalizar.setText("Localizar");
-        btnLocalizar.setVisible(false);
-        btnLocalizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLocalizarActionPerformed(evt);
-            }
-        });
-
-        listCartoes.setModel(new javax.swing.AbstractListModel() {
+        provas = provaDAO.buscarProvas();
+        listProvas.setModel(new javax.swing.AbstractListModel() {
             public int getSize() {
-                return cartoes.size();
+                return provas.size();
             }
             public Object getElementAt(int i) {
-                Set numerosInscricao = cartoes.keySet();
-                System.out.println("numeros: "+numerosInscricao.toArray()[i]);
-                return numerosInscricao.toArray()[i];
+                return provas.get(i).getNome();
             }
         });
-        listCartoes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(listCartoes);
+        listProvas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listProvas);
 
-        btnAbrir.setText("Abrir");
-        if(cartoes.isEmpty()){
-            btnAbrir.setEnabled(false);
-        }
+        btnAbrir.setText("Salvar");
         btnAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbrirActionPerformed(evt);
@@ -87,6 +80,8 @@ public class CartaoLocalizar extends javax.swing.JDialog {
             }
         });
 
+        lblProvasExistentes.setText("Provas existentes:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,16 +91,15 @@ public class CartaoLocalizar extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lblSalvarComo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txfNomeProva, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAbrir))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblNumeroinscricao)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txfNumeroInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLocalizar)
+                        .addComponent(lblProvasExistentes)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -113,37 +107,51 @@ public class CartaoLocalizar extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNumeroinscricao)
-                    .addComponent(txfNumeroInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLocalizar))
-                .addGap(7, 7, 7)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                .addComponent(lblProvasExistentes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAbrir)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(txfNomeProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSalvarComo))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLocalizarActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
-        cartao.setMarcacao(cartoes.get((int) listCartoes.getSelectedValue()).getMarcacao());
-        cartao.setNota(cartoes.get((int) listCartoes.getSelectedValue()).getNota());
-        cartao.setNumeroInscricao(cartoes.get((int) listCartoes.getSelectedValue()).getNumeroInscricao());
-        cartao.setCartaoSalvo(cartoes.get((int) listCartoes.getSelectedValue()).isCartaoSalvo());
-        dispose();
+        boolean provaJaExiste = false;
+        
+        if(txfNomeProva.getText().equalsIgnoreCase("")){
+            provaJaExiste = true;
+        }else{
+            for(Prova prova : provas){
+                if(txfNomeProva.getText().equalsIgnoreCase(prova.getNome())){
+                    provaJaExiste = true;
+                    break;
+                }
+            }
+        }
+        if(!provaJaExiste){
+            prova.setNome(txfNomeProva.getText());
+            provaDAO.inserirProva(prova);
+            salvou = true;
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "Já existe uma prova no banco de dados com este nome ou ele é inválido.\nEscolha um nome válido e diferente dos nomes apresentados na lista.", "Nome de prova existente", JOptionPane.YES_NO_CANCEL_OPTION);
+        }
     }//GEN-LAST:event_btnAbrirActionPerformed
+
+    public boolean salvou() {
+        return salvou;
+    }
 
     /**
      * @param args the command line arguments
@@ -152,10 +160,10 @@ public class CartaoLocalizar extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnLocalizar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblNumeroinscricao;
-    private javax.swing.JList listCartoes;
-    private javax.swing.JTextField txfNumeroInscricao;
+    private javax.swing.JLabel lblProvasExistentes;
+    private javax.swing.JLabel lblSalvarComo;
+    private javax.swing.JList listProvas;
+    private javax.swing.JTextField txfNomeProva;
     // End of variables declaration//GEN-END:variables
 }

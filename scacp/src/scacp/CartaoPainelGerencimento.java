@@ -166,7 +166,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                             JOptionPane.showMessageDialog(this, "Este número de inscrição é do gabarito!\nNão é permitido inserir um cartão de prova com o mesmo número do gabarito!\nInforme outro número de inscrição!", "Número de inscrição do gabarito", JOptionPane.OK_CANCEL_OPTION);
                             return;
                         } else if (numeroInscricao == 0) {
-                            btnExcluirActionPerformed(evt);
+                            resetarPainel();
                             JOptionPane.showMessageDialog(this, "Número de inscrição do último cartão informado!\nClique para corrigir as provas.", "Último cartão!", JOptionPane.OK_CANCEL_OPTION);
                             btnIncluir.setEnabled(false);
                             btnExcluir.setEnabled(false);
@@ -186,7 +186,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                         btnLocalizar.setEnabled(true);
                         btnAlterar.setEnabled(false);
                         btnCorrigirCartoes.setEnabled(false);
-                        btnExcluirActionPerformed(evt);
+                        resetarPainel();
                         painelInternoScroll.add(cartaoPainel);
                         painelInternoScroll.setPreferredSize(cartaoPainel.getPreferredSize());
                         painelInternoScroll.validate();
@@ -197,7 +197,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                         JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
                     }
                 } else {
-                    btnExcluirActionPerformed(evt);
+                    resetarPainel();
                 }
             } catch (NumberFormatException excecao) {
                 JOptionPane.showMessageDialog(this, "Número de inscrição inválido!\nInforme um número válido!", "Inscrição Inválida", JOptionPane.ERROR_MESSAGE);
@@ -215,18 +215,28 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAlterarActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        if (painelInternoScroll.getComponentCount() != 0) {
-            btnExcluir.setEnabled(false);
-            btnAlterar.setEnabled(false);
-            btnIncluir.setEnabled(true);
-            painelInternoScroll.removeAll();
-            painelInternoScroll.validate();
-            painelInternoScroll.repaint();
-            scrpnlQuestoesCartao.validate();
-            scrpnlQuestoesCartao.repaint();
-        }/*else{
-         JOptionPane.showMessageDialog(this, "Nenhum cartão para remover!", "Atenção!", JOptionPane.YES_NO_CANCEL_OPTION);
-         }*/
+        int opcao;
+        
+        Cartao cartao = ((CartaoPainel) painelInternoScroll.getComponent(0)).getCartao();
+        
+        opcao = JOptionPane.showConfirmDialog(this, "Deseja de fato excluir o cartão (" + cartao.getNumeroInscricao() + ")?", "Excluir cartão", JOptionPane.INFORMATION_MESSAGE);
+
+        switch (opcao) {
+            case 0: // "Ok" option
+                CartaoDAO cartaoDAO = new CartaoDAO();
+                if(cartaoDAO.cartaoJaExiste(cartao.getNumeroInscricao(), prova.getIdProva())){
+                    cartaoDAO.excluirCartao(cartao.getNumeroInscricao(), prova.getIdProva());
+                }
+                if(prova.getCartoes().containsKey(cartao.getNumeroInscricao())){
+                    prova.getCartoes().remove(cartao.getNumeroInscricao());
+                }
+                resetarPainel();
+             case 1: // "No" option
+                 break;
+             case 2: // "Cancel" option
+                 break;
+             default:
+         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnLocalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLocalizarActionPerformed
@@ -236,6 +246,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         novoCartao = new Cartao();
 
         CartaoLocalizar localizadorCartao = new CartaoLocalizar(null, true, prova.getCartoes(), novoCartao);
+        localizadorCartao.setLocationRelativeTo(this);
         localizadorCartao.pack();
         localizadorCartao.setVisible(true);
 
@@ -270,6 +281,21 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnCorrigirCartoesActionPerformed
 
+    private void resetarPainel(){
+        if (painelInternoScroll.getComponentCount() != 0) {
+            btnExcluir.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnIncluir.setEnabled(true);
+            painelInternoScroll.removeAll();
+            painelInternoScroll.validate();
+            painelInternoScroll.repaint();
+            scrpnlQuestoesCartao.validate();
+            scrpnlQuestoesCartao.repaint();
+        }/*else{
+         JOptionPane.showMessageDialog(this, "Nenhum cartão para remover!", "Atenção!", JOptionPane.YES_NO_CANCEL_OPTION);
+         }*/
+    }
+    
     public boolean salvarCartaoAtual() {
         Cartao cartaoAtual;
         int opcao;
@@ -293,12 +319,13 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                         }
                         if (questoesFaltando.isEmpty()) {
                             if (cartaoAtual.getNumeroInscricao() != 9999990) {
+                                cartaoAtual.setCartaoSalvo(false);
                                 prova.getCartoes().put(cartaoAtual.getNumeroInscricao(), cartaoAtual);
                             } else {
                                 cartaoAtual.setCartaoSalvo(true);
                                 prova.setGabarito(cartaoAtual.getMarcacao());
                             }
-                            btnExcluirActionPerformed(null);
+                            resetarPainel();
                             return true;
                         } else {
                             questoesFaltando = questoesFaltando.substring(0, questoesFaltando.length() - 2);
@@ -316,7 +343,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                             return false;
                         }
                     case 1: // "No" option
-                        btnExcluirActionPerformed(null);
+                        resetarPainel();
                         return true;
                     case 2: // "Cancel" option
                         return false;
@@ -324,7 +351,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                         return false;
                 }
             } else {
-                btnExcluirActionPerformed(null);
+                resetarPainel();
                 return true;
             }
         } else {

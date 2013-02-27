@@ -26,6 +26,7 @@ public class Prova {
     private boolean provaSalva; // Atributo que não vai para o BD
 
     public Prova() {
+        idProva = 0;
         provaSalva = true;
         proporcaoPenalizacao = 1;
         gabarito = "";

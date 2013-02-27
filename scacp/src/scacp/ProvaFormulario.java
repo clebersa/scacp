@@ -309,9 +309,6 @@ public class ProvaFormulario extends javax.swing.JDialog {
             prova.setProvaSalva(false);
             //Nome da prova
             prova.setNome(txtfNome.getText());
-            if(prova.getNome().equals("")){
-
-            }
             //Tipo da prova
             if (cmbbTipoProva.getSelectedItem().equals(TipoProva.MULTIPLA_ESCOLHA.getTipo())) {
                 prova.setTipoProva(TipoProva.MULTIPLA_ESCOLHA);

@@ -8,6 +8,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,6 +73,8 @@ public class Scacp extends javax.swing.JFrame {
         itmSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("SCACP - Sistema de Correção Automática de Cartões de Prova");
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
         painelConteudoProva.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
@@ -375,6 +378,9 @@ public class Scacp extends javax.swing.JFrame {
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
         ProvaDAO provaDao = new ProvaDAO();
+        Prova prova = new Prova();
+        prova.setIdProva(this.prova.getIdProva());
+        
         provaDao.inserirProva(prova);
     }//GEN-LAST:event_itmSalvarActionPerformed
 

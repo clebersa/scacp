@@ -63,7 +63,6 @@ public class CartaoLocalizar extends javax.swing.JDialog {
             }
             public Object getElementAt(int i) {
                 Set numerosInscricao = cartoes.keySet();
-                System.out.println("numeros: "+numerosInscricao.toArray()[i]);
                 return numerosInscricao.toArray()[i];
             }
         });

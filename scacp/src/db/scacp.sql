@@ -6,7 +6,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 create user 'scacp'@'localhost' identified by '123456';
 grant all on scacp.* to 'scacp'@'localhost';
 
-
 DROP SCHEMA IF EXISTS `scacp` ;
 CREATE SCHEMA IF NOT EXISTS `scacp` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ;
 USE `scacp` ;
@@ -43,7 +42,7 @@ CREATE  TABLE IF NOT EXISTS `scacp`.`cartoes` (
   `fk_id_prova` INT UNSIGNED NOT NULL COMMENT 'Chave estrangeira que refencia a prova à qual o cartão está associado.' ,
   `marcacao` VARCHAR(100) NOT NULL COMMENT 'Questões marcadas na prova, onde cada caracter representará a resposta de uma alternativa, podendo ser:\\n\\\'a\\\', \\\'b\\\', \\\'c\\\', \\\'d\\\' ou \\\'e\\\', para a prova de múltipla escolha,\\n\\\'v\\\' ou \\\'f\\\', para a prova do tipo verdadeito ou falso,\\n\\\'*\\\', questão deixada em branco,\\n\\\'#\\\', /* comment truncated */' ,
   `nota` DOUBLE NOT NULL COMMENT 'Nota obtida após o cálculo segundo as regras da prova.' ,
-  PRIMARY KEY (`numero_inscricao`) ,
+  PRIMARY KEY (`numero_inscricao`, `fk_id_prova`) ,
   INDEX `fk_id_prova_idx` (`fk_id_prova` ASC) ,
   CONSTRAINT `fk_id_prova`
     FOREIGN KEY (`fk_id_prova` )

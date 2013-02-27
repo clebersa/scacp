@@ -110,7 +110,8 @@ public class ProvaDAO {
             st = conexao.prepareStatement("select * from provas where nome = ?");
             st.setString(1, nome);
             ResultSet rs = st.executeQuery();
-            if(rs.getFetchSize() == 0){
+            rs.last();
+            if(rs.getRow() == 0){
                 jaExiste = false;
             }else{
                 jaExiste = true;

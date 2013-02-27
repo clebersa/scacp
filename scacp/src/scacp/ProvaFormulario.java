@@ -97,7 +97,7 @@ public class ProvaFormulario extends javax.swing.JDialog {
         spnPrecisaoPontucao.setModel(new javax.swing.SpinnerNumberModel(0, 0, 2, 1));
         spnPrecisaoPontucao.setValue(prova.getPrecisaoPontuacao());
 
-        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100.0d), null, Double.valueOf(100.0d), Double.valueOf(1.0d)));
+        spnPontuacaoMaxima.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(100.0d), null, Double.valueOf(1000.0d), Double.valueOf(1.0d)));
         spnPontuacaoMaxima.setValue(prova.getPontuacaoMaxima());
 
         spnPontuacaoMinima.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, 1000.0d, 1.0d));

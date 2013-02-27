@@ -71,6 +71,7 @@ public class ProvaDAO {
             st.setInt(1, idProva);
             
             ResultSet rs = st.executeQuery();
+            System.out.println("tamanho: "+rs.getFetchSize());
             rs.next();
             prova.setIdProva(rs.getInt("id_prova"));
             prova.setNome(rs.getString("nome"));
@@ -97,6 +98,24 @@ public class ProvaDAO {
         }
         return prova;
     }
+    /*
+    public boolean provaJaExiste(int idProva){
+        Connection conexao = Conexao.getConexao();
+        Prova prova = new Prova();
+
+        try {
+            PreparedStatement st;
+            st = conexao.prepareStatement("select * from provas where id_prova = ?");
+            st.setInt(1, idProva);
+            ResultSet rs = st.executeQuery();
+            rs.get
+            
+        if(prova.getNome().equalsIgnoreCase("")){
+            return false;
+        }else{
+            return true;
+        }
+    }*/
 
     public List<Prova> buscarProvas() {
         List<Prova> provas = new ArrayList<>();

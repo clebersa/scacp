@@ -29,14 +29,14 @@ public class CartaoDAO {
             st.close();
             conexao.close();
         } catch (SQLException excecao) {
-            JOptionPane.showMessageDialog(null, "Erro ao criar o statement!");
+            JOptionPane.showMessageDialog(null, "Erro ao criar o statement!\nErro: "+excecao.getMessage());
         }
     }
 
     public void alterarCartaoMarcacao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao=? where  numero_inscricao = ? and fk_id_prova = ?");
+            PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao= ? where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString(1, cartao.getMarcacao());
             st.setInt(2, cartao.getNumeroInscricao());
             st.setInt(3, IdProva);
@@ -44,7 +44,7 @@ public class CartaoDAO {
             st.close();
             conexao.close();
         } catch (SQLException excecao) {
-            JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.");
+            JOptionPane.showMessageDialog(null, "Erro ao tentar alterar a marcação.\nErro:"+excecao.getMessage());
         }
         alterarCartaoNota(cartao, IdProva);
     }
@@ -52,9 +52,10 @@ public class CartaoDAO {
     public void alterarCartaoNota(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
-            PreparedStatement st = conexao.prepareStatement("update cartoes set nota= ? where  numero_inscricao = ?");
+            PreparedStatement st = conexao.prepareStatement("update cartoes set nota = ? where numero_inscricao = ? and fk_id_prova = ?");
             st.setDouble(1, cartao.getNota());
             st.setInt(2, cartao.getNumeroInscricao());
+            st.setInt(3, IdProva);
             st.execute();
             st.close();
             conexao.close();
@@ -90,7 +91,7 @@ public class CartaoDAO {
     }
 
     public HashMap<Integer,Cartao> buscarCartoes(int idProva) {
-        HashMap<Integer,Cartao> cartoes = new HashMap<Integer,Cartao>();
+        HashMap<Integer,Cartao> cartoes = new HashMap<>();
         Cartao cartao = new Cartao();
         Connection conexao = Conexao.getConexao();
 
@@ -102,7 +103,7 @@ public class CartaoDAO {
                 cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
                 cartao.setMarcacao(rs.getString("marcacao"));
                 cartao.setNota(rs.getDouble("nota"));
-                cartoes.put(idProva, cartao);
+                cartoes.put(cartao.getNumeroInscricao(), cartao);
             }
             st.execute();
             rs.close();
@@ -137,7 +138,8 @@ public class CartaoDAO {
             st.setInt(1, numeroInscricao);
             st.setInt(2, idProva);
             ResultSet rs = st.executeQuery();
-            if(rs.getFetchSize() == 0){
+            rs.last();
+            if(rs.getRow() == 0){
                 jaExiste = false;
             }else{
                 jaExiste = true;

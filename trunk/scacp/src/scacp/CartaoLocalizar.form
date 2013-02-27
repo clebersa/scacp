@@ -101,7 +101,7 @@
       <SubComponents>
         <Component class="javax.swing.JList" name="listCartoes">
           <Properties>
-            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor" postCode="listCartoes.setModel(new javax.swing.AbstractListModel() {    &#xa;    public int getSize() {&#xa;        return cartoes.size();        &#xa;    }&#xa;    public Object getElementAt(int i) {&#xa;        Set numerosInscricao = cartoes.keySet();&#xa;        System.out.println(&quot;numeros: &quot;+numerosInscricao.toArray()[i]);&#xa;        return numerosInscricao.toArray()[i];&#xa;    }&#xa;});">
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor" postCode="listCartoes.setModel(new javax.swing.AbstractListModel() {    &#xa;    public int getSize() {&#xa;        return cartoes.size();        &#xa;    }&#xa;    public Object getElementAt(int i) {&#xa;        Set numerosInscricao = cartoes.keySet();&#xa;        return numerosInscricao.toArray()[i];&#xa;    }&#xa;});">
               <StringArray count="0"/>
             </Property>
             <Property name="selectionMode" type="int" value="0"/>

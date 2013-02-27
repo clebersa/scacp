@@ -244,7 +244,8 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
         CartaoPainel cartaoPainel;
 
         novoCartao = new Cartao();
-
+        
+        System.out.println(prova.getCartoes());
         CartaoLocalizar localizadorCartao = new CartaoLocalizar(null, true, prova.getCartoes(), novoCartao);
         localizadorCartao.setLocationRelativeTo(this);
         localizadorCartao.pack();
@@ -325,6 +326,7 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                                 cartaoAtual.setCartaoSalvo(true);
                                 prova.setGabarito(cartaoAtual.getMarcacao());
                             }
+                            prova.setProvaSalva(false);
                             resetarPainel();
                             return true;
                         } else {

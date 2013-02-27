@@ -308,7 +308,7 @@ public class Scacp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelConteudoProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
+                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
         );
 
         pack();
@@ -344,8 +344,6 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmNovoActionPerformed
 
     private void itmAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAbrirActionPerformed
-        System.out.println("Valor da prova global:" + prova);
-
         Prova novaProva = new Prova();
         novaProva.setIdProva(0);
         ProvaLocalizar localizadorProva = new ProvaLocalizar(this, true, novaProva);
@@ -354,9 +352,7 @@ public class Scacp extends javax.swing.JFrame {
         localizadorProva.setVisible(true);
         
         novaProva = localizadorProva.getProva();
-        if(novaProva.getIdProva() != 0){
-        }
-        
+                
         itmFecharActionPerformed(evt);
         
         this.prova = novaProva;
@@ -379,33 +375,35 @@ public class Scacp extends javax.swing.JFrame {
     }//GEN-LAST:event_itmAbrirActionPerformed
 
     private void itmSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarActionPerformed
-        if(prova.getIdProva() != 0){
-            if(prova.getGabarito().equalsIgnoreCase("")){
-                JOptionPane.showMessageDialog(this, "O gabarito da prova não foi informado.\nInforme o gabarito da prova!", "Falta gabarito", JOptionPane.YES_NO_CANCEL_OPTION);
-            }else{
-                if(!prova.isProvaSalva()){
-                    ProvaDAO provaDAO = new ProvaDAO();
-                    if(provaDAO.provaJaExiste(prova.getNome())){
-                        CartaoDAO cartaoDAO = new CartaoDAO();
-                        for(Cartao cartao: prova.getCartoes().values()){
-                            System.out.println("entrou aqui");
+        if(prova.getGabarito().equalsIgnoreCase("")){
+            JOptionPane.showMessageDialog(this, "O gabarito da prova não foi informado.\nInforme o gabarito da prova!", "Falta gabarito", JOptionPane.YES_NO_CANCEL_OPTION);
+        }else{
+            if(!prova.isProvaSalva()){
+                ProvaDAO provaDAO = new ProvaDAO();
+                if(provaDAO.provaJaExiste(prova.getNome())){
+                    CartaoDAO cartaoDAO = new CartaoDAO();
+                    for(Cartao cartao: prova.getCartoes().values()){
+                        if(cartaoDAO.cartaoJaExiste(cartao.getNumeroInscricao(), prova.getIdProva())){
+                            cartaoDAO.alterarCartaoMarcacao(cartao, prova.getIdProva());
+                            cartaoDAO.alterarCartaoNota(cartao, prova.getIdProva());
+                        }else{
                             cartaoDAO.inserirCartao(cartao, prova.getIdProva());
                         }
-                    }else{
-                        provaDAO.inserirProva(prova);
+                        
                     }
-                    painelConteudoProva.removeAll();
-                    painelConteudoCartao.removeAll();
-                    menuEditar.setEnabled(false);
-                    menuCorrigir.setEnabled(false);
-                    prova = new Prova();
-                    validate();
-                    repaint();
+                }else{
+                    provaDAO.inserirProva(prova);
                 }
+                painelConteudoProva.removeAll();
+                painelConteudoCartao.removeAll();
+                menuEditar.setEnabled(false);
+                menuCorrigir.setEnabled(false);
+                prova = new Prova();
+                validate();
+                repaint();
             }
-        }else{
-            JOptionPane.showMessageDialog(this, "Já existe uma prova no banco de dados com este nome.\nEscolha a opção 'Salvar como' e especifique outro \nnome para salvar a prova atual.", "Nome de prova existente", JOptionPane.YES_NO_CANCEL_OPTION);
         }
+        //JOptionPane.showMessageDialog(this, "Já existe uma prova no banco de dados com este nome.\nEscolha a opção 'Salvar como' e especifique outro \nnome para salvar a prova atual.", "Nome de prova existente", JOptionPane.YES_NO_CANCEL_OPTION);
     }//GEN-LAST:event_itmSalvarActionPerformed
 
     private void itmSalvarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmSalvarComoActionPerformed

@@ -18,7 +18,6 @@ import javax.swing.JOptionPane;
 public class Scacp extends javax.swing.JFrame {
 
     Prova prova;
-    ProvaController provaController;
     CartaoPainelGerencimento painelGerenciamentoCartao;
     
     /**
@@ -26,7 +25,6 @@ public class Scacp extends javax.swing.JFrame {
      */
     public Scacp() {
         prova = new Prova();
-        provaController = new ProvaController();
         initComponents();
     }
 
@@ -274,9 +272,9 @@ public class Scacp extends javax.swing.JFrame {
         barraMenuPrincipal.add(menuConfigurar);
 
         menuAjuda.setText("Ajuda");
-        menuAjuda.setEnabled(false);
 
         itmAjuda.setText("Ajuda");
+        itmAjuda.setVisible(false);
         itmAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itmAjudaActionPerformed(evt);
@@ -308,7 +306,7 @@ public class Scacp extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelConteudoProva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE))
+                .addComponent(painelConteudoCartao, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
         );
 
         pack();
@@ -383,9 +381,12 @@ public class Scacp extends javax.swing.JFrame {
                 if(provaDAO.provaJaExiste(prova.getNome())){
                     CartaoDAO cartaoDAO = new CartaoDAO();
                     for(Cartao cartao: prova.getCartoes().values()){
+                        System.out.println("Salvar...\nCartão: "+cartao.getNumeroInscricao());
+                        System.out.println("Marcação: "+cartao.getMarcacao());
+                        System.out.println("Nota: "+cartao.getNota()+"\n");
+                        System.out.println("id_prova: "+prova.getIdProva());
                         if(cartaoDAO.cartaoJaExiste(cartao.getNumeroInscricao(), prova.getIdProva())){
                             cartaoDAO.alterarCartaoMarcacao(cartao, prova.getIdProva());
-                            cartaoDAO.alterarCartaoNota(cartao, prova.getIdProva());
                         }else{
                             cartaoDAO.inserirCartao(cartao, prova.getIdProva());
                         }

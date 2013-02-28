@@ -4,7 +4,6 @@
  */
 package scacp;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 
@@ -321,7 +320,26 @@ public class CartaoPainelGerencimento extends javax.swing.JPanel {
                         if (questoesFaltando.isEmpty()) {
                             if (cartaoAtual.getNumeroInscricao() != 9999990) {
                                 cartaoAtual.setCartaoSalvo(false);
+                                for(Cartao c : prova.getCartoes().values()){
+                                    System.out.println("COL: Cartão: "+c.getNumeroInscricao());
+                                    System.out.println("COL: Marcação: "+c.getMarcacao());
+                                    System.out.println("COL: Nota: "+c.getNota()+"\n");
+                                    System.out.println("COL: id_prova: "+prova.getIdProva());
+                                }
+                                
+                                System.out.println("Cartão: "+cartaoAtual.getNumeroInscricao());
+                                System.out.println("Marcação: "+cartaoAtual.getMarcacao());
+                                System.out.println("Nota: "+cartaoAtual.getNota());
+                                System.out.println("id_prova: "+prova.getIdProva()+"\n");
                                 prova.getCartoes().put(cartaoAtual.getNumeroInscricao(), cartaoAtual);
+                                
+                                for(Cartao c : prova.getCartoes().values()){
+                                    System.out.println("COL2: Cartão: "+c.getNumeroInscricao());
+                                    System.out.println("COL2: Marcação: "+c.getMarcacao());
+                                    System.out.println("COL2: Nota: "+c.getNota()+"\n");
+                                    System.out.println("COL2: id_prova: "+prova.getIdProva());
+                                }
+                                
                             } else {
                                 cartaoAtual.setCartaoSalvo(true);
                                 prova.setGabarito(cartaoAtual.getMarcacao());

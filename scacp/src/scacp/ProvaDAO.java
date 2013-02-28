@@ -71,7 +71,6 @@ public class ProvaDAO {
             st.setInt(1, idProva);
             
             ResultSet rs = st.executeQuery();
-            System.out.println("tamanho: "+rs.getFetchSize());
             rs.next();
             prova.setIdProva(rs.getInt("id_prova"));
             prova.setNome(rs.getString("nome"));

@@ -221,7 +221,6 @@
         <Menu class="javax.swing.JMenu" name="menuAjuda">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajuda"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itmAjuda">
@@ -231,6 +230,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itmAjudaActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="itmAjuda.setVisible(false);"/>
+              </AuxValues>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itmSobre">
               <Properties>
@@ -283,7 +285,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="painelConteudoProva" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="painelConteudoCartao" pref="314" max="32767" attributes="0"/>
+              <Component id="painelConteudoCartao" pref="318" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

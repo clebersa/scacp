@@ -36,6 +36,10 @@ public class CartaoDAO {
     public void alterarCartaoMarcacao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
+            System.out.println("Marcação\nCartão: "+cartao.getNumeroInscricao());
+            System.out.println("Marcação: "+cartao.getMarcacao());
+            System.out.println("Nota: "+cartao.getNota()+"\n");
+            System.out.println("id_prova: "+IdProva);
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao= ? where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString(1, cartao.getMarcacao());
             st.setInt(2, cartao.getNumeroInscricao());
@@ -52,6 +56,10 @@ public class CartaoDAO {
     public void alterarCartaoNota(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
+            System.out.println("AltNota\nCartão: "+cartao.getNumeroInscricao());
+            System.out.println("Marcação: "+cartao.getMarcacao());
+            System.out.println("Nota: "+cartao.getNota()+"\n");
+            System.out.println("id_prova: "+IdProva);
             PreparedStatement st = conexao.prepareStatement("update cartoes set nota = ? where numero_inscricao = ? and fk_id_prova = ?");
             st.setDouble(1, cartao.getNota());
             st.setInt(2, cartao.getNumeroInscricao());
@@ -92,7 +100,7 @@ public class CartaoDAO {
 
     public HashMap<Integer,Cartao> buscarCartoes(int idProva) {
         HashMap<Integer,Cartao> cartoes = new HashMap<>();
-        Cartao cartao = new Cartao();
+        Cartao cartao;
         Connection conexao = Conexao.getConexao();
 
         try {
@@ -100,6 +108,7 @@ public class CartaoDAO {
             st.setInt(1, idProva);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
+                cartao = new Cartao();
                 cartao.setNumeroInscricao(rs.getInt("numero_inscricao"));
                 cartao.setMarcacao(rs.getString("marcacao"));
                 cartao.setNota(rs.getDouble("nota"));

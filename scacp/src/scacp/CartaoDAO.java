@@ -36,10 +36,6 @@ public class CartaoDAO {
     public void alterarCartaoMarcacao(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
-            System.out.println("Marcação\nCartão: "+cartao.getNumeroInscricao());
-            System.out.println("Marcação: "+cartao.getMarcacao());
-            System.out.println("Nota: "+cartao.getNota()+"\n");
-            System.out.println("id_prova: "+IdProva);
             PreparedStatement st = conexao.prepareStatement("update cartoes set marcacao= ? where  numero_inscricao = ? and fk_id_prova = ?");
             st.setString(1, cartao.getMarcacao());
             st.setInt(2, cartao.getNumeroInscricao());
@@ -56,10 +52,6 @@ public class CartaoDAO {
     public void alterarCartaoNota(Cartao cartao, int IdProva) {
         Connection conexao = Conexao.getConexao();
         try {
-            System.out.println("AltNota\nCartão: "+cartao.getNumeroInscricao());
-            System.out.println("Marcação: "+cartao.getMarcacao());
-            System.out.println("Nota: "+cartao.getNota()+"\n");
-            System.out.println("id_prova: "+IdProva);
             PreparedStatement st = conexao.prepareStatement("update cartoes set nota = ? where numero_inscricao = ? and fk_id_prova = ?");
             st.setDouble(1, cartao.getNota());
             st.setInt(2, cartao.getNumeroInscricao());
@@ -153,7 +145,6 @@ public class CartaoDAO {
             }else{
                 jaExiste = true;
             }
-            System.out.println("existe: "+jaExiste);
             rs.close();
             st.close();
             conexao.close();

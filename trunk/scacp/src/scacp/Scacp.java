@@ -381,10 +381,6 @@ public class Scacp extends javax.swing.JFrame {
                 if(provaDAO.provaJaExiste(prova.getNome())){
                     CartaoDAO cartaoDAO = new CartaoDAO();
                     for(Cartao cartao: prova.getCartoes().values()){
-                        System.out.println("Salvar...\nCartão: "+cartao.getNumeroInscricao());
-                        System.out.println("Marcação: "+cartao.getMarcacao());
-                        System.out.println("Nota: "+cartao.getNota()+"\n");
-                        System.out.println("id_prova: "+prova.getIdProva());
                         if(cartaoDAO.cartaoJaExiste(cartao.getNumeroInscricao(), prova.getIdProva())){
                             cartaoDAO.alterarCartaoMarcacao(cartao, prova.getIdProva());
                         }else{
